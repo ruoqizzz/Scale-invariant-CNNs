@@ -50,6 +50,18 @@ We decide to choose paper 1-3 to implement and generate their results. For the 3
 
 Ruoqi:
 
+- Implement the method and result of [Locally Scale-Invariant Convolutional Neural Network](https://arxiv.org/abs/1412.5104) 
+- Implement the method and result of [Deep Scale-spaces: Equivariance Over Scale](https://arxiv.org/abs/1905.11697)
+- Evaluate the standard CNN on the downsampled Oral Cancer dataset
+- Evaluate the perfomance of the method in [Scale Steerable Filters for Locally Scale-Invariant Convolutional Neural Networks](https://arxiv.org/abs/1906.03861) on datase Oral Cancer (original and downsampled)
+- Write the report
+
 
 
 Wei:
+
+- Implement the method and result of [Locally Scale-Invariant Convolutional Neural Network](https://arxiv.org/abs/1412.5104) 
+- Implement the method and result of [Scale Steerable Filters for Locally Scale-Invariant Convolutional Neural Networks](https://arxiv.org/abs/1906.03861) 
+- Evaluate the standard CNN on the original Oral Cancer dataset
+- Evaluate the perfomance of the method in [Deep Scale-spaces: Equivariance Over Scale](https://arxiv.org/abs/1905.11697) on datase Oral Cancer (original and downsampled)
+- Write the report
