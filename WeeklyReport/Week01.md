@@ -13,8 +13,7 @@ We looked through four papers this week (listed below) and we found the theory b
    - **Method**: Firstly,  they applies filters at multiple scales in each layer so a single filter can detect and learn patterns at multiple scales. Then, 	max-pool responses over scales to obtain representations that are locally scale invariant yet have the same dimensionality as a traditional ConvNet layer output.
    - **Dataset**: MNIST-Scale
 2. [Scale Steerable Filters for Locally Scale-Invariant Convolutional Neural Networks](https://arxiv.org/abs/1906.03861)
-   - **Method**: Using the log-radial harmonics as a complex steerable basis, we construct a lo-
-     cally scale invariant CNN, where the filters in each convolution layer are a linear combination of the basis filters.
+   - **Method**: Using the log-radial harmonics as a complex steerable basis, we construct a locally scale invariant CNN, where the filters in each convolution layer are a linear combination of the basis filters.
    - **Dataset**: MNIST-Scale and FMNIST-Scale
 3. [Deep Scale-spaces: Equivariance Over Scale](https://arxiv.org/abs/1905.11697)
    - **Method**: Extend convolutions to these classes of symmetry under noninvertible transformations via the theory of semigroups. Their contributions are the introduction of a semigroup equivariant correlation and a scale-equivariant CNN.
