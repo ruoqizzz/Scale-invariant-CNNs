@@ -6,6 +6,8 @@ Their scale-invariance is built in at the layer level, the difference is shown i
 
 ![The stucture of Scale-invariant Convolution Layer](https://tva1.sinaimg.cn/large/006y8mN6gy1g8z2s7az37j30yj0ia41y.jpg)
 
+
+
 The sub-image (a) is the structure of a normal convolution layer and (b) is the strucutre of SI-ConvNet (Scale-Invariant Convolution Layer). There are four steps in one SI-ConvNet layer. Firstly, the input image is scaled. Secondly, the same filter is applied to different scaled images. Thirdly, the feature maps are applied using inverse transformation (either cropped or padded with 0s to be properly aligned). Finally, the maxpool is applied over scaled. These steps ensure the the layer get the locally invariant features and also the same output as normal convolution layer.
 
 
