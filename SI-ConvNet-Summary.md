@@ -16,7 +16,7 @@ They also use a tricky idea to implement SI-ConvNet layer without increasing the
 
 
 
-For the experiments, they implement SI-ConvNet in the Caffe framework and make a comparison with other neural networks on the same dataset MNIST-Scale. The architectures are composed of two convolutional layers, a fully connected layer and a soft-max logistic regression layer. They compare the performance from the following aspects:
+For the experiments, they implement SI-ConvNet based on the Caffe framework and make a comparison with other neural networks on the same dataset MNIST-Scale. The architectures are composed of two convolutional layers, a fully connected layer and a soft-max logistic regression layer. They compare the performance from the following aspects:
 
 - Test error. With the training dataset of 10k and test dataset of 50k, they compare the average test error and standard deviation over 6 training and test data folds.
 - Measuring invariance. For each neuron $h_i$, they compute the ratio of invariance and selectivity $L_i/G_i$ where $G_i=\sum|h_i(x)>t_i|/N$ with a chosen $t_i$ and $L_i$ is the local firing rate.
