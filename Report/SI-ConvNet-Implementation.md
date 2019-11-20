@@ -2,9 +2,19 @@
 
 This implementation is based on BVLC's Caffe[1] with version October 24th, 2014. 
 
+
+
+## Caffe Environment Deployment
+
+We use the cloud server (env details:)
+
+
+
+
+
 ## Caffe Architecture
 
-Caffe can be divided into three architectures, Blobs, Layers and Networks. Everything related to data is through blob, including sav ing, communication and operation. Layer is the fundermental of model and computation. Net is resposible for integrating and connect layers.
+Caffe(Convolutional Architexture for Fast Feature Embedding) is a convolutional neural network framework based on C++/CUDA/Python. Basically it can be divided into three architectures, Blobs, Layers and Networks. Everything related to data is through blob, including sav ing, communication and operation. Layer is the fundermental of model and computation. Net is resposible for integrating and connect layers.
 
 ### Blobs
 
@@ -30,6 +40,8 @@ The networks in Caffe is a directed acyclic graph of connected layers and a typi
 
 
 
+
+
 ## Main Changes to Caffe
 
 1. `caffe.proto`: declare parameters
@@ -47,7 +59,7 @@ The networks in Caffe is a directed acyclic graph of connected layers and a typi
 
 5. `util/transformation.(gpp/cpp/cu)`
 
-6. test files
+6. test files in `src/test/`
 
    
 
@@ -125,6 +137,20 @@ The networks in Caffe is a directed acyclic graph of connected layers and a typi
 
 
 ## Evaluation
+
+### Evaluation on MNIST-Scale
+
+
+
+### Evaluation on Oral Cancer dataset
+
+1. Convert dataset to lmdb/leveldb format
+
+   Firstly, the data need to be converted to lmdv/leveldb format to let Caffe read. This format  not only improve the IO efficiency but also acclerate the speed of loading data in training and testing. 
+
+2. Training 
+
+3. Testing
 
 
 
