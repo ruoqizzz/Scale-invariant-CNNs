@@ -1,4 +1,65 @@
 .DS_Store
+
+# pdf and dataset
 PDFs/
 *.pdf
 Dataset/
+
+*.supp
+*.jpg
+*.png
+*.caffemodel
+*.solverstate
+*.binaryproto
+*leveldb
+*lmdb
+
+# LevelDB files
+*.sst
+*.ldb
+LOCK
+LOG*
+CURRENT
+MANIFEST-*
+
+# Compiled Object files
+*.slo
+*.lo
+
+*.o
+*.a
+*.cuo
+
+# Compiled Dynamic libraries
+
+*.so
+*.bin
+*.pb.h
+*.pb.cc
+
+
+*_pb2.py
+
+# Compiled python
+*.pyc
+
+# Compiled MATLAB
+*.mex*
+
+# build, distribute, and bins
+build
+.build_debug/*
+.build_release/*
+distribute/*
+
+*.testbin
+*.bin
+python/caffe/proto/
+
+# Sublime Text settings
+*.sublime-workspace
+*.sublime-project
+
+
+# CMake generated files
+*.gen.cmake
