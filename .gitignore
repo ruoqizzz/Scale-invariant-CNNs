@@ -13,9 +13,9 @@ Dataset/
 *.binaryproto
 *leveldb
 *lmdb
-!1-si-convnet/examples/cat_gray.jpg
-!1-si-convnet/examples/cat.jpg
-!1-si-convnet/examples/fish-bike.jpg
+!1-si-convnet/examples/images/cat_gray.jpg
+!1-si-convnet/examples/images/cat.jpg
+!1-si-convnet/examples/images/fish-bike.jpg
 # LevelDB files
 *.sst
 *.ldb
