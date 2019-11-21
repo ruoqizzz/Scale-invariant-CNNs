@@ -1,1 +1,1 @@
-/root/si-convnet/data/mnist/table1/mnist-sc-uniform-10ksplit-set-5.h5
+/content/SIE-CNN/1-si-convnet/data/mnist/table1/mnist-sc-uniform-10ksplit-set-5.h5
