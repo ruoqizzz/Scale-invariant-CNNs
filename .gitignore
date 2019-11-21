@@ -16,6 +16,9 @@ Dataset/
 !1-si-convnet/examples/images/cat_gray.jpg
 !1-si-convnet/examples/images/cat.jpg
 !1-si-convnet/examples/images/fish-bike.jpg
+
+!1-si-convnet/src/caffe/test/test_data/cat.jpg
+
 # LevelDB files
 *.sst
 *.ldb
