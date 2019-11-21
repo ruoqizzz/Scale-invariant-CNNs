@@ -1,0 +1,5 @@
+/root/si-convnet/data/mnist/table1/mnist-sc-uniform-10ksplit-set-1.h5
+/root/si-convnet/data/mnist/table1/mnist-sc-uniform-10ksplit-set-2.h5
+/root/si-convnet/data/mnist/table1/mnist-sc-uniform-10ksplit-set-3.h5
+/root/si-convnet/data/mnist/table1/mnist-sc-uniform-10ksplit-set-4.h5
+/root/si-convnet/data/mnist/table1/mnist-sc-uniform-10ksplit-set-6.h5
