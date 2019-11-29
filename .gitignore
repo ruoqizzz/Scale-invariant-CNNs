@@ -3,7 +3,9 @@
 # pdf and dataset
 PDFs/
 *.pdf
-Dataset/
+
+1-si-convnet/data/mnist/table1
+
 
 *.supp
 *.jpg

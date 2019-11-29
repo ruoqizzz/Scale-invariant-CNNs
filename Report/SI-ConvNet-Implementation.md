@@ -1,28 +1,22 @@
 # [Locally Scale-Invariant Convolutional Neurual Network Implementation based on Caffe](https://github.com/akanazawa/si-convnet)
 
-This implementation is based on BVLC's Caffe[1] with version October 24th, 2014. 
+This implementation is based on BVLC's Caffe [1] with version of October 24th, 2014. 
 
 
 
 ## Caffe Environment Deployment
 
-We use the cloud server (env details:)
+We use the cloud server with a GPU of GTX 1080 Ti 40 core on [jikecloud.net](https://www.jikecloud.net). The original code on [si-convnet](https://github.com/akanazawa/si-convnet) has some problem to run due to the update of libraries and we change the code a little bit. The updated code is on [our github](https://github.com/wsgdrfz/SIE-CNN/tree/master/1-si-convnet).
 
-
-
-
+ 
 
 ## Caffe Architecture
 
-Caffe(Convolutional Architexture for Fast Feature Embedding) is a convolutional neural network framework based on C++/CUDA/Python. Basically it can be divided into three architectures, Blobs, Layers and Networks. Everything related to data is through blob, including sav ing, communication and operation. Layer is the fundermental of model and computation. Net is resposible for integrating and connect layers.
+Caffe (Convolutional Architexture for Fast Feature Embedding) is a convolutional neural network framework based on C++/CUDA/Python. Basically it can be divided into three architectures, Blobs, Layers and Networks. Everything related to data is through blob, including saving, communication and operation. Layer is the fundermental of model and computation. Network is resposible for integrating and connecting layers.
 
-### Blobs and other data structure
+### Blobs
 
-Blob is the basic data structural unit of Caffe and it is actually a  four dimensional array designed to stores and communicates data. It provide a unified memory interface to hold batches of images, model parameters and the derivatives for optimization generated in backpropagtion. There are two classes of data: `data` and `diff`. `data` is the normal data in network while `diff` is the derivatives of network. Blobs can synchronize these data between CPU and GPU in a way ignoring low-level details while maintaining a high level of performance. 
-
-
-
-Model .... is defined using protobuff
+Blob is the basic data structural unit of Caffe and it is actually a four dimensional array designed to stores and communicates data. It provides a unified memory interface to hold batches of images, model parameters and the derivatives for optimization generated in backpropagtion. There are two classes of data: `data` and `diff`. `data` is the normal data in network while `diff` is the derivatives of network. Blobs can synchronize these data between CPU and GPU in a way ignoring low-level details while maintaining a high level of performance. 
 
 ### Layers
 
@@ -30,48 +24,40 @@ Layers are the key of Caffe and there are many computational operations in layer
 
 1. Convolve filters
 2. Pool
-3. take inner products
+3. Take inner products
 4. Apply nonlinearities like ReLu, sigmoid
 5. Normalize
 6. Load data
 7. Compute loss
 
-Every layer takes one or more blobs as input and output one or more blobs after performaing calculations. 
+Every layer takes one or more blobs as input and output after performing calculations. 
 
 ### Networks
 
-The networks in Caffe is a directed acyclic graph of connected layers and a typical network starts from the data layer and ends with a loss layer. Caffe does all the bookkeeping through to ensure the correctness of forward and backward propagation. 
-
-
+The network in Caffe is a directed acyclic graph of connected layers and a typical network starts from a data layer and ends with a loss layer. Caffe does all the bookkeeping through to ensure the correctness of forward and backward propagation. 
 
 
 
 ## Main Changes to Caffe
 
-1. `caffe.proto`: declare parameters in  messages 
+1. `caffe.proto`: declare parameters in messages.
 
-2. `layer_factory.cpp`: initiate and register the new layer
+2. `layer_factory.cpp`: initiate and register the new layer.
 
-3. Layer header: define new layers in `/include/caffe/`
+3. Layer header: define new layers in `/include/caffe/`.
 
-4. `util/transformation.(gpp/cpp/cu)`: add transformation funtions
+4. `util/transformation.(gpp/cpp/cu)`: add transformation funtions.
 
 5. defining layers:
 
-   ![](/Users/wsgdrfz/Library/Application Support/typora-user-images/image-20191120170602274.png)
+   ![Scale-invariant Convolution Layer](/Users/wsgdrfz/Library/Application Support/typora-user-images/image-20191120170602274.png)
 
-   - `up_layer.cpp`: Implement the `UpsamplingLayer` which scale only one bottom blob with the functions in `util/transformation.(gpp/cpp/cu)` and the output layers whose size is same as transformations defined
-   - `downpool_layer.cpp`: Implement the `DownpoolLayer` and it is almost same as `UpsamplingLayer` plus the max-pool over scales
-   - `tiedconv_layer.cpp`: Implement the convolution part
-   - `ticonv_layer.cpp`: Wrap `UpsamplingLayer`,convolution and `DownpoolLayer` in `TIConvolutionLayer`
+   - `up_layer.cpp`: Implement the `UpsamplingLayer` which scales only one bottom blob with the functions in `util/transformation.(gpp/cpp/cu)` and outputs layers whose size is same as transformations defined.
+   - `tiedconv_layer.cpp`: Implement the convolution part.
+   - `downpool_layer.cpp`: Implement the `DownpoolLayer` and it is almost the same as `UpsamplingLayer`. It also standardises the input shape and does the max-pool over scales.
+   - `ticonv_layer.cpp`: Wrap `UpsamplingLayer`, `tiedconv_layer` and `DownpoolLayer` in `TIConvolutionLayer`. Note that one `TIConvolutionLayer` is corrsponding to one traditional convolutional layer.
 
-6. related test files in `src/test/` to ensure the correctness of new layers
-
-   
-
-
-
-## Process
+6. related test files in `src/test/` to ensure the correctness of new layers.
 
 
 
@@ -79,7 +65,7 @@ The networks in Caffe is a directed acyclic graph of connected layers and a typi
 
 ### Evaluation on MNIST-Scale
 
-In this paper, the network is trained and tested on 10,000 and 50,000 images respectively. They evaluated the model on six tran/test folds and report the test error. The network architecture is shown belonw in protobuff format.
+In this paper, the network is trained and tested on 10,000 and 50,000 images respectively. They evaluate the model on six train/test folds and report the average test error. The network architecture is shown below in protobuff format.
 
 ```
 name: "MNIST-sicnn-Table-1-split-1"
@@ -262,21 +248,38 @@ layers {
 }
 ```
 
+#### Result
 
-
-
+We replicate the result of `10k_split1_train/test` and get the test error of 3.28%. 
 
 ### Evaluation on Oral Cancer dataset
 
 1. Convert dataset to lmdb/leveldb format
 
-   Firstly, the data need to be converted to lmdv/leveldb format to let Caffe read. This format  not only improve the IO efficiency but also acclerate the speed of loading data in training and testing. 
+   Firstly, the dataset needs to be converted to lmdb/leveldb format to meet Caffe requirements. This format not only improves the IO efficiency but also acclerates the speed of loading data in training and test. We use the `convert_imageset.cpp` offered by Caffe. In order to use this, we creat the `LISTFILE`  in a way follows the required format. Below is the shell code to generate the `LISTFILE`.
 
-2. Training 
+   ```shell
+   cancer_file=test_cancer.txt
+   healthy_file=test_healthy.txt
+   h_path=Healthy
+   c_path=Cancer
+   
+   find $h_path -name *.jpg > $healthy_file
+   find $c_path -name *.jpg > $cancer_file
+   
+   
+   sed 's/$/& 1/g' $cancer_file > 'test.txt'
+   sed 's/$/& 0/g' $cancer_file >> 'test.txt'
+   
+   rm $cancer_file
+   rm $healthy_file
+   ```
 
-3. Testing
+2. Train network architecture 
 
+3. Test network architecture
 
+4. Test error with respect to different training size
 
 ## Reference
 
