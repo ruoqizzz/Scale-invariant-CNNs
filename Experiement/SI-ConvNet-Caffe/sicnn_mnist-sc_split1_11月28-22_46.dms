@@ -1,0 +1,758 @@
+I1128 22:46:53.153645  5782 caffe.cpp:102] Use GPU with device ID 0
+I1128 22:46:53.154973  5782 caffe.cpp:110] Starting Optimization
+I1128 22:46:53.155071  5782 solver.cpp:32] Initializing solver from parameters: 
+test_iter: 100
+test_interval: 100
+base_lr: 0.01
+display: 50
+max_iter: 700
+lr_policy: "fixed"
+momentum: 0.9
+weight_decay: 0.0001
+snapshot: 200
+snapshot_prefix: "snapshot/sicnn_train10k_mnist-sc_split1"
+solver_mode: GPU
+net: "protos/sicnn_train10k_train_test_mnist-sc_split1.prototxt"
+epoch_size: 78
+save_max: true
+I1128 22:46:53.155092  5782 solver.cpp:71] Creating training net from net file: protos/sicnn_train10k_train_test_mnist-sc_split1.prototxt
+I1128 22:46:53.156394  5782 net.cpp:281] The NetState phase (0) differed from the phase (1) specified by a rule in layer mnist
+I1128 22:46:53.156417  5782 net.cpp:281] The NetState phase (0) differed from the phase (1) specified by a rule in layer accuracy
+I1128 22:46:53.156527  5782 net.cpp:41] Initializing net from parameters: 
+name: "MNIST-sicnn-Table-1-split-1"
+layers {
+  top: "data"
+  top: "label"
+  name: "mnist"
+  type: HDF5_DATA
+  hdf5_data_param {
+    source: "../../data/mnist/table1/10k_split1_test.txt"
+    batch_size: 128
+  }
+  include {
+    phase: TRAIN
+  }
+}
+layers {
+  bottom: "data"
+  top: "conv1"
+  name: "conv1"
+  type: TICONV
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 1
+  weight_decay: 0
+  convolution_param {
+    num_output: 36
+    kernel_size: 7
+    stride: 1
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  transformations {
+  }
+  transformations {
+    scale: 0.63
+  }
+  transformations {
+    scale: 0.7937
+  }
+  transformations {
+    scale: 1.2599
+  }
+  transformations {
+    scale: 1.5874
+  }
+  transformations {
+    scale: 2
+  }
+}
+layers {
+  bottom: "conv1"
+  top: "conv1"
+  name: "relu1"
+  type: RELU
+}
+layers {
+  bottom: "conv1"
+  top: "pool1"
+  name: "pool1"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool1"
+  top: "conv2"
+  name: "conv2"
+  type: TICONV
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 1
+  weight_decay: 0
+  convolution_param {
+    num_output: 64
+    kernel_size: 5
+    stride: 1
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  transformations {
+  }
+  transformations {
+    scale: 0.63
+  }
+  transformations {
+    scale: 0.7937
+  }
+  transformations {
+    scale: 1.2599
+  }
+  transformations {
+    scale: 1.5874
+  }
+  transformations {
+    scale: 2
+  }
+}
+layers {
+  bottom: "conv2"
+  top: "conv2"
+  name: "relu2"
+  type: RELU
+}
+layers {
+  bottom: "conv2"
+  top: "pool2"
+  name: "pool2"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 3
+  }
+}
+layers {
+  bottom: "pool2"
+  top: "ip1"
+  name: "ip1"
+  type: INNER_PRODUCT
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 1
+  weight_decay: 0
+  inner_product_param {
+    num_output: 150
+    weight_filler {
+      type: "gaussian"
+      std: 0.1
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layers {
+  bottom: "ip1"
+  top: "ip1"
+  name: "relu3"
+  type: RELU
+}
+layers {
+  bottom: "ip1"
+  top: "ip2"
+  name: "ip2"
+  type: INNER_PRODUCT
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 1
+  weight_decay: 0
+  inner_product_param {
+    num_output: 10
+    weight_filler {
+      type: "gaussian"
+      std: 0.1
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layers {
+  bottom: "ip2"
+  bottom: "label"
+  top: "loss"
+  name: "loss"
+  type: SOFTMAX_LOSS
+}
+state {
+  phase: TRAIN
+}
+I1128 22:46:53.156658  5782 net.cpp:69] Creating Layer mnist
+I1128 22:46:53.156668  5782 net.cpp:362] mnist -> data
+I1128 22:46:53.156680  5782 net.cpp:362] mnist -> label
+I1128 22:46:53.156688  5782 net.cpp:98] Setting up mnist
+I1128 22:46:53.156694  5782 hdf5_data_layer.cpp:61] Loading filename from ../../data/mnist/table1/10k_split1_test.txt
+I1128 22:46:53.161275  5782 hdf5_data_layer.cpp:73] Number of files: 1
+I1128 22:46:53.161289  5782 hdf5_data_layer.cpp:76] Loading HDF5 file/root/si-convnet/data/mnist/table1/mnist-sc-uniform-10ksplit-set-1.h5
+I1128 22:46:53.520213  5782 hdf5_data_layer.cpp:86] output data size: 128,1,28,28
+I1128 22:46:53.520282  5782 net.cpp:105] Top shape: 128 1 28 28 (100352)
+I1128 22:46:53.520289  5782 net.cpp:105] Top shape: 128 1 1 1 (128)
+I1128 22:46:53.520304  5782 net.cpp:69] Creating Layer conv1
+I1128 22:46:53.520310  5782 net.cpp:400] conv1 <- data
+I1128 22:46:53.520319  5782 net.cpp:362] conv1 -> conv1
+I1128 22:46:53.520342  5782 net.cpp:98] Setting up conv1
+I1128 22:46:53.521421  5782 ticonv_layer.cpp:27] TIConvolution layer using 6 transformations conv1 using interpolation: 1
+I1128 22:46:53.521440  5782 ticonv_layer.cpp:33]  T0 :  sc: 1, rot: 0
+I1128 22:46:53.521483  5782 ticonv_layer.cpp:33]  T1 :  sc: 0.63, rot: 0
+I1128 22:46:53.521493  5782 ticonv_layer.cpp:33]  T2 :  sc: 0.7937, rot: 0
+I1128 22:46:53.521502  5782 ticonv_layer.cpp:33]  T3 :  sc: 1.2599, rot: 0
+I1128 22:46:53.521510  5782 ticonv_layer.cpp:33]  T4 :  sc: 1.5874, rot: 0
+I1128 22:46:53.521518  5782 ticonv_layer.cpp:33]  T5 :  sc: 2, rot: 0
+I1128 22:46:53.521528  5782 ticonv_layer.cpp:37]   Creating Upsampling Layer in conv1
+I1128 22:46:53.531064  5782 ticonv_layer.cpp:51]   Top shape: 1 28 28
+I1128 22:46:53.531077  5782 ticonv_layer.cpp:51]   Top shape: 1 17 17
+I1128 22:46:53.531095  5782 ticonv_layer.cpp:51]   Top shape: 1 22 22
+I1128 22:46:53.531098  5782 ticonv_layer.cpp:51]   Top shape: 1 35 35
+I1128 22:46:53.531103  5782 ticonv_layer.cpp:51]   Top shape: 1 44 44
+I1128 22:46:53.531107  5782 ticonv_layer.cpp:51]   Top shape: 1 56 56
+I1128 22:46:53.531113  5782 ticonv_layer.cpp:58]   Creating TiedConv Layer in conv1
+I1128 22:46:53.531246  5782 ticonv_layer.cpp:70]   Top shape: 36 22 22
+I1128 22:46:53.531256  5782 ticonv_layer.cpp:70]   Top shape: 36 11 11
+I1128 22:46:53.531261  5782 ticonv_layer.cpp:70]   Top shape: 36 16 16
+I1128 22:46:53.531266  5782 ticonv_layer.cpp:70]   Top shape: 36 29 29
+I1128 22:46:53.531271  5782 ticonv_layer.cpp:70]   Top shape: 36 38 38
+I1128 22:46:53.531276  5782 ticonv_layer.cpp:70]   Top shape: 36 50 50
+I1128 22:46:53.531281  5782 ticonv_layer.cpp:82]   Creating DownPooling Layer in conv1
+I1128 22:46:53.531637  5782 net.cpp:105] Top shape: 128 36 22 22 (2230272)
+I1128 22:46:53.531661  5782 net.cpp:69] Creating Layer relu1
+I1128 22:46:53.531666  5782 net.cpp:400] relu1 <- conv1
+I1128 22:46:53.531674  5782 net.cpp:351] relu1 -> conv1 (in-place)
+I1128 22:46:53.531683  5782 net.cpp:98] Setting up relu1
+I1128 22:46:53.531688  5782 net.cpp:105] Top shape: 128 36 22 22 (2230272)
+I1128 22:46:53.531697  5782 net.cpp:69] Creating Layer pool1
+I1128 22:46:53.531702  5782 net.cpp:400] pool1 <- conv1
+I1128 22:46:53.531708  5782 net.cpp:362] pool1 -> pool1
+I1128 22:46:53.531716  5782 net.cpp:98] Setting up pool1
+I1128 22:46:53.532130  5782 net.cpp:105] Top shape: 128 36 11 11 (557568)
+I1128 22:46:53.532150  5782 net.cpp:69] Creating Layer conv2
+I1128 22:46:53.532155  5782 net.cpp:400] conv2 <- pool1
+I1128 22:46:53.532164  5782 net.cpp:362] conv2 -> conv2
+I1128 22:46:53.532176  5782 net.cpp:98] Setting up conv2
+I1128 22:46:53.532181  5782 ticonv_layer.cpp:27] TIConvolution layer using 6 transformations conv2 using interpolation: 1
+I1128 22:46:53.532186  5782 ticonv_layer.cpp:33]  T0 :  sc: 1, rot: 0
+I1128 22:46:53.532197  5782 ticonv_layer.cpp:33]  T1 :  sc: 0.63, rot: 0
+I1128 22:46:53.532204  5782 ticonv_layer.cpp:33]  T2 :  sc: 0.7937, rot: 0
+I1128 22:46:53.532212  5782 ticonv_layer.cpp:33]  T3 :  sc: 1.2599, rot: 0
+I1128 22:46:53.532217  5782 ticonv_layer.cpp:33]  T4 :  sc: 1.5874, rot: 0
+I1128 22:46:53.532223  5782 ticonv_layer.cpp:33]  T5 :  sc: 2, rot: 0
+I1128 22:46:53.532229  5782 ticonv_layer.cpp:37]   Creating Upsampling Layer in conv2
+I1128 22:46:53.532454  5782 ticonv_layer.cpp:51]   Top shape: 36 11 11
+I1128 22:46:53.532464  5782 ticonv_layer.cpp:51]   Top shape: 36 6 6
+I1128 22:46:53.532469  5782 ticonv_layer.cpp:51]   Top shape: 36 8 8
+I1128 22:46:53.532474  5782 ticonv_layer.cpp:51]   Top shape: 36 13 13
+I1128 22:46:53.532479  5782 ticonv_layer.cpp:51]   Top shape: 36 17 17
+I1128 22:46:53.532483  5782 ticonv_layer.cpp:51]   Top shape: 36 22 22
+I1128 22:46:53.532490  5782 ticonv_layer.cpp:58]   Creating TiedConv Layer in conv2
+I1128 22:46:53.535006  5782 ticonv_layer.cpp:70]   Top shape: 64 7 7
+I1128 22:46:53.535017  5782 ticonv_layer.cpp:70]   Top shape: 64 2 2
+I1128 22:46:53.535034  5782 ticonv_layer.cpp:70]   Top shape: 64 4 4
+I1128 22:46:53.535038  5782 ticonv_layer.cpp:70]   Top shape: 64 9 9
+I1128 22:46:53.535043  5782 ticonv_layer.cpp:70]   Top shape: 64 13 13
+I1128 22:46:53.535048  5782 ticonv_layer.cpp:70]   Top shape: 64 18 18
+I1128 22:46:53.535053  5782 ticonv_layer.cpp:82]   Creating DownPooling Layer in conv2
+I1128 22:46:53.535221  5782 net.cpp:105] Top shape: 128 64 7 7 (401408)
+I1128 22:46:53.535238  5782 net.cpp:69] Creating Layer relu2
+I1128 22:46:53.535243  5782 net.cpp:400] relu2 <- conv2
+I1128 22:46:53.535251  5782 net.cpp:351] relu2 -> conv2 (in-place)
+I1128 22:46:53.535259  5782 net.cpp:98] Setting up relu2
+I1128 22:46:53.535264  5782 net.cpp:105] Top shape: 128 64 7 7 (401408)
+I1128 22:46:53.535272  5782 net.cpp:69] Creating Layer pool2
+I1128 22:46:53.535277  5782 net.cpp:400] pool2 <- conv2
+I1128 22:46:53.535284  5782 net.cpp:362] pool2 -> pool2
+I1128 22:46:53.535291  5782 net.cpp:98] Setting up pool2
+I1128 22:46:53.535298  5782 net.cpp:105] Top shape: 128 64 3 3 (73728)
+I1128 22:46:53.535307  5782 net.cpp:69] Creating Layer ip1
+I1128 22:46:53.535312  5782 net.cpp:400] ip1 <- pool2
+I1128 22:46:53.535320  5782 net.cpp:362] ip1 -> ip1
+I1128 22:46:53.535327  5782 net.cpp:98] Setting up ip1
+I1128 22:46:53.538914  5782 net.cpp:105] Top shape: 128 150 1 1 (19200)
+I1128 22:46:53.538944  5782 net.cpp:69] Creating Layer relu3
+I1128 22:46:53.538949  5782 net.cpp:400] relu3 <- ip1
+I1128 22:46:53.538955  5782 net.cpp:351] relu3 -> ip1 (in-place)
+I1128 22:46:53.538964  5782 net.cpp:98] Setting up relu3
+I1128 22:46:53.538969  5782 net.cpp:105] Top shape: 128 150 1 1 (19200)
+I1128 22:46:53.538975  5782 net.cpp:69] Creating Layer ip2
+I1128 22:46:53.538980  5782 net.cpp:400] ip2 <- ip1
+I1128 22:46:53.538987  5782 net.cpp:362] ip2 -> ip2
+I1128 22:46:53.539007  5782 net.cpp:98] Setting up ip2
+I1128 22:46:53.539085  5782 net.cpp:105] Top shape: 128 10 1 1 (1280)
+I1128 22:46:53.539099  5782 net.cpp:69] Creating Layer loss
+I1128 22:46:53.539104  5782 net.cpp:400] loss <- ip2
+I1128 22:46:53.539110  5782 net.cpp:400] loss <- label
+I1128 22:46:53.539120  5782 net.cpp:362] loss -> loss
+I1128 22:46:53.539129  5782 net.cpp:98] Setting up loss
+I1128 22:46:53.539144  5782 net.cpp:105] Top shape: 1 1 1 1 (1)
+I1128 22:46:53.539149  5782 net.cpp:112]     with loss weight 1
+I1128 22:46:53.539160  5782 net.cpp:175] loss needs backward computation.
+I1128 22:46:53.539165  5782 net.cpp:175] ip2 needs backward computation.
+I1128 22:46:53.539170  5782 net.cpp:175] relu3 needs backward computation.
+I1128 22:46:53.539175  5782 net.cpp:175] ip1 needs backward computation.
+I1128 22:46:53.539180  5782 net.cpp:175] pool2 needs backward computation.
+I1128 22:46:53.539186  5782 net.cpp:175] relu2 needs backward computation.
+I1128 22:46:53.539191  5782 net.cpp:175] conv2 needs backward computation.
+I1128 22:46:53.539196  5782 net.cpp:175] pool1 needs backward computation.
+I1128 22:46:53.539201  5782 net.cpp:175] relu1 needs backward computation.
+I1128 22:46:53.539206  5782 net.cpp:175] conv1 needs backward computation.
+I1128 22:46:53.539212  5782 net.cpp:177] mnist does not need backward computation.
+I1128 22:46:53.539217  5782 net.cpp:214] This network produces output loss
+I1128 22:46:53.539233  5782 net.cpp:473] Collecting Learning Rate and Weight Decay.
+I1128 22:46:53.539240  5782 net.cpp:225] Network initialization done.
+I1128 22:46:53.539245  5782 net.cpp:226] Memory required for data: 24155976
+I1128 22:46:53.539532  5782 solver.cpp:154] Creating test net (#0) specified by net file: protos/sicnn_train10k_train_test_mnist-sc_split1.prototxt
+I1128 22:46:53.539567  5782 net.cpp:281] The NetState phase (1) differed from the phase (0) specified by a rule in layer mnist
+I1128 22:46:53.539698  5782 net.cpp:41] Initializing net from parameters: 
+name: "MNIST-sicnn-Table-1-split-1"
+layers {
+  top: "data"
+  top: "label"
+  name: "mnist"
+  type: HDF5_DATA
+  hdf5_data_param {
+    source: "../../data/mnist/table1/10k_split1_train.txt"
+    batch_size: 100
+  }
+  include {
+    phase: TEST
+  }
+}
+layers {
+  bottom: "data"
+  top: "conv1"
+  name: "conv1"
+  type: TICONV
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 1
+  weight_decay: 0
+  convolution_param {
+    num_output: 36
+    kernel_size: 7
+    stride: 1
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  transformations {
+  }
+  transformations {
+    scale: 0.63
+  }
+  transformations {
+    scale: 0.7937
+  }
+  transformations {
+    scale: 1.2599
+  }
+  transformations {
+    scale: 1.5874
+  }
+  transformations {
+    scale: 2
+  }
+}
+layers {
+  bottom: "conv1"
+  top: "conv1"
+  name: "relu1"
+  type: RELU
+}
+layers {
+  bottom: "conv1"
+  top: "pool1"
+  name: "pool1"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 2
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool1"
+  top: "conv2"
+  name: "conv2"
+  type: TICONV
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 1
+  weight_decay: 0
+  convolution_param {
+    num_output: 64
+    kernel_size: 5
+    stride: 1
+    weight_filler {
+      type: "gaussian"
+      std: 0.01
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+  transformations {
+  }
+  transformations {
+    scale: 0.63
+  }
+  transformations {
+    scale: 0.7937
+  }
+  transformations {
+    scale: 1.2599
+  }
+  transformations {
+    scale: 1.5874
+  }
+  transformations {
+    scale: 2
+  }
+}
+layers {
+  bottom: "conv2"
+  top: "conv2"
+  name: "relu2"
+  type: RELU
+}
+layers {
+  bottom: "conv2"
+  top: "pool2"
+  name: "pool2"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 3
+  }
+}
+layers {
+  bottom: "pool2"
+  top: "ip1"
+  name: "ip1"
+  type: INNER_PRODUCT
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 1
+  weight_decay: 0
+  inner_product_param {
+    num_output: 150
+    weight_filler {
+      type: "gaussian"
+      std: 0.1
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layers {
+  bottom: "ip1"
+  top: "ip1"
+  name: "relu3"
+  type: RELU
+}
+layers {
+  bottom: "ip1"
+  top: "ip2"
+  name: "ip2"
+  type: INNER_PRODUCT
+  blobs_lr: 1
+  blobs_lr: 2
+  weight_decay: 1
+  weight_decay: 0
+  inner_product_param {
+    num_output: 10
+    weight_filler {
+      type: "gaussian"
+      std: 0.1
+    }
+    bias_filler {
+      type: "constant"
+    }
+  }
+}
+layers {
+  bottom: "ip2"
+  bottom: "label"
+  top: "accuracy"
+  name: "accuracy"
+  type: ACCURACY
+  include {
+    phase: TEST
+  }
+}
+layers {
+  bottom: "ip2"
+  bottom: "label"
+  top: "loss"
+  name: "loss"
+  type: SOFTMAX_LOSS
+}
+state {
+  phase: TEST
+}
+I1128 22:46:53.539809  5782 net.cpp:69] Creating Layer mnist
+I1128 22:46:53.539819  5782 net.cpp:362] mnist -> data
+I1128 22:46:53.539829  5782 net.cpp:362] mnist -> label
+I1128 22:46:53.539836  5782 net.cpp:98] Setting up mnist
+I1128 22:46:53.539842  5782 hdf5_data_layer.cpp:61] Loading filename from ../../data/mnist/table1/10k_split1_train.txt
+I1128 22:46:53.540084  5782 hdf5_data_layer.cpp:73] Number of files: 5
+I1128 22:46:53.540096  5782 hdf5_data_layer.cpp:76] Loading HDF5 file/root/si-convnet/data/mnist/table1/mnist-sc-uniform-10ksplit-set-2.h5
+I1128 22:46:53.884865  5782 hdf5_data_layer.cpp:86] output data size: 100,1,28,28
+I1128 22:46:53.884897  5782 net.cpp:105] Top shape: 100 1 28 28 (78400)
+I1128 22:46:53.884904  5782 net.cpp:105] Top shape: 100 1 1 1 (100)
+I1128 22:46:53.884917  5782 net.cpp:69] Creating Layer label_mnist_1_split
+I1128 22:46:53.884923  5782 net.cpp:400] label_mnist_1_split <- label
+I1128 22:46:53.884944  5782 net.cpp:362] label_mnist_1_split -> label_mnist_1_split_0
+I1128 22:46:53.884956  5782 net.cpp:362] label_mnist_1_split -> label_mnist_1_split_1
+I1128 22:46:53.884964  5782 net.cpp:98] Setting up label_mnist_1_split
+I1128 22:46:53.884984  5782 net.cpp:105] Top shape: 100 1 1 1 (100)
+I1128 22:46:53.884989  5782 net.cpp:105] Top shape: 100 1 1 1 (100)
+I1128 22:46:53.884999  5782 net.cpp:69] Creating Layer conv1
+I1128 22:46:53.885004  5782 net.cpp:400] conv1 <- data
+I1128 22:46:53.885012  5782 net.cpp:362] conv1 -> conv1
+I1128 22:46:53.885048  5782 net.cpp:98] Setting up conv1
+I1128 22:46:53.885056  5782 ticonv_layer.cpp:27] TIConvolution layer using 6 transformations conv1 using interpolation: 1
+I1128 22:46:53.885061  5782 ticonv_layer.cpp:33]  T0 :  sc: 1, rot: 0
+I1128 22:46:53.885080  5782 ticonv_layer.cpp:33]  T1 :  sc: 0.63, rot: 0
+I1128 22:46:53.885087  5782 ticonv_layer.cpp:33]  T2 :  sc: 0.7937, rot: 0
+I1128 22:46:53.885094  5782 ticonv_layer.cpp:33]  T3 :  sc: 1.2599, rot: 0
+I1128 22:46:53.885100  5782 ticonv_layer.cpp:33]  T4 :  sc: 1.5874, rot: 0
+I1128 22:46:53.885107  5782 ticonv_layer.cpp:33]  T5 :  sc: 2, rot: 0
+I1128 22:46:53.885113  5782 ticonv_layer.cpp:37]   Creating Upsampling Layer in conv1
+I1128 22:46:53.885941  5782 ticonv_layer.cpp:51]   Top shape: 1 28 28
+I1128 22:46:53.885952  5782 ticonv_layer.cpp:51]   Top shape: 1 17 17
+I1128 22:46:53.885957  5782 ticonv_layer.cpp:51]   Top shape: 1 22 22
+I1128 22:46:53.885962  5782 ticonv_layer.cpp:51]   Top shape: 1 35 35
+I1128 22:46:53.885967  5782 ticonv_layer.cpp:51]   Top shape: 1 44 44
+I1128 22:46:53.885972  5782 ticonv_layer.cpp:51]   Top shape: 1 56 56
+I1128 22:46:53.885977  5782 ticonv_layer.cpp:58]   Creating TiedConv Layer in conv1
+I1128 22:46:53.886080  5782 ticonv_layer.cpp:70]   Top shape: 36 22 22
+I1128 22:46:53.886090  5782 ticonv_layer.cpp:70]   Top shape: 36 11 11
+I1128 22:46:53.886095  5782 ticonv_layer.cpp:70]   Top shape: 36 16 16
+I1128 22:46:53.886099  5782 ticonv_layer.cpp:70]   Top shape: 36 29 29
+I1128 22:46:53.886104  5782 ticonv_layer.cpp:70]   Top shape: 36 38 38
+I1128 22:46:53.886109  5782 ticonv_layer.cpp:70]   Top shape: 36 50 50
+I1128 22:46:53.886116  5782 ticonv_layer.cpp:82]   Creating DownPooling Layer in conv1
+I1128 22:46:53.886488  5782 net.cpp:105] Top shape: 100 36 22 22 (1742400)
+I1128 22:46:53.886507  5782 net.cpp:69] Creating Layer relu1
+I1128 22:46:53.886514  5782 net.cpp:400] relu1 <- conv1
+I1128 22:46:53.886521  5782 net.cpp:351] relu1 -> conv1 (in-place)
+I1128 22:46:53.886529  5782 net.cpp:98] Setting up relu1
+I1128 22:46:53.886538  5782 net.cpp:105] Top shape: 100 36 22 22 (1742400)
+I1128 22:46:53.886545  5782 net.cpp:69] Creating Layer pool1
+I1128 22:46:53.886551  5782 net.cpp:400] pool1 <- conv1
+I1128 22:46:53.886559  5782 net.cpp:362] pool1 -> pool1
+I1128 22:46:53.886566  5782 net.cpp:98] Setting up pool1
+I1128 22:46:53.886574  5782 net.cpp:105] Top shape: 100 36 11 11 (435600)
+I1128 22:46:53.886581  5782 net.cpp:69] Creating Layer conv2
+I1128 22:46:53.886587  5782 net.cpp:400] conv2 <- pool1
+I1128 22:46:53.886600  5782 net.cpp:362] conv2 -> conv2
+I1128 22:46:53.886607  5782 net.cpp:98] Setting up conv2
+I1128 22:46:53.886612  5782 ticonv_layer.cpp:27] TIConvolution layer using 6 transformations conv2 using interpolation: 1
+I1128 22:46:53.886617  5782 ticonv_layer.cpp:33]  T0 :  sc: 1, rot: 0
+I1128 22:46:53.886627  5782 ticonv_layer.cpp:33]  T1 :  sc: 0.63, rot: 0
+I1128 22:46:53.886634  5782 ticonv_layer.cpp:33]  T2 :  sc: 0.7937, rot: 0
+I1128 22:46:53.886641  5782 ticonv_layer.cpp:33]  T3 :  sc: 1.2599, rot: 0
+I1128 22:46:53.886647  5782 ticonv_layer.cpp:33]  T4 :  sc: 1.5874, rot: 0
+I1128 22:46:53.886653  5782 ticonv_layer.cpp:33]  T5 :  sc: 2, rot: 0
+I1128 22:46:53.886659  5782 ticonv_layer.cpp:37]   Creating Upsampling Layer in conv2
+I1128 22:46:53.886870  5782 ticonv_layer.cpp:51]   Top shape: 36 11 11
+I1128 22:46:53.886880  5782 ticonv_layer.cpp:51]   Top shape: 36 6 6
+I1128 22:46:53.886886  5782 ticonv_layer.cpp:51]   Top shape: 36 8 8
+I1128 22:46:53.886891  5782 ticonv_layer.cpp:51]   Top shape: 36 13 13
+I1128 22:46:53.886896  5782 ticonv_layer.cpp:51]   Top shape: 36 17 17
+I1128 22:46:53.886901  5782 ticonv_layer.cpp:51]   Top shape: 36 22 22
+I1128 22:46:53.886906  5782 ticonv_layer.cpp:58]   Creating TiedConv Layer in conv2
+I1128 22:46:53.889240  5782 ticonv_layer.cpp:70]   Top shape: 64 7 7
+I1128 22:46:53.889250  5782 ticonv_layer.cpp:70]   Top shape: 64 2 2
+I1128 22:46:53.889256  5782 ticonv_layer.cpp:70]   Top shape: 64 4 4
+I1128 22:46:53.889261  5782 ticonv_layer.cpp:70]   Top shape: 64 9 9
+I1128 22:46:53.889284  5782 ticonv_layer.cpp:70]   Top shape: 64 13 13
+I1128 22:46:53.889290  5782 ticonv_layer.cpp:70]   Top shape: 64 18 18
+I1128 22:46:53.889295  5782 ticonv_layer.cpp:82]   Creating DownPooling Layer in conv2
+I1128 22:46:53.889436  5782 net.cpp:105] Top shape: 100 64 7 7 (313600)
+I1128 22:46:53.889452  5782 net.cpp:69] Creating Layer relu2
+I1128 22:46:53.889458  5782 net.cpp:400] relu2 <- conv2
+I1128 22:46:53.889466  5782 net.cpp:351] relu2 -> conv2 (in-place)
+I1128 22:46:53.889473  5782 net.cpp:98] Setting up relu2
+I1128 22:46:53.889478  5782 net.cpp:105] Top shape: 100 64 7 7 (313600)
+I1128 22:46:53.889487  5782 net.cpp:69] Creating Layer pool2
+I1128 22:46:53.889492  5782 net.cpp:400] pool2 <- conv2
+I1128 22:46:53.889498  5782 net.cpp:362] pool2 -> pool2
+I1128 22:46:53.889505  5782 net.cpp:98] Setting up pool2
+I1128 22:46:53.889513  5782 net.cpp:105] Top shape: 100 64 3 3 (57600)
+I1128 22:46:53.889521  5782 net.cpp:69] Creating Layer ip1
+I1128 22:46:53.889526  5782 net.cpp:400] ip1 <- pool2
+I1128 22:46:53.889533  5782 net.cpp:362] ip1 -> ip1
+I1128 22:46:53.889542  5782 net.cpp:98] Setting up ip1
+I1128 22:46:53.893169  5782 net.cpp:105] Top shape: 100 150 1 1 (15000)
+I1128 22:46:53.893200  5782 net.cpp:69] Creating Layer relu3
+I1128 22:46:53.893206  5782 net.cpp:400] relu3 <- ip1
+I1128 22:46:53.893213  5782 net.cpp:351] relu3 -> ip1 (in-place)
+I1128 22:46:53.893221  5782 net.cpp:98] Setting up relu3
+I1128 22:46:53.893226  5782 net.cpp:105] Top shape: 100 150 1 1 (15000)
+I1128 22:46:53.893234  5782 net.cpp:69] Creating Layer ip2
+I1128 22:46:53.893239  5782 net.cpp:400] ip2 <- ip1
+I1128 22:46:53.893247  5782 net.cpp:362] ip2 -> ip2
+I1128 22:46:53.893254  5782 net.cpp:98] Setting up ip2
+I1128 22:46:53.893328  5782 net.cpp:105] Top shape: 100 10 1 1 (1000)
+I1128 22:46:53.893342  5782 net.cpp:69] Creating Layer ip2_ip2_0_split
+I1128 22:46:53.893347  5782 net.cpp:400] ip2_ip2_0_split <- ip2
+I1128 22:46:53.893354  5782 net.cpp:362] ip2_ip2_0_split -> ip2_ip2_0_split_0
+I1128 22:46:53.893363  5782 net.cpp:362] ip2_ip2_0_split -> ip2_ip2_0_split_1
+I1128 22:46:53.893373  5782 net.cpp:98] Setting up ip2_ip2_0_split
+I1128 22:46:53.893378  5782 net.cpp:105] Top shape: 100 10 1 1 (1000)
+I1128 22:46:53.893384  5782 net.cpp:105] Top shape: 100 10 1 1 (1000)
+I1128 22:46:53.893393  5782 net.cpp:69] Creating Layer accuracy
+I1128 22:46:53.893399  5782 net.cpp:400] accuracy <- ip2_ip2_0_split_0
+I1128 22:46:53.893404  5782 net.cpp:400] accuracy <- label_mnist_1_split_0
+I1128 22:46:53.893412  5782 net.cpp:362] accuracy -> accuracy
+I1128 22:46:53.893420  5782 net.cpp:98] Setting up accuracy
+I1128 22:46:53.893426  5782 net.cpp:105] Top shape: 1 1 1 1 (1)
+I1128 22:46:53.893435  5782 net.cpp:69] Creating Layer loss
+I1128 22:46:53.893440  5782 net.cpp:400] loss <- ip2_ip2_0_split_1
+I1128 22:46:53.893445  5782 net.cpp:400] loss <- label_mnist_1_split_1
+I1128 22:46:53.893452  5782 net.cpp:362] loss -> loss
+I1128 22:46:53.893460  5782 net.cpp:98] Setting up loss
+I1128 22:46:53.893468  5782 net.cpp:105] Top shape: 1 1 1 1 (1)
+I1128 22:46:53.893474  5782 net.cpp:112]     with loss weight 1
+I1128 22:46:53.893484  5782 net.cpp:175] loss needs backward computation.
+I1128 22:46:53.893491  5782 net.cpp:177] accuracy does not need backward computation.
+I1128 22:46:53.893496  5782 net.cpp:175] ip2_ip2_0_split needs backward computation.
+I1128 22:46:53.893501  5782 net.cpp:175] ip2 needs backward computation.
+I1128 22:46:53.893507  5782 net.cpp:175] relu3 needs backward computation.
+I1128 22:46:53.893512  5782 net.cpp:175] ip1 needs backward computation.
+I1128 22:46:53.893517  5782 net.cpp:175] pool2 needs backward computation.
+I1128 22:46:53.893522  5782 net.cpp:175] relu2 needs backward computation.
+I1128 22:46:53.893527  5782 net.cpp:175] conv2 needs backward computation.
+I1128 22:46:53.893533  5782 net.cpp:175] pool1 needs backward computation.
+I1128 22:46:53.893538  5782 net.cpp:175] relu1 needs backward computation.
+I1128 22:46:53.893543  5782 net.cpp:175] conv1 needs backward computation.
+I1128 22:46:53.893549  5782 net.cpp:177] label_mnist_1_split does not need backward computation.
+I1128 22:46:53.893573  5782 net.cpp:177] mnist does not need backward computation.
+I1128 22:46:53.893579  5782 net.cpp:214] This network produces output accuracy
+I1128 22:46:53.893585  5782 net.cpp:214] This network produces output loss
+I1128 22:46:53.893602  5782 net.cpp:473] Collecting Learning Rate and Weight Decay.
+I1128 22:46:53.893610  5782 net.cpp:225] Network initialization done.
+I1128 22:46:53.893615  5782 net.cpp:226] Memory required for data: 18867628
+I1128 22:46:53.893685  5782 solver.cpp:41] base lr = 0.01 global weight decay = 0.0001 momentum = 0.9
+I1128 22:46:53.893702  5782 solver.cpp:44] Solver scaffolding done.
+I1128 22:46:53.893707  5782 solver.cpp:162] Solving MNIST-sicnn-Table-1-split-1
+I1128 22:52:31.517992  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.00% T1: 19.09% T2: 15.53% T3: 10.27% T4: 4.21% T5: 30.91% 
+I1128 22:52:31.518079  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.07% T1: 4.37% T2: 9.31% T3: 3.23% T4: 30.38% T5: 25.63% 
+I1128 22:52:31.518086  5782 solver.cpp:223] Epoch 50 (iteration 3900), loss = 0.00574718
+I1128 22:52:31.518103  5782 solver.cpp:240]     Train net output #0: loss = 0.00574718 (* 1 = 0.00574718 loss)
+I1128 22:58:09.671810  5782 solver.cpp:284] Epoch 100, Testing net (#0)
+I1128 22:58:12.819463  5782 solver.cpp:337]     Test net output #0: accuracy = 0.9694 (3.06% error)
+I1128 22:58:12.819511  5782 solver.cpp:341]     Test net output #1: loss = 0.16238 (* 1 = 0.16238 loss)
+I1128 22:58:12.819519  5782 solver.cpp:355] Best score: 0.0306 at Epoch 100
+I1128 22:58:12.823135  5782 solver.cpp:394] Snapshotting solver state to snapshot/sicnn_train10k_mnist-sc_split1_best_96.94.solverstate
+I1128 22:58:12.898823  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.74% T1: 19.07% T2: 15.12% T3: 10.49% T4: 4.53% T5: 30.06% 
+I1128 22:58:12.898864  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.16% T1: 4.63% T2: 9.24% T3: 3.10% T4: 30.54% T5: 25.32% 
+I1128 22:58:12.898869  5782 solver.cpp:223] Epoch 100 (iteration 7800), loss = 0.000935397
+I1128 22:58:12.898886  5782 solver.cpp:240]     Train net output #0: loss = 0.000935397 (* 1 = 0.000935397 loss)
+I1128 23:03:51.687728  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.65% T1: 19.00% T2: 15.44% T3: 10.33% T4: 4.44% T5: 30.14% 
+I1128 23:03:51.687789  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.26% T1: 4.24% T2: 9.00% T3: 3.34% T4: 30.24% T5: 25.93% 
+I1128 23:03:51.687796  5782 solver.cpp:223] Epoch 150 (iteration 11700), loss = 0.000684173
+I1128 23:03:51.687813  5782 solver.cpp:240]     Train net output #0: loss = 0.000684173 (* 1 = 0.000684173 loss)
+I1128 23:09:30.321383  5782 solver.cpp:386] Snapshotting to snapshot/sicnn_train10k_mnist-sc_split1_epoch_200.caffemodel
+I1128 23:09:30.323253  5782 solver.cpp:394] Snapshotting solver state to snapshot/sicnn_train10k_mnist-sc_split1_epoch_200.solverstate
+I1128 23:09:30.323941  5782 solver.cpp:284] Epoch 200, Testing net (#0)
+I1128 23:09:33.809352  5782 solver.cpp:337]     Test net output #0: accuracy = 0.9695 (3.05001% error)
+I1128 23:09:33.809406  5782 solver.cpp:341]     Test net output #1: loss = 0.14486 (* 1 = 0.14486 loss)
+I1128 23:09:33.883409  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.02% T1: 19.20% T2: 15.36% T3: 10.30% T4: 4.20% T5: 30.92% 
+I1128 23:09:33.883445  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 26.97% T1: 4.19% T2: 8.87% T3: 3.23% T4: 30.54% T5: 26.20% 
+I1128 23:09:33.883451  5782 solver.cpp:223] Epoch 200 (iteration 15600), loss = 0.00208812
+I1128 23:09:33.883466  5782 solver.cpp:240]     Train net output #0: loss = 0.00208812 (* 1 = 0.00208812 loss)
+I1128 23:15:12.157119  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.23% T1: 19.20% T2: 15.26% T3: 10.46% T4: 4.27% T5: 30.58% 
+I1128 23:15:12.157191  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.11% T1: 4.45% T2: 9.03% T3: 3.08% T4: 30.59% T5: 25.75% 
+I1128 23:15:12.157197  5782 solver.cpp:223] Epoch 250 (iteration 19500), loss = 0.00102009
+I1128 23:15:12.157213  5782 solver.cpp:240]     Train net output #0: loss = 0.00102009 (* 1 = 0.00102009 loss)
+I1128 23:20:50.798529  5782 solver.cpp:284] Epoch 300, Testing net (#0)
+I1128 23:20:54.288755  5782 solver.cpp:337]     Test net output #0: accuracy = 0.9715 (2.85001% error)
+I1128 23:20:54.288813  5782 solver.cpp:341]     Test net output #1: loss = 0.155582 (* 1 = 0.155582 loss)
+I1128 23:20:54.363153  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.50% T1: 19.06% T2: 15.31% T3: 10.55% T4: 4.33% T5: 30.24% 
+I1128 23:20:54.363193  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.21% T1: 4.28% T2: 9.02% T3: 3.22% T4: 30.49% T5: 25.78% 
+I1128 23:20:54.363198  5782 solver.cpp:223] Epoch 300 (iteration 23400), loss = 0.0014806
+I1128 23:20:54.363214  5782 solver.cpp:240]     Train net output #0: loss = 0.0014806 (* 1 = 0.0014806 loss)
+I1128 23:26:32.713161  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.29% T1: 19.17% T2: 15.13% T3: 10.59% T4: 4.37% T5: 30.45% 
+I1128 23:26:32.713223  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.03% T1: 4.22% T2: 8.90% T3: 3.18% T4: 30.76% T5: 25.91% 
+I1128 23:26:32.713230  5782 solver.cpp:223] Epoch 350 (iteration 27300), loss = 0.00110195
+I1128 23:26:32.713246  5782 solver.cpp:240]     Train net output #0: loss = 0.00110195 (* 1 = 0.00110195 loss)
+I1128 23:32:10.979945  5782 solver.cpp:386] Snapshotting to snapshot/sicnn_train10k_mnist-sc_split1_epoch_400.caffemodel
+I1128 23:32:10.981436  5782 solver.cpp:394] Snapshotting solver state to snapshot/sicnn_train10k_mnist-sc_split1_epoch_400.solverstate
+I1128 23:32:10.982097  5782 solver.cpp:284] Epoch 400, Testing net (#0)
+I1128 23:32:14.482252  5782 solver.cpp:337]     Test net output #0: accuracy = 0.9671 (3.28999% error)
+I1128 23:32:14.482298  5782 solver.cpp:341]     Test net output #1: loss = 0.167469 (* 1 = 0.167469 loss)
+I1128 23:32:14.482306  5782 solver.cpp:355] Best score: 0.0328999 at Epoch 400
+I1128 23:32:14.484328  5782 solver.cpp:394] Snapshotting solver state to snapshot/sicnn_train10k_mnist-sc_split1_best_96.71.solverstate
+I1128 23:32:14.559820  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.29% T1: 19.15% T2: 15.20% T3: 10.33% T4: 4.26% T5: 30.76% 
+I1128 23:32:14.559849  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.12% T1: 4.26% T2: 8.94% T3: 3.12% T4: 30.47% T5: 26.08% 
+I1128 23:32:14.559855  5782 solver.cpp:223] Epoch 400 (iteration 31200), loss = 0.000947718
+I1128 23:32:14.559870  5782 solver.cpp:240]     Train net output #0: loss = 0.000947718 (* 1 = 0.000947718 loss)
+I1128 23:37:53.044664  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.33% T1: 19.31% T2: 15.25% T3: 10.33% T4: 4.27% T5: 30.52% 
+I1128 23:37:53.044734  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.30% T1: 4.36% T2: 8.98% T3: 3.14% T4: 30.20% T5: 26.01% 
+I1128 23:37:53.044740  5782 solver.cpp:223] Epoch 450 (iteration 35100), loss = 0.00150072
+I1128 23:37:53.044757  5782 solver.cpp:240]     Train net output #0: loss = 0.00150072 (* 1 = 0.00150072 loss)
+I1128 23:43:32.173269  5782 solver.cpp:284] Epoch 500, Testing net (#0)
+I1128 23:43:35.676671  5782 solver.cpp:337]     Test net output #0: accuracy = 0.9719 (2.80998% error)
+I1128 23:43:35.676726  5782 solver.cpp:341]     Test net output #1: loss = 0.146348 (* 1 = 0.146348 loss)
+I1128 23:43:35.751305  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.55% T1: 19.32% T2: 15.22% T3: 10.37% T4: 4.38% T5: 30.17% 
+I1128 23:43:35.751345  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.30% T1: 4.42% T2: 9.13% T3: 3.11% T4: 30.00% T5: 26.05% 
+I1128 23:43:35.751351  5782 solver.cpp:223] Epoch 500 (iteration 39000), loss = 0.000309234
+I1128 23:43:35.751368  5782 solver.cpp:240]     Train net output #0: loss = 0.000309234 (* 1 = 0.000309234 loss)
+I1128 23:49:14.762727  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.20% T1: 19.28% T2: 15.12% T3: 10.44% T4: 4.35% T5: 30.61% 
+I1128 23:49:14.762797  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.14% T1: 4.27% T2: 8.83% T3: 3.16% T4: 30.46% T5: 26.13% 
+I1128 23:49:14.762804  5782 solver.cpp:223] Epoch 550 (iteration 42900), loss = 0.00131891
+I1128 23:49:14.762831  5782 solver.cpp:240]     Train net output #0: loss = 0.00131891 (* 1 = 0.00131891 loss)
+I1128 23:54:53.520411  5782 solver.cpp:386] Snapshotting to snapshot/sicnn_train10k_mnist-sc_split1_epoch_600.caffemodel
+I1128 23:54:53.521994  5782 solver.cpp:394] Snapshotting solver state to snapshot/sicnn_train10k_mnist-sc_split1_epoch_600.solverstate
+I1128 23:54:53.522747  5782 solver.cpp:284] Epoch 600, Testing net (#0)
+I1128 23:54:56.645403  5782 solver.cpp:337]     Test net output #0: accuracy = 0.9721 (2.78999% error)
+I1128 23:54:56.645447  5782 solver.cpp:341]     Test net output #1: loss = 0.142285 (* 1 = 0.142285 loss)
+I1128 23:54:56.719348  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.37% T1: 19.09% T2: 15.51% T3: 10.43% T4: 4.23% T5: 30.36% 
+I1128 23:54:56.719374  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.27% T1: 4.06% T2: 8.89% T3: 3.28% T4: 30.34% T5: 26.16% 
+I1128 23:54:56.719379  5782 solver.cpp:223] Epoch 600 (iteration 46800), loss = 0.000593993
+I1128 23:54:56.719394  5782 solver.cpp:240]     Train net output #0: loss = 0.000593993 (* 1 = 0.000593993 loss)
+I1129 00:00:35.769979  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.45% T1: 19.39% T2: 15.07% T3: 10.30% T4: 4.49% T5: 30.30% 
+I1129 00:00:35.770049  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.43% T1: 4.37% T2: 9.23% T3: 3.18% T4: 29.51% T5: 26.28% 
+I1129 00:00:35.770056  5782 solver.cpp:223] Epoch 650 (iteration 50700), loss = 0.00134972
+I1129 00:00:35.770073  5782 solver.cpp:240]     Train net output #0: loss = 0.00134972 (* 1 = 0.00134972 loss)
+I1129 00:06:14.984956  5782 solver.cpp:284] Epoch 700, Testing net (#0)
+I1129 00:06:18.133275  5782 solver.cpp:337]     Test net output #0: accuracy = 0.9707 (2.92997% error)
+I1129 00:06:18.133330  5782 solver.cpp:341]     Test net output #1: loss = 0.134777 (* 1 = 0.134777 loss)
+I1129 00:06:18.207604  5782 downpool_layer.cpp:369] conv1 DownPool, transformation usage: T0: 20.75% T1: 19.23% T2: 14.81% T3: 10.69% T4: 4.61% T5: 29.93% 
+I1129 00:06:18.207629  5782 downpool_layer.cpp:369] conv2 DownPool, transformation usage: T0: 27.02% T1: 4.50% T2: 9.02% T3: 3.10% T4: 30.28% T5: 26.08% 
+I1129 00:06:18.207635  5782 solver.cpp:223] Epoch 700 (iteration 54600), loss = 0.000523726
+I1129 00:06:18.207648  5782 solver.cpp:240]     Train net output #0: loss = 0.000523726 (* 1 = 0.000523726 loss)
+I1129 00:06:18.220404  5782 solver.cpp:386] Snapshotting to snapshot/sicnn_train10k_mnist-sc_split1_epoch_700.caffemodel
+I1129 00:06:18.221848  5782 solver.cpp:394] Snapshotting solver state to snapshot/sicnn_train10k_mnist-sc_split1_epoch_700.solverstate
+I1129 00:06:18.222564  5782 solver.cpp:270] Optimization Done.
+I1129 00:06:18.222577  5782 caffe.cpp:124] Optimization Done.
