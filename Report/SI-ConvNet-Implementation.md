@@ -250,7 +250,17 @@ layers {
 
 #### Result
 
-We replicate the result of `10k_split1_train/test` and get the test error of 3.28%. 
+We evaluate the model on the 6 train/test splits and record the test errors as shown below. The last row is the average test error and the standard deviation.
+
+| train/test_split | Test error (%) |
+| :--------------- | -------------- |
+| 1                | 2.93           |
+| 2                | 2.89           |
+| 3                | 2.79           |
+| 4                | 2.63           |
+| 5                | 3.20           |
+| 6                | 3.23           |
+| **Range**        | **2.95±0.23**  |
 
 ### Evaluation on Oral Cancer dataset
 
