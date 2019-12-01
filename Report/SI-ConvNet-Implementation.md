@@ -50,7 +50,7 @@ The network in Caffe is a directed acyclic graph of connected layers and a typic
 
 5. defining layers:
 
-   ![Scale-invariant Convolution Layer](/Users/wsgdrfz/Library/Application Support/typora-user-images/image-20191120170602274.png)
+   ![Scale-invariant Convolution Layer](https://tva1.sinaimg.cn/large/006y8mN6gy1g8z2s7az37j30yj0ia41y.jpg)
 
    - `up_layer.cpp`: Implement the `UpsamplingLayer` which scales only one bottom blob with the functions in `util/transformation.(gpp/cpp/cu)` and outputs layers whose size is same as transformations defined.
    - `tiedconv_layer.cpp`: Implement the convolution part.

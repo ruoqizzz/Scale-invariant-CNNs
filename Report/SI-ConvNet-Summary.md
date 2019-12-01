@@ -2,6 +2,8 @@
 
 In this paper, a model was introduced to allow the Convolution Neural Network to learn the locally scale-invariant features without increasing the number of parameters in the model. 
 
+
+
 Their scale-invariance is built in at the layer level, the difference is shown in the image below.  
 
 ![The stucture of Scale-invariant Convolution Layer](https://tva1.sinaimg.cn/large/006y8mN6gy1g8z2s7az37j30yj0ia41y.jpg)
