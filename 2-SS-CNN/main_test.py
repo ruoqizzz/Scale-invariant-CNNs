@@ -12,17 +12,21 @@ import torch
 import torch
 from torch.utils import data
 from PIL import Image
+# from skimage.transform import rescale
 import numpy as np
 import scipy.misc
 
 
 import time
-import scipy.misc
+# import scipy.misc
 
 # This is the testbench for the
 # MNIST-Scale, FMNIST-Scale and CIFAR-10-Scale datasets.
 # The networks and network architecture are defiend
 # within their respective libraries
+
+from torch.multiprocessing import set_start_method
+set_start_method('spawn', force=True)
 
 
 class Dataset(data.Dataset):
@@ -68,7 +72,12 @@ class Dataset(data.Dataset):
 
         # print(np.max(img),np.min(img))
 
-        img = np.float32(scipy.misc.imresize(img,2.0))
+        # img = np.float32(scipy.misc.imresize(img,2.0)) # Cannot use due to the update of SciPy
+        # img = np.float32(rescale(img, 2.0))
+        width, height = img.shape[:2]
+        img = np.float32(Image.fromarray(img).resize([2*width, 2*height]))
+        # h, w = img.shape[:2]
+        # img = transform.resize(img, (h*2, w*2))
 
         # Optional:
         # img = img / np.max(img)
@@ -172,25 +181,25 @@ def test_network(net,testloader,test_labels):
 if __name__ == "__main__":
 
     torch.set_default_tensor_type('torch.cuda.FloatTensor')
-    dataset_name = 'MNIST'
+    dataset_name = 'MNIST_SCALE'
     val_splits = 1
 
     # Good result on MNIST-Scale 1000 Training
-    # training_size = 1000
-    # batch_size = 100
-    # init_rate = 0.05
-    # weight_decay = 0.06
+    training_size = 1000
+    batch_size = 100
+    init_rate = 0.05
+    weight_decay = 0.06
 
-    training_size = 10000
-    batch_size = 400
-    init_rate = 0.04
+    # training_size = 10000
+    # batch_size = 400
+    # init_rate = 0.04
     decay_normal = 0.04
     decay_special = 0.04
 
     step_size = 10
 
     gamma = 0.7
-    total_epochs = 10
+    total_epochs = 300
 
 
     transform_train = transforms.Compose(
