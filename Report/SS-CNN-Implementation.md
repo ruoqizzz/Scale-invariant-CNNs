@@ -1,8 +1,14 @@
 # Scale-steerable filters for the locally-scale invariant convolutional neural network (PyTorch)
 
-## Pytorch Environment 
+## PyTorch Environment 
 
-## Pytorch Architecture
+## PyTorch Architecture
+
+### Tensors
+
+### `torch.autograd`
+
+### Cire PyToch modules
 
 ## Evaluation 
 
