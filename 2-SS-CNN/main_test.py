@@ -2,6 +2,7 @@
 import torchvision.transforms as transforms
 import torch.optim as optim
 from ScaleSteerableInvariant_Network import *
+from Standard_CNN import *
 # from ScaleInvNet import *
 # from ScaleqNet import *
 # from ScaleSteerableEquivariant_Network import *
@@ -209,7 +210,7 @@ if __name__ == "__main__":
         [transforms.ToTensor(),
          ])
 
-    Networks_to_train = [Net_steerinvariant_mnist_scale()]
+    Networks_to_train = [standard_CNN_mnist_scale()]
 
     listdict = load_dataset(dataset_name, val_splits, training_size)
     accuracy_all = np.zeros((val_splits,len(Networks_to_train)))
@@ -217,7 +218,7 @@ if __name__ == "__main__":
 
     for i in range(val_splits):
 
-        Networks_to_train = [Net_steerinvariant_mnist_scale()]
+        Networks_to_train = [standard_CNN_mnist_scale()]
 
         train_data = listdict[i]['train_data']
         train_labels = listdict[i]['train_label']
