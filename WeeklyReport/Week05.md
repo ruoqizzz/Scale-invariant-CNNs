@@ -34,4 +34,4 @@ Therefore, we want to combine the methods in paper [*Making Covolutional Network
     
 ## Our Questions
 - Still confused with *Log-Radial Harmonics: A scale-steerable filter basis*. We don't understand the theory but know how to use these filters.
-- We now change the third paper to *Making Convolutional Network Shift-Invariant Again*. But this paper improves the CNN in a general way rather than focusing on Scale-Invariance/Equivariance. We don't know whether it is a good change but we believe there is a huge connection between shift-invariance and scale-invariance/equivariance. Also the new method can improve the result of any scale-invairance/equivariance network.
+- We now change the third paper to *Making Convolutional Network Shift-Invariant Again*. But this paper improves the CNN in a general way rather than focusing on Scale-Invariance/Equivariance. We don't know whether it is a good change but we believe there is a huge connection between shift-invariance and scale-invariance/equivariance. Also the new method can improve the result of any scale-invairance/equivariance network.‹

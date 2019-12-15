@@ -138,7 +138,7 @@ def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight
 
         torch.cuda.empty_cache()
         scheduler.step()
-        print(epoch)
+        # print(epoch)
 
         for i, data in enumerate(trainloader, 0):
             # get the inputs
@@ -183,17 +183,17 @@ if __name__ == "__main__":
 
     torch.set_default_tensor_type('torch.cuda.FloatTensor')
     dataset_name = 'MNIST_SCALE'
-    val_splits = 1
+    val_splits = 6
 
     # Good result on MNIST-Scale 1000 Training
-    training_size = 1000
-    batch_size = 100
-    init_rate = 0.05
+    # training_size = 1000
+    # batch_size = 100
+    # init_rate = 0.05
     weight_decay = 0.06
 
-    # training_size = 10000
-    # batch_size = 400
-    # init_rate = 0.04
+    training_size = 10000
+    batch_size = 400
+    init_rate = 0.04
     decay_normal = 0.04
     decay_special = 0.04
 
@@ -210,42 +210,88 @@ if __name__ == "__main__":
         [transforms.ToTensor(),
          ])
 
-    Networks_to_train = [standard_CNN_mnist_scale()]
+    # Networks_to_train = [standard_CNN_mnist_scale(), Net_steerinvariant_mnist_scale()]
 
     listdict = load_dataset(dataset_name, val_splits, training_size)
     accuracy_all = np.zeros((val_splits,len(Networks_to_train)))
+    
 
 
-    for i in range(val_splits):
+    Networks_to_train = [standard_CNN_mnist_scale(), Net_steerinvariant_mnist_scale()]
+    network_name = ['standard_CNN','Net_steerinvariant']
 
-        Networks_to_train = [standard_CNN_mnist_scale()]
+    for j in range(len(Networks_to_train)):
+        net = train_network(Networks_to_train[j],trainloader, init_rate, step_size,gamma,total_epochs,decay_normal)
+        print(network_name[j])
 
-        train_data = listdict[i]['train_data']
-        train_labels = listdict[i]['train_label']
-        test_data = listdict[i]['test_data']
-        test_labels = listdict[i]['test_label']
+        for i in range(val_splits):
+            print("validation ")
+            print(i)
+            train_data = listdict[i]['train_data']
+            train_labels = listdict[i]['train_label']
+            test_data = listdict[i]['test_data']
+            test_labels = listdict[i]['test_label']
 
-        Data_train = Dataset(dataset_name,train_data,train_labels,transform_train)
-        Data_test = Dataset(dataset_name, test_data, test_labels, transform_test)
+            Data_train = Dataset(dataset_name,train_data,train_labels,transform_train)
+            Data_test = Dataset(dataset_name, test_data, test_labels, transform_test)
 
-        trainloader = torch.utils.data.DataLoader(Data_train, batch_size=batch_size,
-                                                  shuffle=False, num_workers=4)
+            trainloader = torch.utils.data.DataLoader(Data_train, batch_size=batch_size,
+                                                      shuffle=False, num_workers=4)
 
-        testloader = torch.utils.data.DataLoader(Data_test, batch_size=int(len(test_labels)/200),
-                                                  shuffle=False, num_workers=2)
+            testloader = torch.utils.data.DataLoader(Data_test, batch_size=int(len(test_labels)/200),
+                                                      shuffle=False, num_workers=2)
 
 
-        for j in range(len(Networks_to_train)):
-            net = train_network(Networks_to_train[j],trainloader, init_rate, step_size,gamma,total_epochs,decay_normal)
+
+        
             accuracy = test_network(net,testloader,test_labels)
             accuracy_train = test_network(net,trainloader,train_labels)
-            torch.save(net.state_dict(),'SSCNN_mnistlocal_latest'+str(i)+'.pt')
+            torch.save(net.state_dict(), network_name(i)+str(i)+'.pt')
+            
             print("Train:",accuracy_train,"Test:",accuracy)
             accuracy_all[i,j] = accuracy
 
-
     print("Mean Accuracies of Networks:", np.mean(accuracy_all,0))
     print("Standard Deviations of Networks:",np.std(accuracy_all,0))
-    print(accuracy_all)
+    for j in range(len(Networks_to_train)):
+        print(network_name[j])
+        print(accuracy_all[:,j])
+    
+
+
+
+    # for i in range(val_splits):
+    #     print("validation ")
+    #     print(i)
+
+
+    #     train_data = listdict[i]['train_data']
+    #     train_labels = listdict[i]['train_label']
+    #     test_data = listdict[i]['test_data']
+    #     test_labels = listdict[i]['test_label']
+
+    #     Data_train = Dataset(dataset_name,train_data,train_labels,transform_train)
+    #     Data_test = Dataset(dataset_name, test_data, test_labels, transform_test)
+
+    #         trainloader = torch.utils.data.DataLoader(Data_train, batch_size=batch_size,
+    #                                                   shuffle=False, num_workers=4)
+
+    #         testloader = torch.utils.data.DataLoader(Data_test, batch_size=int(len(test_labels)/200),
+    #                                                   shuffle=False, num_workers=2)
+
+
+    #     for j in range(len(Networks_to_train)):
+    #         net = train_network(Networks_to_train[j],trainloader, init_rate, step_size,gamma,total_epochs,decay_normal)
+    #         accuracy = test_network(net,testloader,test_labels)
+    #         accuracy_train = test_network(net,trainloader,train_labels)
+    #         torch.save(net.state_dict(), network_name(i)+str(i)+'.pt')
+    #         print(network_name[i])
+    #         print("Train:",accuracy_train,"Test:",accuracy)
+    #         accuracy_all[i,j] = accuracy
+
+
+    # print("Mean Accuracies of Networks:", np.mean(accuracy_all,0))
+    # print("Standard Deviations of Networks:",np.std(accuracy_all,0))
+    # print(accuracy_all)
 
 
