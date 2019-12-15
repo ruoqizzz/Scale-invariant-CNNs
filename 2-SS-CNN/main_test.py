@@ -202,6 +202,8 @@ if __name__ == "__main__":
     gamma = 0.7
     total_epochs = 300
 
+    Networks_to_train = [standard_CNN_mnist_scale(), Net_steerinvariant_mnist_scale()]
+    network_name = ['standard_CNN','Net_steerinvariant']
 
     transform_train = transforms.Compose(
         [transforms.ToTensor(),
@@ -217,8 +219,7 @@ if __name__ == "__main__":
     
 
 
-    Networks_to_train = [standard_CNN_mnist_scale(), Net_steerinvariant_mnist_scale()]
-    network_name = ['standard_CNN','Net_steerinvariant']
+    
 
     for j in range(len(Networks_to_train)):
         net = train_network(Networks_to_train[j],trainloader, init_rate, step_size,gamma,total_epochs,decay_normal)
@@ -256,7 +257,7 @@ if __name__ == "__main__":
     for j in range(len(Networks_to_train)):
         print(network_name[j])
         print(accuracy_all[:,j])
-    
+
 
 
 
