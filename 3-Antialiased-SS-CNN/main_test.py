@@ -188,14 +188,14 @@ if __name__ == "__main__":
     val_splits = 6
 
     # Good result on MNIST-Scale 1000 Training
-    training_size = 1000
-    batch_size = 100
-    init_rate = 0.05
+    # training_size = 1000
+    # batch_size = 100
+    # init_rate = 0.05
     weight_decay = 0.06
 
-    # training_size = 10000
-    # batch_size = 400
-    # init_rate = 0.04
+    training_size = 10000
+    batch_size = 400
+    init_rate = 0.04
     decay_normal = 0.04
     decay_special = 0.04
 
@@ -203,8 +203,8 @@ if __name__ == "__main__":
 
     gamma = 0.7
     total_epochs = 300
-
-    # Networks_to_train = [standard_CNN_mnist_scale(), Net_steerinvariant_mnist_scale()]
+    # standard_CNN_mnist_scale()
+    # Networks_to_train = [Net_steerinvariant_mnist_scale()]
     Networks_to_train = [Net_antialiased_steerinvariant_mnist_scale()]
     # network_name = ['standard_CNN','Net_steerinvariant']
     network_name = ['Net_antialiased_steerinvariant_mnist_scale']

@@ -187,14 +187,18 @@ class Net_antialiased_steerinvariant_mnist_scale(nn.Module):
         self.down2 = Downsample(channels=lays[1], filt_size=3, stride=2)
         self.bn2 = nn.BatchNorm2d(lays[1])
 
-        self.pool3 = nn.MaxPool2d(kernel_size=2, stride=1)
+        self.pool3 = nn.MaxPool2d(kernel_size=8, stride=1, padding=2)
         # Typically, blur kernel M is 3 or 5
-        self.down3 = Downsample(channels=lays[2], filt_size=3, stride=2)
+        self.down3 = Downsample(channels=lays[2], filt_size=3, stride=8)
+        
+
         self.bn3 = nn.BatchNorm2d(lays[2])
         self.bn3_mag = nn.BatchNorm2d(lays[2])
+
         self.fc1 = nn.Conv2d(lays[2]*4, 256, 1)
         self.fc1bn = nn.BatchNorm2d(256)
         self.relu = nn.ReLU()
+
         self.dropout = nn.Dropout2d(0.7)
         self.fc2 = nn.Conv2d(256, 10, 1)  # FC2
 
@@ -204,18 +208,25 @@ class Net_antialiased_steerinvariant_mnist_scale(nn.Module):
         x = self.conv1(x)
         x = self.pool1(x)
         x = self.down1(x)
+        # print("after down1:")
+        # print(x.shape)
         x = self.bn1(x)
 
         x = self.conv2(x)
         x = self.pool2(x)
         x = self.down2(x)
+        # print("after down2:")
+        # print(x.shape)
         x = self.bn2(x)
 
         x = self.conv3(x)
         xm = self.pool3(x)
-        x = self.down3(x)
+        xm = self.down3(xm)
+        # print("after down3:")
+        # print(xm.shape)
         
         xm = self.bn3_mag(xm)
+        # print(xm.shape)
         xm = xm.view([xm.shape[0], xm.shape[1] * xm.shape[2] * xm.shape[3], 1, 1])
         xm = self.fc1(xm)
         xm = self.relu(self.fc1bn(xm))

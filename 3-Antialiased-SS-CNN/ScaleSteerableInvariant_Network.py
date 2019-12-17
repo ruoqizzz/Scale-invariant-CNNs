@@ -318,8 +318,11 @@ class Net_steerinvariant_mnistlocal_scale(nn.Module):
 
         self.pool1 = nn.MaxPool2d(2)
         self.bn1 = nn.BatchNorm2d(lays[0])
+
         self.pool2 = nn.MaxPool2d(2,padding=(0,1))
         self.bn2 = nn.BatchNorm2d(lays[1])
+
+
         self.pool3 = nn.MaxPool2d(kernel_size=(8,5),padding=(2,0))
         self.bn3 = nn.BatchNorm2d(lays[2])
         self.bn3_mag = nn.BatchNorm2d(lays[2])
@@ -408,12 +411,16 @@ class Net_steerinvariant_mnist_scale(nn.Module):
 
 
         self.pool1 = nn.MaxPool2d(2)
+
         self.bn1 = nn.BatchNorm2d(lays[0])
+
         self.pool2 = nn.MaxPool2d(2)
         self.bn2 = nn.BatchNorm2d(lays[1])
+
         self.pool3 = nn.MaxPool2d(8,padding=2)
         self.bn3 = nn.BatchNorm2d(lays[2])
         self.bn3_mag = nn.BatchNorm2d(lays[2])
+        # torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros')
         self.fc1 = nn.Conv2d(lays[2]*4, 256, 1)
         self.fc1bn = nn.BatchNorm2d(256)
         self.relu = nn.ReLU()
@@ -425,13 +432,24 @@ class Net_steerinvariant_mnist_scale(nn.Module):
 
         x = self.conv1(x)
         x = self.pool1(x)
+        # print("after pool1:")
+        # print(x.shape)
         x = self.bn1(x)
+
         x = self.conv2(x)
         x = self.pool2(x)
+        # print("after pool2:")
+        # print(x.shape)
+
         x = self.bn2(x)
         x = self.conv3(x)
         xm = self.pool3(x)
+        # print("after pool3:")
+        # print(xm.shape)
+
         xm = self.bn3_mag(xm)
+        # print("after xm.shape")
+        # print(xm.shape)
         xm = xm.view([xm.shape[0], xm.shape[1] * xm.shape[2] * xm.shape[3], 1, 1])
         xm = self.fc1(xm)
         xm = self.relu(self.fc1bn(xm))
