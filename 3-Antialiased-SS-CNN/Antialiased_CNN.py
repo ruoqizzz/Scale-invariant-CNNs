@@ -118,9 +118,10 @@ def get_pad_layer_1d(pad_type):
         print('Pad type [%s] not recognized' % pad_type)
     return PadLayer
 
+
 class Net_antialiased_steerinvariant_mnist_scale(nn.Module):
     def __init__(self):
-        super(Net_steerinvariant_mnist_scale, self).__init__()
+        super(Net_antialiased_steerinvariant_mnist_scale, self).__init__()
 
 
         lays = [12, 32, 48]

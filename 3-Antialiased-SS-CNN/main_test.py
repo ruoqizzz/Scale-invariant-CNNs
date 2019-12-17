@@ -188,14 +188,14 @@ if __name__ == "__main__":
     val_splits = 6
 
     # Good result on MNIST-Scale 1000 Training
-    # training_size = 1000
-    # batch_size = 100
-    # init_rate = 0.05
+    training_size = 1000
+    batch_size = 100
+    init_rate = 0.05
     weight_decay = 0.06
 
-    training_size = 10000
-    batch_size = 400
-    init_rate = 0.04
+    # training_size = 10000
+    # batch_size = 400
+    # init_rate = 0.04
     decay_normal = 0.04
     decay_special = 0.04
 

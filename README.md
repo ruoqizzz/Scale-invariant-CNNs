@@ -10,31 +10,29 @@ This project is focus on evaluating two to three recent approaches to achive sca
 2. [Scale Steerable Filters for Locally Scale-Invariant Convolutional Neural Networks](https://arxiv.org/abs/1906.03861)
    - **Method**: Using the log-radial harmonics as a complex steerable basis, we construct a lo-
      cally scale invariant CNN, where the filters in each convolution layer are a linear combination of the basis filters.
-   - **Dataset**: MNIST-Scale and FMNIST-Scale
-3. [Deep Scale-spaces: Equivariance Over Scale](https://arxiv.org/abs/1905.11697)
-   - **Method**: Extend convolutions to these classes of symmetry under noninvertible transformations via the theory of semigroups. Their contributions are the introduction of a semigroup equivariant correlation and a scale-equivariant CNN.
-   - **Dataset**: Patch Camelyon and Cityscapes
-4. [POLAR TRANSFORMER NETWORKS](https://arxiv.org/abs/1709.01889)
-   - **Method**: Combines the ideas of STN and canonical coordinate representations to achieve equivariance to translations, rotations, and dila- tions.
-   - **Dataset**: ROTATED MNIST, SIM2MNIST(newly introduced)
+   - **Dataset**: MNIST-Scale
+3.  [Making Convolutional Network Shift-Invariant Again](https://arxiv.org/abs/1904.11486)
+   - **Method**: Antialiasing filter combined with subsampling, for example, max pooling and CNN with stride.
+   - **Dataset**: MNIST-Scale
 
  
 
 ## Schedule
 
-We decide to choose paper 1-3 to implement and generate their results. For the 3rd paper [Deep Scale-spaces: Equivariance Over Scale](https://arxiv.org/abs/1905.11697), we will use the dataset MNIST-Scale and FMNIST-Scale rather than their dataset.
+- **11 Nov - 24 Nov**:
+  - Write the summary of *Locally Scale-Invariant Convolutional Neural Network*. 
+  - Implement the results of *Locally Scale-Invariant Convolutional Neural Network on MNIST-Scale dataset*.
+- **25 Nov - 08 Dec**:
+    - Write the summary of *Scale Steerable Filters for Locally Scale-Invariant Convolutional Neural Networks*.
+    - Implement the results of *Scale Steerable Filters for Locally Scale-Invariant Convolutional Neural Networks* on MNIST-Scale.
 
-**11 Nov -  08 Dec**: 
-
-- Finish the survery of relevant literatures
-- Implement and repeat the results of the three papers.
-
-**09 Dec - 22 Dec**: 
-
-- Evaluate the performance of the three papers' methods on Oral Cancer dataset (Evaluation methods haven't decided yet)
-- Write the report
-
-**07 Jan - 12 Jan**:  
-
-- Make poster
-- Write the report
+- **09 Dec - 22 Dec**:
+    - Write the summary of *Making Convolutional Network Shift-Invatiant Again*
+    - Combine the method with SS-CNN, denoted as SS-CNN-BlurPool
+    - Evaluate the method on MNIST-Scale.
+    - Implement the baseline CNN on MNIST-Scale
+    - Compare the results of CNN, SS-CNN, SI-ConvNet, and SS-CNN-BlurPool.
+- **06 Jan - 12 Jan**:
+    - Write the report. 
+    - Design poster.
+    
