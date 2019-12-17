@@ -82,13 +82,13 @@ Test Error (%)
 
 We use the training size of 1k and trained for 300 epochs. The result 4.11±0.13 is a little far from the result in paper 1.91±0.04. As the Colab can run continuously at most 12 hours one time, the training size of 10k would cost more than 20 hours. If we are offered better GPU, we will try to run the experiment for training size of 10k.
 
-| Train/Test Split | Standard CNN    | SS-CNN          |
-| ---------------- | --------------- | --------------- |
-| 1                | 7.59            | 4.31            |
-| 2                | 7.32            | 4.13            |
-| 3                | 7.01            | 3.90            |
-| 4                | 8.42            | 4.11            |
-| 5                | 7.79            | 4.20            |
-| 6                | 7.73            | 3.99            |
-| Range            | 7.64 $\pm$ 0.44 | 4.11 $\pm$ 0.13 |
+| Train/Test Split | Standard CNN    | SS-CNN          | Antialiased-SS-CNN |
+| ---------------- | --------------- | --------------- | ------------------ |
+| 1                | 7.59            | 4.31            | 4.30               |
+| 2                | 7.32            | 4.13            | 4.36               |
+| 3                | 7.01            | 3.90            | 4.59               |
+| 4                | 8.42            | 4.11            | 4.78               |
+| 5                | 7.79            | 4.20            | 5.31               |
+| 6                | 7.73            | 3.99            | 5.35               |
+| Range            | 7.64 $\pm$ 0.44 | 4.11 $\pm$ 0.13 | 4.78 $\pm$ 0.42    |
 
