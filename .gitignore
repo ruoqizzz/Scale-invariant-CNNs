@@ -72,3 +72,6 @@ python/caffe/proto/
 
 # CMake generated files
 *.gen.cmake
+
+# Experiment Result
+ExpResult/
