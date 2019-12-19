@@ -4,7 +4,7 @@ import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
 from IPython import embed
-from ScaleSteerableInvariant_Network import *
+from SS_CNN import *
 from torch.nn.parameter import Parameter
 import math
 from utils import *

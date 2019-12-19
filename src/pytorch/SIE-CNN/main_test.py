@@ -1,12 +1,11 @@
 # from RadialHarmonic_Network import *
 import torchvision.transforms as transforms
 import torch.optim as optim
-from ScaleSteerableInvariant_Network import *
+from SS_CNN import *
 from Standard_CNN import *
-# from ScaleInvNet import *
-# from ScaleqNet import *
-# from ScaleSteerableEquivariant_Network import *
-# from spatial_transformer import st_net
+from Antialiased_SSCNN import *
+from SI_ConvNet import *
+
 import os,pickle
 import numpy as np
 import torch
@@ -25,6 +24,7 @@ import time
 # MNIST-Scale, FMNIST-Scale and CIFAR-10-Scale datasets.
 # The networks and network architecture are defiend
 # within their respective libraries
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 from torch.multiprocessing import set_start_method
 set_start_method('spawn', force=True)
@@ -202,10 +202,11 @@ if __name__ == "__main__":
 
     gamma = 0.7
     total_epochs = 300
-
-    Networks_to_train = [standard_CNN_mnist_scale(), Net_steerinvariant_mnist_scale()]
-    network_name = ['standard_CNN','Net_steerinvariant']
-
+    # standard_CNN_mnist_scale()
+    # Networks_to_train = [Net_steerinvariant_mnist_scale()]
+    Networks_to_train = [Net_antialiased_steerinvariant_mnist_scale()]
+    # network_name = ['standard_CNN','Net_steerinvariant']
+    network_name = ['Net_antialiased_steerinvariant_mnist_scale']
     transform_train = transforms.Compose(
         [transforms.ToTensor(),
          ])
