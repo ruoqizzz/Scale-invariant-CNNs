@@ -16,32 +16,32 @@ class ScaleInvariance_Layer(nn.Module):
 				 dilation=1, scale_range=np.linspace(0,1,9)):
 		super(ScaleInvariance_Layer, self).__init__()
 		self.in_channels = in_channels
-        self.out_channels = out_channels
-        self.kernel_size = kernel_size
-        self.stride = stride
-        self.padding = padding
-        self.scale_range = scale_range
+		self.out_channels = out_channels
+		self.kernel_size = kernel_size
+		self.stride = stride
+		self.padding = padding
+		self.scale_range = scale_range
 
 
-    def scale(self, input):
-    	upsamples = []
-    	for s in range(len(scale_range)):
-    		# upsampling
-    		ups = F.upsample_bilinear(input, scale_factor=s)
-    		upsamples.append(ups)
-    	return upsamples
+	def scale(self, input):
+		upsamples = []
+		for s in range(len(scale_range)):
+			# upsampling
+			ups = F.upsample_bilinear(input, scale_factor=s)
+			upsamples.append(ups)
+		return upsamples
 
-    def forward(self, input):
-    	outputs = []
-    	self.upsamples = self.scale(input)
-    	for i in range(len(upsamples)):
-    		padding = int((self.kernel_size-1)/2)
-    		out = F.conv2d(input, self.upsamples[i], None, self.stride, padding, self.dilation)
-    		# Undo scaling
-    		outputs.append(out.unsqueeze(-1))
+	def forward(self, input):
+		outputs = []
+		self.upsamples = self.scale(input)
+		for i in range(len(upsamples)):
+			padding = int((self.kernel_size-1)/2)
+			out = F.conv2d(input, self.upsamples[i], None, self.stride, padding, self.dilation)
+			# Undo scaling
+			outputs.append(out.unsqueeze(-1))
 
-    	strength, _ = torch.max(torch.cat(outputs, -1), -1)
-    	return F.relu(strength)
+		strength, _ = torch.max(torch.cat(outputs, -1), -1)
+		return F.relu(strength)
 
 
 class Net_scaleinvariant_mnist_scale(object):
@@ -51,16 +51,16 @@ class Net_scaleinvariant_mnist_scale(object):
 		
 		kernel_size = [11,11,11]
 		pads = (np.array(kernel_sizes) - 1) / 2
-        pads = pads.astype(int)
+		pads = pads.astype(int)
 
-        lays = [30,60,90]
+		lays = [30,60,90]
 
 		self.conv1 = ScaleInvariance_Layer(1, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
-        								   padding=pads[0], scale_range=np.arange(7,19,2)/11.0)
+										   padding=pads[0], scale_range=np.arange(7,19,2)/11.0)
 		self.conv2 = ScaleInvariance_Layer(lays[0], lays[1], [kernel_sizes[1], kernel_sizes[1]], 1,
-        								   padding=pads[1], scale_range=np.arange(7,19,2)/11.0)
+										   padding=pads[1], scale_range=np.arange(7,19,2)/11.0)
 		self.conv2 = ScaleInvariance_Layer(lays[1], lays[2], [kernel_sizes[2], kernel_sizes[2]], 1,
-        								   padding=pads[2], scale_range=np.arange(7,19,2)/11.0)
+										   padding=pads[2], scale_range=np.arange(7,19,2)/11.0)
 		self.pool1 = nn.MaxPool2d(2)
 		self.bn1 = nn.BatchNorm2d(lays[0])
 
