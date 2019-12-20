@@ -12,8 +12,8 @@ from torchvision import transforms
 
 class ScaleInvariance_Layer(nn.Module):
 	"""docstring for ScaleInvariance_Layer"""
-	def __init__(self, in_channels, out_channels, kernel_size, stride=1, padding=0,
-				 dilation=1, scale_range=np.linspace(0,1,9)):
+	def __init__(self, in_channels, out_channels, kernel_size, stride=1, 
+				 padding=0, dilation=1, mode=1, scale_range=np.linspace(0,1,9)):
 		super(ScaleInvariance_Layer, self).__init__()
 		self.in_channels = in_channels
 		self.out_channels = out_channels
@@ -24,44 +24,54 @@ class ScaleInvariance_Layer(nn.Module):
 		self.scale_range = scale_range
 		self.dilation = dilation
 		self.convs = []
+		self.mode = mode
 		# default groups = 1
 		self.bias = None
+		# print("out_channels")
+		# print(out_channels)
+		# print("in_channels")
+		# print(in_channels)
 		self.weight = Parameter(torch.Tensor(
-                in_channels, out_channels // 1, kernel_size[0]))
+				self.out_channels, self.in_channels, *kernel_size))
 		self.reset_parameters()
 
 	def reset_parameters(self):
-        init.kaiming_uniform_(self.weight, a=math.sqrt(5))
-        if self.bias is not None:
-            fan_in, _ = init._calculate_fan_in_and_fan_out(self.weight)
-            bound = 1 / math.sqrt(fan_in)
-            init.uniform_(self.bias, -bound, bound)
+		n = self.in_channels
+		for k in self.kernel_size:
+			n *= k
+		stdv = 1. / math.sqrt(n)
+		self.weight.data.uniform_(-stdv, stdv)
+
+
+	def _apply(self, func):
+		super(ScaleInvariance_Layer, self)._apply(func)
 
 
 	def scale(self, input):
+		input_copy = input.clone()
 		upsamples = []
 		# print(self.scale_range)
 		for s in self.scale_range:
 			# upsampling
 			# print(s)
 			ups = nn.Upsample(scale_factor=s, mode='bilinear')
-			s = ups(input)
+			s = ups(input_copy)
 			upsamples.append(s)
 		return upsamples
 
 	def forward(self, input):
 		outputs = []
-		self.upsamples = self.scale(input)
-		for i in range(len(self.upsamples)):
-			# note: here think the filter is n*n
-			padding = int((self.kernel_size[0]-1)/2)
-			# F.conv2d(F.pad(input, expanded_padding, mode='circular'),
-   #                          weight, self.bias, self.stride,
-   #                          _pair(0), self.dilation, self.groups)
-   # input, weight, bias=None, stride=1, padding=0, dilation=1,
-			print(self.stride)
-			out = F.conv2d(self.upsamples[i].unsqueeze_(0), weight=self.weight, bias=None, stride=self.stride, padding=padding, dilation=self.dilation)
-			# Undo scaling
+		orig_size = list(input.data.shape[2:4])
+		for i in range(len(self.scale_range)):
+			# input_copy = input.copy()
+			# ups = nn.Upsample(scale_factor=s, mode='bilinear')
+			# size = [0,0]
+			# size[0] = int(round(self.scale_range[i]*orig_size[0]))
+			# size[1] = int(round(self.scale_range[i]*orig_size[1]))
+			input_ups = F.upsample(input, scale_factor=self.scale_factor[i], mode='bilinear')
+			padding = tuple([self.padding,self.padding])
+			input_conv = F.conv2d(input_ups, self.weight, None, self.stride, padding, self.dilation)
+			out = F.upsample(input_conv, size = orig_size, mode='bilinear')
 			outputs.append(out.unsqueeze(-1))
 
 		strength, _ = torch.max(torch.cat(outputs, -1), -1)
@@ -83,7 +93,7 @@ class Net_scaleinvariant_mnist_scale(nn.Module):
 										   padding=pads[0], scale_range=np.arange(7,19,2)/11.0)
 		self.conv2 = ScaleInvariance_Layer(lays[0], lays[1], [kernel_sizes[1], kernel_sizes[1]], 1,
 										   padding=pads[1], scale_range=np.arange(7,19,2)/11.0)
-		self.conv2 = ScaleInvariance_Layer(lays[1], lays[2], [kernel_sizes[2], kernel_sizes[2]], 1,
+		self.conv3 = ScaleInvariance_Layer(lays[1], lays[2], [kernel_sizes[2], kernel_sizes[2]], 1,
 										   padding=pads[2], scale_range=np.arange(7,19,2)/11.0)
 		self.pool1 = nn.MaxPool2d(2)
 		self.bn1 = nn.BatchNorm2d(lays[0])
