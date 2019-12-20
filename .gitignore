@@ -17,11 +17,11 @@ PDFs/
 *.binaryproto
 *leveldb
 *lmdb
-!1-si-convnet/examples/images/cat_gray.jpg
-!1-si-convnet/examples/images/cat.jpg
-!1-si-convnet/examples/images/fish-bike.jpg
+!src/caffe/1-si-convnet/examples/images/cat_gray.jpg
+!src/caffe/1-si-convnet/examples/images/cat.jpg
+!src/caffe/1-si-convnet/examples/images/fish-bike.jpg
 
-!1-si-convnet/src/caffe/test/test_data/cat.jpg
+!src/caffe/1-si-convnet/src/caffe/test/test_data/cat.jpg
 
 # LevelDB files
 *.sst
@@ -74,4 +74,4 @@ python/caffe/proto/
 *.gen.cmake
 
 # Experiment Result
-ExpResult/
+experiment/
