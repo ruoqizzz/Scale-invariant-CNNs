@@ -68,7 +68,7 @@ class ScaleInvariance_Layer(nn.Module):
 			# size = [0,0]
 			# size[0] = int(round(self.scale_range[i]*orig_size[0]))
 			# size[1] = int(round(self.scale_range[i]*orig_size[1]))
-			input_ups = F.upsample(input, scale_factor=self.scale_factor[i], mode='bilinear')
+			input_ups = F.upsample(input, scale_factor=self.scale_range[i], mode='bilinear')
 			padding = tuple([self.padding,self.padding])
 			input_conv = F.conv2d(input_ups, self.weight, None, self.stride, padding, self.dilation)
 			out = F.upsample(input_conv, size = orig_size, mode='bilinear')
