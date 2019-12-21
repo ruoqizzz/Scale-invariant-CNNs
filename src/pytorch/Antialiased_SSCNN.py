@@ -179,17 +179,17 @@ class Net_antialiased_steerinvariant_mnist_scale(nn.Module):
         # self.pool1 = nn.MaxPool2d(2)
         self.pool1 = nn.MaxPool2d(kernel_size=2, stride=1)
         # Typically, blur kernel M is 3 or 5
-        self.down1 = Downsample(channels=lays[0], filt_size=3, stride=2)
+        self.down1 = Downsample(channels=lays[0], filt_size=5, stride=2)
         self.bn1 = nn.BatchNorm2d(lays[0])
 
         self.pool2 = nn.MaxPool2d(kernel_size=2, stride=1)
         # Typically, blur kernel M is 3 or 5
-        self.down2 = Downsample(channels=lays[1], filt_size=3, stride=2)
+        self.down2 = Downsample(channels=lays[1], filt_size=5, stride=2)
         self.bn2 = nn.BatchNorm2d(lays[1])
 
         self.pool3 = nn.MaxPool2d(kernel_size=8, stride=1, padding=2)
         # Typically, blur kernel M is 3 or 5
-        self.down3 = Downsample(channels=lays[2], filt_size=3, stride=8)
+        self.down3 = Downsample(channels=lays[2], filt_size=5, stride=8)
         
 
         self.bn3 = nn.BatchNorm2d(lays[2])

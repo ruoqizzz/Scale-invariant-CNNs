@@ -187,14 +187,14 @@ if __name__ == "__main__":
 	val_splits = 6
 
 	# Good result on MNIST-Scale 1000 Training
-	training_size = 1000
-	batch_size = 100
-	init_rate = 0.05
-	weight_decay = 0.06
+	# training_size = 1000
+	# batch_size = 100
+	# init_rate = 0.05
+	# weight_decay = 0.06
 
-	# training_size = 10000
-	# batch_size = 400
-	# init_rate = 0.04
+	training_size = 10000
+	batch_size = 400
+	init_rate = 0.04
 	decay_normal = 0.04
 	decay_special = 0.04
 
@@ -244,7 +244,7 @@ if __name__ == "__main__":
 			net = train_network(Networks_to_train[j],trainloader, init_rate, step_size,gamma,total_epochs,decay_normal)
 			accuracy = test_network(net,testloader,test_labels)
 			accuracy_train = test_network(net,trainloader,train_labels)
-			torch.save(net.state_dict(), network_name[j]+str(i)+'.pt')
+			torch.save(net.state_dict(), '../../experiment/'+str(int(training_size/1000))+'k/'+network_name[j]+'/'+network_name[j]+str(i)+'.pt')
 			print(network_name[j])
 			print("Train:",accuracy_train,"Test:",accuracy)
 			accuracy_all[i,j] = accuracy
