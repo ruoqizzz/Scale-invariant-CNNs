@@ -12,8 +12,8 @@ This project is focus on evaluating two to three recent approaches to achive sca
      cally scale invariant CNN, where the filters in each convolution layer are a linear combination of the basis filters.
    - **Dataset**: MNIST-Scale
 3.  [Making Convolutional Network Shift-Invariant Again](https://arxiv.org/abs/1904.11486)
-   - **Method**: Antialiasing filter combined with subsampling, for example, max pooling and CNN with stride.
-   - **Dataset**: MNIST-Scale
+      - **Method**: Antialiasing filter combined with subsampling, for example, max pooling and CNN with stride. 
+      - **Dataset**: MNIST-Scale
 
  
 
@@ -32,6 +32,9 @@ This project is focus on evaluating two to three recent approaches to achive sca
     - Evaluate the method on MNIST-Scale.
     - Implement the baseline CNN on MNIST-Scale
     - Compare the results of CNN, SS-CNN, SI-ConvNet, and SS-CNN-BlurPool.
+- **23 Dec - -5 Jan**:
+   - Preproccessing with dataset Oral Cancer
+   - Evaluation on different training size
 - **06 Jan - 12 Jan**:
     - Write the report. 
     - Design poster.
