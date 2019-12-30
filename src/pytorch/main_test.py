@@ -103,6 +103,7 @@ def load_dataset(dataset_name,val_splits,training_size):
 	# meanarr = [0.4914, 0.4822, 0.4465]
 	# stdarr = [0.247,0.243,0.261]
 
+	print("load dataset split:")
 	for split in range(val_splits):
 		print(split)
 		tmp = pickle.load(open(a[split], 'rb'))
@@ -183,7 +184,8 @@ def test_network(net,testloader,test_labels):
 if __name__ == "__main__":
 
 	torch.set_default_tensor_type('torch.cuda.FloatTensor')
-	dataset_name = 'MNIST_SCALE'
+	# dataset_name = 'MNIST_SCALE'
+	dataset_name = '/data2/team16b/OralCancer'
 	val_splits = 6
 
 	# Good result on MNIST-Scale 1000 Training
@@ -203,9 +205,9 @@ if __name__ == "__main__":
 	gamma = 0.7
 	total_epochs = 300
 	# standard_CNN_mnist_scale()
-	Networks_to_train = [Net_scaleinvariant_mnist_scale()]
-	# Networks_to_train = [standard_CNN_mnist_scale(), Net_steerinvariant_mnistlocal_scale(), Net_antialiased_steerinvariant_mnist_scale()]
-	network_name = ['Net_scaleinvariant_mnist_scale']
+	Networks_to_train = [standard_CNN_mnist_scale()]
+	# Networks_to_train = [standard_CNN_mnist_scale(), Net_scaleinvariant_mnist_scale(), Net_antialiased_steerinvariant_mnist_scale()]
+	network_name = ['standard_CNN_oral_cancer']
 	# network_name = ['standard_CNN','Net_steerinvariant','Net_antialiased_steerinvariant_mnist_scale']
 	transform_train = transforms.Compose(
 		[transforms.ToTensor(),
@@ -244,7 +246,10 @@ if __name__ == "__main__":
 			net = train_network(Networks_to_train[j],trainloader, init_rate, step_size,gamma,total_epochs,decay_normal)
 			accuracy = test_network(net,testloader,test_labels)
 			accuracy_train = test_network(net,trainloader,train_labels)
-			torch.save(net.state_dict(), '../../experiment/'+str(int(training_size/1000))+'k/'+network_name[j]+'/'+network_name[j]+str(i)+'.pt')
+			save_path = '../../experiment/'+str(int(training_size/1000))+'k/'+network_name[j]+'/'+network_name[j]+str(i)+'.pt'
+			if not os.path.exists(save_path):
+				os.makedirs(save_path)
+			torch.save(net.state_dict(), save_path)
 			print(network_name[j])
 			print("Train:",accuracy_train,"Test:",accuracy)
 			accuracy_all[i,j] = accuracy
