@@ -75,3 +75,4 @@ python/caffe/proto/
 
 # Experiment Result
 experiment/
+OralCancer_Scaled/
