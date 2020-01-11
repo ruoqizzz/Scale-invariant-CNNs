@@ -237,3 +237,86 @@ class Net_antialiased_steerinvariant_mnist_scale(nn.Module):
         return xm
 
 
+class Net_antialiased_steerinvariant_oral_cancer(nn.Module):
+    def __init__(self):
+        super(Net_antialiased_steerinvariant_oral_cancer, self).__init__()
+
+
+        lays = [16, 32, 48, 64, 128]
+        kernel_sizes = [11, 11, 11, 11, 11]
+        pads = (np.array(kernel_sizes) - 1) / 2
+        pads = pads.astype(int)
+
+        self.conv1 = ScaleConv_steering(1, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
+                                        padding=pads[0], sigma_phi_range=[np.pi / 16],
+                                        k_range = [0.5,1,2], ker_size_range=np.arange(7,19,2),
+                                        # stride = 2,
+                                        phi_range = np.linspace(0, np.pi, 9),
+                                        phase_range = [-np.pi/4],
+                                        mode=1)
+        self.conv2 = ScaleConv_steering(lays[0], lays[1], [kernel_sizes[1], kernel_sizes[1]], 1, 
+                                        padding=pads[1], sigma_phi_range=[np.pi/16],
+                                        k_range = [0.5,1,2], ker_size_range=np.arange(7,19,2),
+                                        # stride=2,
+                                        phi_range=np.linspace(0, np.pi, 9),
+                                        phase_range=[-np.pi / 4],
+                                        # phase_range=[0, np.pi / 4, np.pi / 2, 3 * np.pi / 4],
+                                        # sigma_phi_range=[np.pi/16],
+                                        mode=1)
+        self.conv3 = ScaleConv_steering(lays[1], lays[2], [kernel_sizes[2], kernel_sizes[2]], 1, 
+                                        padding=pads[2], sigma_phi_range=[np.pi/16],
+                                        k_range = [0.5,1,2], ker_size_range=np.arange(7,19,2),
+                                        # stride=4,
+                                        phi_range=np.linspace(0, np.pi, 9),
+                                        phase_range=[-np.pi / 4],
+                                        # phase_range=[0, np.pi / 4, np.pi / 2, 3 * np.pi / 4],
+                                        # sigma_phi_range=[np.pi / 16],
+                                        mode=1)
+
+        # self.pool1 = nn.MaxPool2d(2)
+        self.pool1 = nn.MaxPool2d(kernel_size=2, stride=1)
+        # Typically, blur kernel M is 3 or 5
+        self.down1 = Downsample(channels=lays[0], filt_size=3, stride=2)
+        self.bn1 = nn.BatchNorm2d(lays[0])
+
+        self.pool2 = nn.MaxPool2d(kernel_size=2, stride=1)
+        self.down2 = Downsample(channels=lays[1], filt_size=3, stride=2)
+        self.bn2 = nn.BatchNorm2d(lays[1])
+
+        self.pool3 = nn.MaxPool2d(kernel_size=8, stride=1, padding=2)
+        self.down3 = Downsample(channels=lays[2], filt_size=5, stride=8)
+        self.bn3 = nn.BatchNorm2d(lays[2])
+
+        self.bn3_mag = nn.BatchNorm2d(lays[2])
+        self.fc1 = nn.Linear(lays[2]*9, 256)
+        self.fc1bn = nn.BatchNorm2d(256)
+        self.relu = nn.ReLU()
+        self.dropout = nn.Dropout2d(0.7)
+        self.fc2 = nn.Linear(256, 2)
+
+    def forward(self, x):
+        x = self.conv1(x)
+        x = self.pool1(x)
+        x = self.down1(x)
+        x = self.bn1(self.relu(x))
+
+        x = self.conv2(x)
+        x = self.pool2(x)
+        x = self.down2(x)
+        x = self.bn2(self.relu(x))
+
+        x = self.conv3(x)
+        x = self.pool3(x)
+        x = self.down3(x)
+        xm = self.bn3_mag(self.relu(x))
+
+
+        xm = torch.flatten(xm,1)
+        xm = self.fc1(xm)
+        xm = F.relu(xm)
+        xm = self.dropout(xm)
+        xm = self.fc2(xm)
+        xm = F.log_softmax(xm, dim=1)
+
+        return xm
+

@@ -471,8 +471,8 @@ def make_cifar10_scale(val_splits):
 
 if __name__ == "__main__":
     # make_mnistlocal_scale(6)
-    make_mnist_scale(6)
-    # make_fmnist_scale(6)
+    # make_mnist_scale(6)
+    make_fmnist_scale(6)
     # make_cifar10_scale(1)
     # make_only_mnist()
     # make_stl10_scale()

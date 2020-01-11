@@ -77,7 +77,7 @@ class Dataset(data.Dataset):
 		# img = np.float32(scipy.misc.imresize(img,2.0)) # Cannot use due to the update of SciPy
 		# img = np.float32(rescale(img, 2.0))
 		width, height = img.shape[:2]
-		img = np.float32(Image.fromarray(img).resize([2*width, 2*height]))
+		img = np.float32(Image.fromarray(img).resize([width, height]))
 		# h, w = img.shape[:2]
 		# img = transform.resize(img, (h*2, w*2))
 
@@ -125,8 +125,8 @@ def load_dataset(dataset_name,val_splits,training_size,test_size):
 def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight_decay):
 
 	# params = add_weight_decay(net, l2_normal,l2_special,name_special)
-	optimizer = optim.SGD(net.parameters(),lr=init_rate, momentum=0.9,weight_decay=weight_decay) # MNIST-Scale
-	# optimizer = optim.Adam(net.parameters(),lr=init_rate,weight_decay=weight_decay) # Oral Cancer
+	# optimizer = optim.SGD(net.parameters(),lr=init_rate, momentum=0.9,weight_decay=weight_decay) # MNIST-Scale
+	optimizer = optim.Adam(net.parameters(),lr=init_rate,weight_decay=weight_decay) # Oral Cancer
 	scheduler = StepLR(optimizer, step_size=step_size, gamma=gamma)
 	criterion = nn.CrossEntropyLoss() # MNIST-Scale
 	# criterion = nn.BCELoss() # Oral Cancer
@@ -159,11 +159,11 @@ def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight
 			optimizer.step()
 			del inputs, labels # intermediate?
 
-			# # print statistics
-			# running_loss += loss.item()
-			# if i % 2000 == 1999:
-			# 	print('[epoch %d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 2000))
-			# 	running_loss = 0.0
+			# print statistics
+			running_loss += float(loss.item())
+			if i % 2000 == 1999:
+				print('[epoch %d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 2000))
+				running_loss = 0.0
 
 	net = net.eval()
 	return net
@@ -196,9 +196,10 @@ if __name__ == "__main__":
 
 	torch.set_default_tensor_type('torch.cuda.FloatTensor')
 	# dataset_name = 'FMNIST_SCALE_NEW'
-	dataset_name = 'MNIST_SCALE'
-	# dataset_name = '/data2/team16b/OralCancer'
-	val_splits = 2
+	# dataset_name = 'MNIST_SCALE'
+	dataset_name = '/data2/team16b/OralCancer_Scaled'
+	# dataset_name = '../../OralCancer_Scaled'
+	val_splits = 1
 
 	# Good result on MNIST-Scale 1000 Training
 	# training_size = 1000
@@ -206,11 +207,11 @@ if __name__ == "__main__":
 	# init_rate = 0.05
 	# weight_decay = 0.06
 
-	training_size = 1000 # MNIST Scale
-	# training_size = 50 # Oral Cancer
-	test_size = 50000
-	batch_size = 400 # MNIST Scale
-	# batch_size = 200 # Oral Cancer
+	# training_size = 1000 # MNIST Scale
+	training_size = 5000 # Oral Cancer
+	test_size = 5000
+	# batch_size = 400 # MNIST Scale
+	batch_size = 20 # Oral Cancer
 	init_rate = 0.04
 	decay_normal = 0.04
 	decay_special = 0.04
@@ -218,9 +219,10 @@ if __name__ == "__main__":
 	step_size = 10
 
 	gamma = 0.7
-	total_epochs = 300
+	total_epochs = 30
 
-	Networks_to_train = [Net_antialiased_steerinvariant_mnist_scale()]
+	Networks_to_train = [Net_antialiased_steerinvariant_oral_cancer()]
+	# Networks_to_train = [standard_CNN_oral_cancer(), Net_scaleinvariant_oral_cancer(), Net_steerinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
 	# Networks_to_train = [standard_CNN_mnist_scale(), Net_scaleinvariant_mnist_scale(), Net_steerinvariant_mnist_scale(), Net_antialiased_steerinvariant_mnist_scale()]
 	network_name = ['Net_antialiased_steerinvariant']
 	# network_name = ['Net_standard','Net_scaleinvariant','Net_steerinvariant','Net_antialiased_steerinvariant']
@@ -236,10 +238,7 @@ if __name__ == "__main__":
 
 
 
-
 	for i in range(val_splits):
-		if i==0:
-			continue
 		print("validation ")
 		print(i)
 
