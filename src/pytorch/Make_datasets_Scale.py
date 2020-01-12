@@ -226,11 +226,11 @@ def make_mnist_scale(val_splits):
     print(np.max(all_data))
 
     try:
-        os.mkdir('MNIST_SCALE/')
+        os.mkdir('MNIST_SCALE_NEW/')
     except:
         None
 
-    os.chdir('MNIST_SCALE/')
+    os.chdir('MNIST_SCALE_NEW/')
 
     for split in range(val_splits):
         train_data = np.zeros([10000,28, 28 ])
@@ -251,10 +251,11 @@ def make_mnist_scale(val_splits):
 
         i = 0
         for j in range(10000):
-            zoom_factor = 0.3 + (np.random.rand()*0.7)
-            train_data[j,:,:] = clipped_zoom(all_data[i,:,:],zoom_factor,order=1)
+            # zoom_factor = 0.3 + (np.random.rand()*0.7)
+            train_data[j,:,:] = all_data[i,:,:]
+            # train_data[j,:,:] = clipped_zoom(all_data[i,:,:],zoom_factor,order=1)
             train_label[j] = all_targets[i]
-            train_scale[j] = zoom_factor
+            train_scale[j] = 1
             i += 1
 
         for j in range(2000):
@@ -341,10 +342,11 @@ def make_fmnist_scale(val_splits):
 
         i = 0
         for j in range(10000):
-            zoom_factor = 0.7 + (np.random.rand()*0.3)
-            train_data[j,:,:] = clipped_zoom(all_data[i,:,:],zoom_factor,order=1)
+            # zoom_factor = 0.7 + (np.random.rand()*0.3)
+            train_data[j,:,:] = all_data[i,:,:]
+            # train_data[j,:,:] = clipped_zoom(all_data[i,:,:],zoom_factor,order=1)
             train_label[j] = all_targets[i]
-            train_scale[j] = zoom_factor
+            train_scale[j] = 1
             i += 1
 
         for j in range(2000):
@@ -471,7 +473,7 @@ def make_cifar10_scale(val_splits):
 
 if __name__ == "__main__":
     # make_mnistlocal_scale(6)
-    # make_mnist_scale(6)
+    make_mnist_scale(6)
     make_fmnist_scale(6)
     # make_cifar10_scale(1)
     # make_only_mnist()

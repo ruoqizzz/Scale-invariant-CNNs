@@ -101,7 +101,7 @@ class Net_scaleinvariant_mnist_scale(nn.Module):
 		self.pool2 = nn.MaxPool2d(2)
 		self.bn2 = nn.BatchNorm2d(lays[1])
 
-		self.pool3 = nn.MaxPool2d(8, padding=2) # MNIST-Scale
+		self.pool3 = nn.MaxPool2d(8, padding=2)
 		self.bn3 = nn.BatchNorm2d(lays[2])
 		self.bn3_mag = nn.BatchNorm2d(lays[2])
 
@@ -114,15 +114,15 @@ class Net_scaleinvariant_mnist_scale(nn.Module):
 	def forward(self, x):
 		x = self.conv1(x)
 		x = self.pool1(x)
-		x = self.bn1(x)
+		x = self.bn1(self.relu(x))
 
 		x = self.conv2(x)
 		x = self.pool2(x)
-		x = self.bn2(x)
+		x = self.bn2(self.relu(x))
 
 		x = self.conv3(x)
 		x = self.pool3(x)
-		xm = self.bn3_mag(x)
+		xm = self.bn3_mag(self.relu(x))
 
 		xm = xm.view([xm.shape[0], xm.shape[1] * xm.shape[2] * xm.shape[3], 1, 1])
 		xm = self.fc1(xm)

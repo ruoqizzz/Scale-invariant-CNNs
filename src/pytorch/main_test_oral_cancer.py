@@ -25,7 +25,7 @@ import time
 # The networks and network architecture are defiend
 # within their respective libraries
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 from torch.multiprocessing import set_start_method
 set_start_method('spawn', force=True)
@@ -195,10 +195,8 @@ def test_network(net,testloader,test_labels):
 if __name__ == "__main__":
 
 	torch.set_default_tensor_type('torch.cuda.FloatTensor')
-	# dataset_name = 'FMNIST_SCALE_NEW'
-	# dataset_name = 'MNIST_SCALE'
-	dataset_name = '/data2/team16b/OralCancer_Scaled'
-	# dataset_name = '../../OralCancer_Scaled'
+	# dataset_name = '/data2/team16b/OralCancer_Scaled'
+	dataset_name = '../../OralCancer_Scaled'
 	val_splits = 1
 
 	# Good result on MNIST-Scale 1000 Training
@@ -208,10 +206,10 @@ if __name__ == "__main__":
 	# weight_decay = 0.06
 
 	# training_size = 1000 # MNIST Scale
-	training_size = 5000 # Oral Cancer
+	training_size = 10000 # Oral Cancer
 	test_size = 5000
 	# batch_size = 400 # MNIST Scale
-	batch_size = 20 # Oral Cancer
+	batch_size = 200 # Oral Cancer
 	init_rate = 0.04
 	decay_normal = 0.04
 	decay_special = 0.04
@@ -219,13 +217,13 @@ if __name__ == "__main__":
 	step_size = 10
 
 	gamma = 0.7
-	total_epochs = 30
+	total_epochs = 300
 
-	Networks_to_train = [Net_antialiased_steerinvariant_oral_cancer()]
-	# Networks_to_train = [standard_CNN_oral_cancer(), Net_scaleinvariant_oral_cancer(), Net_steerinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
+	# Networks_to_train = [Net_antialiased_steerinvariant_oral_cancer()]
+	Networks_to_train = [standard_CNN_oral_cancer(), Net_scaleinvariant_oral_cancer(), Net_steerinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
 	# Networks_to_train = [standard_CNN_mnist_scale(), Net_scaleinvariant_mnist_scale(), Net_steerinvariant_mnist_scale(), Net_antialiased_steerinvariant_mnist_scale()]
-	network_name = ['Net_antialiased_steerinvariant']
-	# network_name = ['Net_standard','Net_scaleinvariant','Net_steerinvariant','Net_antialiased_steerinvariant']
+	# network_name = ['Net_antialiased_steerinvariant']
+	network_name = ['Net_standard','Net_scaleinvariant','Net_steerinvariant','Net_antialiased_steerinvariant']
 	transform_train = transforms.Compose(
 		[transforms.ToTensor(),
 		 ])
