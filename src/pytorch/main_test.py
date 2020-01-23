@@ -1,24 +1,19 @@
-# from RadialHarmonic_Network import *
+import torch
+from torch.utils import data
 import torchvision.transforms as transforms
 import torch.optim as optim
+import os,pickle
+import numpy as np
+from PIL import Image
+import scipy.misc
+import time
+# from skimage.transform import rescale
+
 from SS_CNN import *
 from Standard_CNN import *
 from Antialiased_SSCNN import *
 from SI_ConvNet import *
 
-import os,pickle
-import numpy as np
-import torch
-import torch
-from torch.utils import data
-from PIL import Image
-# from skimage.transform import rescale
-import numpy as np
-import scipy.misc
-
-
-import time
-# import scipy.misc
 
 # This is the testbench for the
 # MNIST-Scale, FMNIST-Scale and CIFAR-10-Scale datasets.
@@ -85,7 +80,6 @@ class Dataset(data.Dataset):
 		# img = img / np.max(img)
 
 
-
 		if self.transform is not None:
 			img = self.transform(img)
 
@@ -95,53 +89,57 @@ class Dataset(data.Dataset):
 
 
 
-def load_dataset(dataset_name,val_splits,training_size,test_size):
-
+def load_dataset(dataset_name,split,training_size,augmentation=None):
 	os.chdir(dataset_name)
-	a = os.listdir()
+	file_names = os.listdir()
+
 	listdict = []
+	for i in range(len(file_names)):
+		if file_names[i][-8] == str(split):
+			print("Load dataset split: ", file_names[i])
+			tmp = pickle.load(open(file_names[i], 'rb'))
+			break
+	listdict.append(tmp)
 
-	# meanarr = [0.4914, 0.4822, 0.4465]
-	# stdarr = [0.247,0.243,0.261]
-
-	print("load dataset split:")
-	for split in range(val_splits):
-		print(split)
-		tmp = pickle.load(open(a[split], 'rb'))
-		listdict.append(tmp)
-
-		listdict[-1]['train_data'] = np.float32(listdict[-1]['train_data'][0:training_size, :, :])
-		listdict[-1]['train_label'] = listdict[-1]['train_label'][0:training_size]
-
-		listdict[-1]['test_data'] = np.float32(listdict[-1]['test_data'][0:test_size, :, :])
-		listdict[-1]['test_label'] = listdict[-1]['test_label'][0:test_size]
-		# listdict[-1]['test_label'] = np.float32(listdict[-1]['test_label'])
+	listdict[-1]['train_data'] = np.float32(listdict[-1]['train_data'][0:training_size, :, :])
+	listdict[-1]['train_label'] = listdict[-1]['train_label'][0:training_size]
+	# listdict[-1]['val_data'] = np.float32(listdict[-1]['val_data'])
+	# listdict[-1]['val_label'] = listdict[-1]['val_label']
+	listdict[-1]['test_data'] = np.float32(listdict[-1]['test_data'])
+	listdict[-1]['test_label'] = listdict[-1]['test_label']
 
 	os.chdir('..')
+
+	if augmentation is not None:
+		os.chdir(augmentation)
+		file_names = os.listdict()
+		for i in range(len(file_names)):
+			if file_names[i][-8] == str(split):
+				print("Load dataset split: ", file_names[i])
+				tmp = pickle.load(open(file_names[i], 'rb'))
+				break
+
+		listdict[-1]['train_data'] = np.float32(np.append(listdict[-1]['train_data'], tmp['train_data'][0:training_size, :, :], axis=0))
+		listdict[-1]['train_label'] = np.append(listdict[-1]['train_label'], tmp['train_label'][0:training_size], , axis=0)
+
+		os.chdir('..')
 
 	return listdict
 
 
 def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight_decay):
-
 	# params = add_weight_decay(net, l2_normal,l2_special,name_special)
-	optimizer = optim.SGD(net.parameters(),lr=init_rate, momentum=0.9,weight_decay=weight_decay) # MNIST-Scale
+	optimizer = optim.SGD(net.parameters(),lr=init_rate, momentum=0.9,weight_decay=weight_decay)
 	scheduler = StepLR(optimizer, step_size=step_size, gamma=gamma)
 	criterion = nn.CrossEntropyLoss()
-
 	net = net.cuda()
+
+	start_time = time.time()
 	net = net.train()
 
-	s = time.time()
-
 	for epoch in range(total_epochs):
-		if epoch == 1:
-			print("Time for one epoch:",time.time()-s)
-			# s = time.time()
-
 		torch.cuda.empty_cache()
 		scheduler.step()
-		# print(epoch)
 		running_loss = 0.0
 
 		for i, data in enumerate(trainloader, 0):
@@ -155,22 +153,22 @@ def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight
 			loss = criterion(outputs, labels)
 			loss.backward()
 			optimizer.step()
-			del inputs, labels # intermediate?
+			del inputs, labels # delete intermediate
 
 			# print statistics
 			running_loss += float(loss.item())
-			if i % 2000 == 1999:
-				print('[epoch %d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 2000))
+			if i % 200 == 199:
+				print('[epoch %d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 200))
 				running_loss = 0.0
 
 	print("Training completed.")
+	print("Total training time: %5d" % time.time()-start_time)
 
 	net = net.eval()
 	return net
 
 
 def test_network(net,testloader,test_labels):
-
 	net = net.eval()
 	correct = torch.tensor(0)
 	total = len(test_labels)
@@ -193,10 +191,10 @@ def test_network(net,testloader,test_labels):
 
 def run_test(training_size):
 	# dataset_name = '/data2/team16b/FMNIST_SCALE_NEW'
-	# dataset_name = 'FMNIST_SCALE_NEW'
 	dataset_name = '/data2/team16b/MNIST_SCALE_NEW'
-	# dataset_name = 'MNIST_SCALE_NEW'
-	val_splits = 1
+	# augmentation = '/data2/team16b/MNIST-Scale-For-Augmentation'
+	# val_splits = [2,3,4,5]
+	val_splits = [0,1,2,3,4,5]
 
 	# Good result on MNIST-Scale 1000 Training
 	# training_size = 1000
@@ -204,9 +202,8 @@ def run_test(training_size):
 	# init_rate = 0.05
 	# weight_decay = 0.06
 
-	# training_size = 10000
 	test_size = 10000
-	batch_size = 200
+	batch_size = 400
 	init_rate = 0.04
 	decay_normal = 0.04
 	decay_special = 0.04
@@ -214,13 +211,13 @@ def run_test(training_size):
 	step_size = 10
 
 	gamma = 0.7
-	total_epochs = 300
+	total_epochs = 30
 
 
 	# Networks_to_train = [Net_antialiased_steerinvariant_mnist_scale()]
-	Networks_to_train = [standard_CNN_mnist_scale(), Net_scaleinvariant_mnist_scale(), Net_steerinvariant_mnist_scale(), Net_antialiased_steerinvariant_mnist_scale()]
+	Networks_to_train = [standard_CNN_mnist_scale(), Net_scaleinvariant_mnist_scale(), Net_steerinvariant_mnist_scale()]
 	# network_name = ['Net_antialiased_steerinvariant']
-	network_name = ['Standard-CNN','SI-ConvNet','SS-CNN','Antialiased-SS-CNN']
+	network_name = ['Standard-CNN', 'SI-ConvNet', 'SS-CNN']
 
 	transform_train = transforms.Compose(
 		[transforms.ToTensor(),
@@ -229,18 +226,17 @@ def run_test(training_size):
 		[transforms.ToTensor(),
 		 ])
 
-	listdict = load_dataset(dataset_name, val_splits, training_size, test_size)
-	accuracy_all = np.zeros((val_splits,len(Networks_to_train)))
+	# listdict = load_dataset(dataset_name, val_splits, training_size, test_size)
+	accuracy_all = np.zeros((len(val_splits),len(Networks_to_train)))
 
-	for i in range(val_splits):
-		# if i == 0:
-		# 	continue
-		print("train and test on dataset split: ", i)
+	for i in range(len(val_splits)):
+		listdict = load_dataset(dataset_name, val_splits[i], training_size)
+		# listdict = load_dataset(dataset_name, val_splits[i], training_size, augmentation)
 
-		train_data = listdict[i]['train_data']
-		train_labels = listdict[i]['train_label']
-		test_data = listdict[i]['test_data']
-		test_labels = listdict[i]['test_label']
+		train_data = listdict[-1]['train_data']
+		train_labels = listdict[-1]['train_label']
+		test_data = listdict[-1]['test_data']
+		test_labels = listdict[-1]['test_label']
 
 		Data_train = Dataset(dataset_name,train_data,train_labels,transform_train)
 		Data_test = Dataset(dataset_name, test_data, test_labels, transform_test)
@@ -269,18 +265,23 @@ def run_test(training_size):
 
 			del net, accuracy, accuracy_train
 
+		# for j in range(len(Networks_to_train)):
+		# 	print("Result on split", val_splits[i])
+		# 	print(network_name[j])
+		# 	print(accuracy_all[i,j])
 
-	print("Mean Accuracies of Networks:", np.mean(accuracy_all,0))
-	print("Standard Deviations of Networks:",np.std(accuracy_all,0))
-	for j in range(len(Networks_to_train)):
-		print(network_name[j])
-		print(accuracy_all[:,j])
+
+	# print("Mean Accuracies of Networks:", np.mean(accuracy_all,0))
+	# print("Standard Deviations of Networks:",np.std(accuracy_all,0))
+	# for j in range(len(Networks_to_train)):
+	# 	print(network_name[j])
+	# 	print(accuracy_all[:,j])
 
 
 
 if __name__ == "__main__":
 	torch.set_default_tensor_type('torch.cuda.FloatTensor')
-	training_size = [10000, 8000, 4000, 2000, 1000]
+	training_size = [10000, 8000, 6000, 4000, 2000, 1000]
 	for i in range(len(training_size)):
 		run_test(training_size[i])
 

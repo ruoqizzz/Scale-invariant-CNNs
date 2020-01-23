@@ -102,9 +102,6 @@ def make_stl10_scale():
 
 
 
-
-
-
 def make_only_mnist():
 
     transform = transforms.Compose(
@@ -226,22 +223,22 @@ def make_mnist_scale(val_splits):
     print(np.max(all_data))
 
     try:
-        os.mkdir('MNIST_SCALE_NEW/')
+        os.mkdir('MNIST-Scale-New/')
     except:
         None
 
-    os.chdir('MNIST_SCALE_NEW/')
+    os.chdir('MNIST-Scale-New/')
 
     for split in range(val_splits):
-        train_data = np.zeros([10000,28, 28 ])
+        train_data = np.zeros([10000,28, 28])
         train_label = np.zeros([10000])
         train_scale = np.zeros([10000])
-        val_data = np.zeros([2000,28, 28 ])
-        val_label = np.zeros([2000])
-        val_scale = np.zeros([2000])
-        test_data = np.zeros([50000,28, 28 ])
-        test_label = np.zeros([50000])
-        test_scale = np.zeros([50000])
+        # val_data = np.zeros([2000,28, 28])
+        # val_label = np.zeros([2000])
+        # val_scale = np.zeros([2000])
+        test_data = np.zeros([10000,28, 28])
+        test_label = np.zeros([10000])
+        test_scale = np.zeros([10000])
 
 
         random.seed(split)
@@ -258,15 +255,15 @@ def make_mnist_scale(val_splits):
             train_scale[j] = 1
             i += 1
 
-        for j in range(2000):
-            zoom_factor = 0.3 + (np.random.rand() * 0.7)
-            val_data[j,:,:] = clipped_zoom(all_data[i,:,:], zoom_factor, order=1)
-            val_label[j] = all_targets[i]
-            val_scale[j] = zoom_factor
-            i += 1
+        # for j in range(2000):
+        #     zoom_factor = 0.3 + (np.random.rand() * 0.7)
+        #     val_data[j,:,:] = clipped_zoom(all_data[i,:,:], zoom_factor, order=1)
+        #     val_label[j] = all_targets[i]
+        #     val_scale[j] = zoom_factor
+        #     i += 1
 
 
-        for j in range(50000):
+        for j in range(10000):
             zoom_factor = 0.3 + (np.random.rand() * 0.7)
             test_data[j,:,:] = clipped_zoom(all_data[i,:,:], zoom_factor, order=1)
             test_label[j] = all_targets[i]
@@ -280,17 +277,53 @@ def make_mnist_scale(val_splits):
         dict['train_label']  = train_label
         dict['train_scale']  = train_scale
 
-        dict['val_data'] = val_data
-        dict['val_label'] = val_label
-        dict['val_scale'] = val_scale
+        # dict['val_data'] = val_data
+        # dict['val_label'] = val_label
+        # dict['val_scale'] = val_scale
 
         dict['test_data'] = test_data
         dict['test_label'] = test_label
         dict['test_scale'] = test_scale
 
+        pickle.dump(dict,open('mnist_scale_new_split_' + str(split) + '.pickle','wb'))
+
+    os.chdir('..')
+
+
+    try:
+        os.mkdir('MNIST-Scale-For-Augmentation/')
+    except:
+        None
+
+    os.chdir('MNIST-Scale-For-Augmentation/')
+
+    for split in range(val_splits):
+        train_data = np.zeros([10000,28, 28])
+        train_label = np.zeros([10000])
+        train_scale = np.zeros([10000])
+
+        random.seed(split)
+        perm = np.random.permutation(all_data.shape[0])
+        all_data = all_data[perm,:,:]
+        all_targets = all_targets[perm]
+
+        i = 0
+        for j in range(10000):
+            zoom_factor = 0.3 + (np.random.rand()*0.7)
+            train_data[j,:,:] = all_data[i,:,:]
+            train_data[j,:,:] = clipped_zoom(all_data[i,:,:],zoom_factor,order=1)
+            train_label[j] = all_targets[i]
+            train_scale[j] = zoom_factor
+            i += 1
+
+        dict = {}
+        dict['train_data']  = train_data
+        dict['train_label']  = train_label
+        dict['train_scale']  = train_scale
+
         pickle.dump(dict,open('mnist_scale_split_' + str(split) + '.pickle','wb'))
 
-    os.chdir("..")
+    os.chdir('..')
 
 
 def make_fmnist_scale(val_splits):
@@ -317,22 +350,22 @@ def make_fmnist_scale(val_splits):
     print(np.max(all_data))
 
     try:
-        os.mkdir('FMNIST_SCALE_NEW/')
+        os.mkdir('FMNIST-Scale-New/')
     except:
         None
 
-    os.chdir('FMNIST_SCALE_NEW/')
+    os.chdir('FMNIST-Scale-New/')
 
     for split in range(val_splits):
         train_data = np.zeros([10000,28, 28 ])
         train_label = np.zeros([10000])
         train_scale = np.zeros([10000])
-        val_data = np.zeros([2000,28, 28 ])
-        val_label = np.zeros([2000])
-        val_scale = np.zeros([2000])
-        test_data = np.zeros([50000,28, 28 ])
-        test_label = np.zeros([50000])
-        test_scale = np.zeros([50000])
+        # val_data = np.zeros([2000,28, 28 ])
+        # val_label = np.zeros([2000])
+        # val_scale = np.zeros([2000])
+        test_data = np.zeros([10000,28, 28 ])
+        test_label = np.zeros([10000])
+        test_scale = np.zeros([10000])
 
 
         random.seed(split)
@@ -349,15 +382,15 @@ def make_fmnist_scale(val_splits):
             train_scale[j] = 1
             i += 1
 
-        for j in range(2000):
-            zoom_factor = 0.7 + (np.random.rand() * 0.3)
-            val_data[j,:,:] = clipped_zoom(all_data[i,:,:], zoom_factor, order=1)
-            val_label[j] = all_targets[i]
-            val_scale[j] = zoom_factor
-            i += 1
+        # for j in range(2000):
+        #     zoom_factor = 0.7 + (np.random.rand() * 0.3)
+        #     val_data[j,:,:] = clipped_zoom(all_data[i,:,:], zoom_factor, order=1)
+        #     val_label[j] = all_targets[i]
+        #     val_scale[j] = zoom_factor
+        #     i += 1
 
 
-        for j in range(50000):
+        for j in range(10000):
             zoom_factor = 0.7 + (np.random.rand() * 0.3)
             test_data[j,:,:] = clipped_zoom(all_data[i,:,:], zoom_factor, order=1)
             test_label[j] = all_targets[i]
@@ -365,23 +398,59 @@ def make_fmnist_scale(val_splits):
             i += 1
 
 
+        dict = {}
+        dict['train_data']  = train_data
+        dict['train_label']  = train_label
+        dict['train_scale']  = train_scale
+
+        # dict['val_data'] = val_data
+        # dict['val_label'] = val_label
+        # dict['val_scale'] = val_scale
+
+        dict['test_data'] = test_data
+        dict['test_label'] = test_label
+        dict['test_scale'] = test_scale
+
+        pickle.dump(dict,open('fmnist_scale_new_split_' + str(split) + '.pickle','wb'))
+
+    os.chdir('..')
+
+
+    try:
+        os.mkdir('FMNIST-Scale-For-Augmentation/')
+    except:
+        None
+
+    os.chdir('FMNIST-Scale-For-Augmentation/')
+
+    for split in range(val_splits):
+        train_data = np.zeros([10000,28, 28 ])
+        train_label = np.zeros([10000])
+        train_scale = np.zeros([10000])
+
+        random.seed(split)
+        perm = np.random.permutation(all_data.shape[0])
+        all_data = all_data[perm, :, :]
+        all_targets = all_targets[perm]
+
+        i = 0
+        for j in range(10000):
+            zoom_factor = 0.7 + (np.random.rand()*0.3)
+            train_data[j,:,:] = all_data[i,:,:]
+            train_data[j,:,:] = clipped_zoom(all_data[i,:,:],zoom_factor,order=1)
+            train_label[j] = all_targets[i]
+            train_scale[j] = zoom_factor
+            i += 1
 
         dict = {}
         dict['train_data']  = train_data
         dict['train_label']  = train_label
         dict['train_scale']  = train_scale
 
-        dict['val_data'] = val_data
-        dict['val_label'] = val_label
-        dict['val_scale'] = val_scale
+        pickle.dump(dict,open('fmnist_scale_split_' + str(split) + '.pickle','wb'))
 
-        dict['test_data'] = test_data
-        dict['test_label'] = test_label
-        dict['test_scale'] = test_scale
+    os.chdir('..')
 
-        pickle.dump(dict,open('Fmnist_scale_split_' + str(split) + '.pickle','wb'))
-
-    os.chdir("..")
 
 
 

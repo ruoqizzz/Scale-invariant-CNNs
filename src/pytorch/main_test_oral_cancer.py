@@ -195,8 +195,8 @@ def test_network(net,testloader,test_labels):
 if __name__ == "__main__":
 
 	torch.set_default_tensor_type('torch.cuda.FloatTensor')
-	# dataset_name = '/data2/team16b/OralCancer_Scaled'
-	dataset_name = '../../OralCancer_Scaled'
+	dataset_name = '/data2/team16b/OralCancer_Scaled'
+	# dataset_name = '../../OralCancer_Scaled'
 	val_splits = 1
 
 	# Good result on MNIST-Scale 1000 Training
@@ -207,7 +207,7 @@ if __name__ == "__main__":
 
 	# training_size = 1000 # MNIST Scale
 	training_size = 10000 # Oral Cancer
-	test_size = 5000
+	test_size = 10000
 	# batch_size = 400 # MNIST Scale
 	batch_size = 200 # Oral Cancer
 	init_rate = 0.04
@@ -217,7 +217,7 @@ if __name__ == "__main__":
 	step_size = 10
 
 	gamma = 0.7
-	total_epochs = 300
+	total_epochs = 30
 
 	# Networks_to_train = [Net_antialiased_steerinvariant_oral_cancer()]
 	Networks_to_train = [standard_CNN_oral_cancer(), Net_scaleinvariant_oral_cancer(), Net_steerinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
@@ -259,11 +259,11 @@ if __name__ == "__main__":
 			accuracy = test_network(net,testloader,test_labels)
 			accuracy_train = test_network(net,trainloader,train_labels)
 
-			print(network_name[j])
-			print("Train:",accuracy_train,"Test:",accuracy)
-			accuracy_all[i,j] = accuracy
+			# print(network_name[j])
+			# print("Train:",accuracy_train,"Test:",accuracy)
+			# accuracy_all[i,j] = accuracy
 
-			del net, accuracy, accuracy_train
+			# del net, accuracy, accuracy_train
 
 			# save_path = '../../experiment/'+str(int(training_size/1000))+'k/'+network_name[j]+'/'+network_name[j]+str(i)+'.pt'
 			

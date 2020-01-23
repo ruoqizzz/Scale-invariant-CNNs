@@ -376,7 +376,6 @@ class Net_steerinvariant_mnist_scale(nn.Module):
 
 
 		self.pool1 = nn.MaxPool2d(2)
-
 		self.bn1 = nn.BatchNorm2d(lays[0])
 
 		self.pool2 = nn.MaxPool2d(2)
@@ -385,12 +384,14 @@ class Net_steerinvariant_mnist_scale(nn.Module):
 		self.pool3 = nn.MaxPool2d(8,padding=2) 
 		self.bn3 = nn.BatchNorm2d(lays[2])
 		self.bn3_mag = nn.BatchNorm2d(lays[2])
-		# torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True, padding_mode='zeros')
-		self.fc1 = nn.Conv2d(lays[2]*4, 256, 1)
+
+		# self.fc1 = nn.Conv2d(lays[2]*4, 256, 1)
+		self.fc1 = nn.Linear(lays[2]*9, 256)
 		self.fc1bn = nn.BatchNorm2d(256)
 		self.relu = nn.ReLU()
 		self.dropout = nn.Dropout2d(0.7)
-		self.fc2 = nn.Conv2d(256, 10, 1)  # FC2
+		# self.fc2 = nn.Conv2d(256, 10, 1)  # FC2
+		self.fc2 = nn.Linear(256, 10)
 
 	def forward(self, x):
 		# if self.orderpaths == True:
@@ -417,10 +418,11 @@ class Net_steerinvariant_mnist_scale(nn.Module):
 		# print(xm.shape)
 		xm = xm.view([xm.shape[0], xm.shape[1] * xm.shape[2] * xm.shape[3], 1, 1])
 		xm = self.fc1(xm)
-		xm = self.relu(self.fc1bn(xm))
+		xm = self.relu(xm)
 		xm = self.dropout(xm)
 		xm = self.fc2(xm)
-		xm = xm.view(xm.size()[0], xm.size()[1])
+		# xm = xm.view(xm.size()[0], xm.size()[1])
+		xm = F.log_softmax(xm, dim=1)
 
 		return xm
 
