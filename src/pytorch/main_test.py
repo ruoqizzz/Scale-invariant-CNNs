@@ -162,7 +162,8 @@ def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight
 				running_loss = 0.0
 
 	print("Training completed.")
-	print("Total training time: %5d" % time.time()-start_time)
+	total_time = time.time()-start_time
+	print("Total training time: %.3f" % total_time)
 
 	net = net.eval()
 	return net

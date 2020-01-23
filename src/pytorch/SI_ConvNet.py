@@ -90,13 +90,13 @@ class Net_scaleinvariant_mnist_scale(nn.Module):
 		lays = [30,60,90]
 
 		self.conv1 = ScaleInvariance_Layer(1, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
-										   padding=pads[0], scale_range=np.arange(7,19,2)/11.0)
+										   padding=pads[0], scale_range=np.arange(1.0,3.1,0.4))
 		self.conv2 = ScaleInvariance_Layer(lays[0], lays[1], [kernel_sizes[1], kernel_sizes[1]], 1,
-										   padding=pads[1], scale_range=np.arange(7,19,2)/11.0)
+										   padding=pads[1], scale_range=np.arange(1.0,3.1,0.4))
 		self.conv3 = ScaleInvariance_Layer(lays[1], lays[2], [kernel_sizes[2], kernel_sizes[2]], 1,
-										   padding=pads[2], scale_range=np.arange(7,19,2)/11.0)
+										   padding=pads[2], scale_range=np.arange(1.0,3.1,0.4))
 		self.pool1 = nn.MaxPool2d(2)
-		self.bn1 = nn.BatchNorm2d(lays[0])
+		self.bn1 = nn.BatchNorm2d(lays[0]
 
 		self.pool2 = nn.MaxPool2d(2)
 		self.bn2 = nn.BatchNorm2d(lays[1])
@@ -135,6 +135,67 @@ class Net_scaleinvariant_mnist_scale(nn.Module):
 		# xm = xm.view(xm.size()[0], xm.size()[1])
 		xm = F.log_softmax(xm, dim=1)
 		return xm
+
+
+class Net_scaleinvariant_fmnist_scale(nn.Module):
+	"""docstring for Net_scaleinvariant_mnist_scale"""
+	def __init__(self):
+		super(Net_scaleinvariant_mnist_scale, self).__init__()
+		
+		kernel_sizes = [11,11,11]
+		pads = (np.array(kernel_sizes) - 1) / 2
+		pads = pads.astype(int)
+
+		lays = [30,60,90]
+
+		self.conv1 = ScaleInvariance_Layer(1, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
+										   padding=pads[0], scale_range=np.arange(1.0,1.55,0.1))
+		self.conv2 = ScaleInvariance_Layer(lays[0], lays[1], [kernel_sizes[1], kernel_sizes[1]], 1,
+										   padding=pads[1], scale_range=np.arange(1.0,1.55,0.1))
+		self.conv3 = ScaleInvariance_Layer(lays[1], lays[2], [kernel_sizes[2], kernel_sizes[2]], 1,
+										   padding=pads[2], scale_range=np.arange(1.0,1.55,0.1))
+		self.pool1 = nn.MaxPool2d(2)
+		self.bn1 = nn.BatchNorm2d(lays[0]
+
+		self.pool2 = nn.MaxPool2d(2)
+		self.bn2 = nn.BatchNorm2d(lays[1])
+
+		self.pool3 = nn.MaxPool2d(8, padding=2)
+		self.bn3 = nn.BatchNorm2d(lays[2])
+		self.bn3_mag = nn.BatchNorm2d(lays[2])
+
+		# self.fc1 = nn.Conv2d(lays[2]*4, 256, 1)
+		self.fc1 = nn.Linear(lays[2]*4, 256)
+		self.fc1bn = nn.BatchNorm2d(256)
+		self.relu = nn.ReLU()
+		self.dropout = nn.Dropout2d(0.7)
+		# self.fc2 = nn.Conv2d(256,10,1)
+		self.fc2 = nn.Linear(256, 10)
+
+	def forward(self, x):
+		x = self.conv1(x)
+		x = self.pool1(x)
+		x = self.bn1(self.relu(x))
+
+		x = self.conv2(x)
+		x = self.pool2(x)
+		x = self.bn2(self.relu(x))
+
+		x = self.conv3(x)
+		x = self.pool3(x)
+		xm = self.bn3_mag(self.relu(x))
+
+		# xm = xm.view([xm.shape[0], xm.shape[1] * xm.shape[2] * xm.shape[3], 1, 1])
+		xm = torch.flatten(xm,1)
+		xm = self.fc1(xm)
+		xm = self.relu(xm)
+		xm = self.dropout(xm)
+		xm = self.fc2(xm)
+		# xm = xm.view(xm.size()[0], xm.size()[1])
+		xm = F.log_softmax(xm, dim=1)
+		return xm
+
+
 
 
 
