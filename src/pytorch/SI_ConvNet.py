@@ -106,7 +106,7 @@ class Net_scaleinvariant_mnist_scale(nn.Module):
 		self.bn3_mag = nn.BatchNorm2d(lays[2])
 
 		# self.fc1 = nn.Conv2d(lays[2]*4, 256, 1)
-		self.fc1 = nn.Linear(lays[2]*9, 256)
+		self.fc1 = nn.Linear(lays[2]*4, 256)
 		self.fc1bn = nn.BatchNorm2d(256)
 		self.relu = nn.ReLU()
 		self.dropout = nn.Dropout2d(0.7)

@@ -33,7 +33,7 @@ class standard_CNN_mnist_scale(nn.Module):
 		
 		self.bn3_mag = nn.BatchNorm2d(lays[2])
 		# self.fc1 = nn.Conv2d(lays[2]*4, 256, 1)
-		self.fc1 = nn.Linear(lays[2]*9, 256)
+		self.fc1 = nn.Linear(lays[2]*4, 256)
 
 		self.fc1bn = nn.BatchNorm2d(256)
 		self.relu = nn.ReLU()
@@ -52,9 +52,9 @@ class standard_CNN_mnist_scale(nn.Module):
 		x = self.conv3(x)
 		x = self.pool3(x)
 		xm = self.bn3_mag(self.relu(x))
-		# print(xm.shape)
 		# xm = xm.view([xm.shape[0], xm.shape[1] * xm.shape[2] * xm.shape[3], 1, 1])
 		xm = torch.flatten(xm,1)
+		# print(xm.shape)
 		xm = self.fc1(xm)
 		xm = self.relu(xm)
 		xm = self.dropout(xm)

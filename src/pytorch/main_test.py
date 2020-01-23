@@ -120,7 +120,7 @@ def load_dataset(dataset_name,split,training_size,augmentation=None):
 				break
 
 		listdict[-1]['train_data'] = np.float32(np.append(listdict[-1]['train_data'], tmp['train_data'][0:training_size, :, :], axis=0))
-		listdict[-1]['train_label'] = np.append(listdict[-1]['train_label'], tmp['train_label'][0:training_size], , axis=0)
+		listdict[-1]['train_label'] = np.append(listdict[-1]['train_label'], tmp['train_label'][0:training_size], axis=0)
 
 		os.chdir('..')
 
@@ -190,8 +190,8 @@ def test_network(net,testloader,test_labels):
 
 
 def run_test(training_size):
-	# dataset_name = '/data2/team16b/FMNIST_SCALE_NEW'
-	dataset_name = '/data2/team16b/MNIST_SCALE_NEW'
+	# dataset_name = '/data2/team16b/FMNIST-Scale-New'
+	dataset_name = '/data2/team16b/MNIST-Scale-New'
 	# augmentation = '/data2/team16b/MNIST-Scale-For-Augmentation'
 	# val_splits = [2,3,4,5]
 	val_splits = [0,1,2,3,4,5]
