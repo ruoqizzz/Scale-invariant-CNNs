@@ -96,7 +96,7 @@ class Net_scaleinvariant_mnist_scale(nn.Module):
 		self.conv3 = ScaleInvariance_Layer(lays[1], lays[2], [kernel_sizes[2], kernel_sizes[2]], 1,
 										   padding=pads[2], scale_range=np.arange(1.0,3.1,0.4))
 		self.pool1 = nn.MaxPool2d(2)
-		self.bn1 = nn.BatchNorm2d(lays[0]
+		self.bn1 = nn.BatchNorm2d(lays[0])
 
 		self.pool2 = nn.MaxPool2d(2)
 		self.bn2 = nn.BatchNorm2d(lays[1])
@@ -155,7 +155,7 @@ class Net_scaleinvariant_fmnist_scale(nn.Module):
 		self.conv3 = ScaleInvariance_Layer(lays[1], lays[2], [kernel_sizes[2], kernel_sizes[2]], 1,
 										   padding=pads[2], scale_range=np.arange(1.0,1.55,0.1))
 		self.pool1 = nn.MaxPool2d(2)
-		self.bn1 = nn.BatchNorm2d(lays[0]
+		self.bn1 = nn.BatchNorm2d(lays[0])
 
 		self.pool2 = nn.MaxPool2d(2)
 		self.bn2 = nn.BatchNorm2d(lays[1])

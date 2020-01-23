@@ -350,14 +350,14 @@ class Net_steerinvariant_mnist_scale(nn.Module):
 
 		self.conv1 = ScaleConv_steering(1, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
 										padding=pads[0], sigma_phi_range=[np.pi / 16],
-										k_range = [0.5,1,2], ker_size_range=np.arange(1,4,0.5),
+										k_range = [0.5,1,2], ker_size_range=np.arange(10,40,5),
 										# stride = 2,
 										phi_range = np.linspace(0, np.pi, 9),
 										phase_range = [-np.pi/4],
 										mode=1)
 		self.conv2 = ScaleConv_steering(lays[0], lays[1], [kernel_sizes[1], kernel_sizes[1]], 1, padding=pads[1],
 										k_range = [0.5,1,2], sigma_phi_range=[np.pi/16],
-										ker_size_range=np.arange(1,4,0.5),
+										ker_size_range=np.arange(10,40,5),
 										# stride=2,
 										phi_range=np.linspace(0, np.pi, 9),
 										phase_range=[-np.pi / 4],
@@ -369,7 +369,7 @@ class Net_steerinvariant_mnist_scale(nn.Module):
 										phase_range=[-np.pi / 4],
 										phi_range=np.linspace(0, np.pi, 9),
 										# stride=4,
-										ker_size_range=np.arange(1,4,0.5),
+										ker_size_range=np.arange(10,40,5),
 										# phase_range=[0, np.pi / 4, np.pi / 2, 3 * np.pi / 4],
 										# sigma_phi_range=[np.pi / 16],
 										mode=1,drop_rate=4)
@@ -458,7 +458,7 @@ class Net_steerinvariant_fmnist_scale(nn.Module):
         self.conv0 = nn.Conv2d(1,12,3,padding=1)
         self.conv1 = ScaleConv_steering(12, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
                                         padding=pads[0], sigma_phi_range=[np.pi / 8],
-                                        k_range=[0.5,1,2], ker_size_range=np.arange(1,4,0.5),
+                                        k_range=[0.5,1,2], ker_size_range=np.arange(10,40,5),
                                         # stride = 2,
                                         # phi_range=np.linspace(0, np.pi, 9),
                                         phi_range=np.linspace(np.pi/8, np.pi, 8),
@@ -467,7 +467,7 @@ class Net_steerinvariant_fmnist_scale(nn.Module):
                                         mode=1)
         self.conv2 = ScaleConv_steering(lays[0], lays[1], [kernel_sizes[1], kernel_sizes[1]], 1, padding=pads[1],
                                         k_range=[0.5,1,2], sigma_phi_range=[np.pi / 8],
-                                        ker_size_range=np.arange(1,4,0.5),
+                                        ker_size_range=np.arange(10,40,5),
                                         # stride=2,
                                         # phi_range=np.linspace(0, np.pi, 9),
                                         phi_range=np.linspace(np.pi/8, np.pi, 8),
@@ -483,7 +483,7 @@ class Net_steerinvariant_fmnist_scale(nn.Module):
                                         # phi_range=np.linspace(0, np.pi, 9),
                                         phi_range=np.linspace(np.pi/8, np.pi, 8),
                                         # stride=4,
-                                        ker_size_range=np.arange(1,4,0.5),
+                                        ker_size_range=np.arange(10,40,5),
                                         # phase_range=[0, np.pi / 4, np.pi / 2, 3 * np.pi / 4],
                                         # sigma_phi_range=[np.pi / 16],
                                         mode=1, drop_rate=4)
