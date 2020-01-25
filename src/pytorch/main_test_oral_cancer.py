@@ -9,16 +9,12 @@ from SI_ConvNet import *
 import os,pickle
 import numpy as np
 import torch
-import torch
 from torch.utils import data
 from PIL import Image
 # from skimage.transform import rescale
 import numpy as np
 import scipy.misc
-
-
 import time
-# import scipy.misc
 
 # This is the testbench for the
 # MNIST-Scale, FMNIST-Scale and CIFAR-10-Scale datasets.
@@ -109,7 +105,7 @@ def load_dataset(dataset_name,split,training_size,test_size,augmentation=None):
 
 	listdict[-1]['train_data'] = np.float32(listdict[-1]['train_data'][0:training_size,:,:,:])
 	listdict[-1]['train_label'] = listdict[-1]['train_label'][0:training_size]
-	listdict[-1]['test_data'] = np.float32(listdict[-1]['test_size'][0:test_size,:,:,:])
+	listdict[-1]['test_data'] = np.float32(listdict[-1]['test_data'][0:test_size,:,:,:])
 	listdict[-1]['test_label'] = listdict[-1]['test_label'][0:test_size]
 
 	os.chdir('..')
@@ -158,6 +154,10 @@ def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight
 			loss.backward()
 			optimizer.step()
 			del inputs, labels # delete intermediate
+
+	print("Training completed.")
+	total_time = time.time()-start_time
+	print("Total training time: %.3f" % total_time)
 
 	net = net.eval()
 	return net
@@ -232,7 +232,7 @@ def run_test(training_size):
 
 		for j in range(len(Networks_to_train)):
 			print("Training network:", network_name[j], "\t training_size =", training_size, "\t test_size =", test_size)
-			net = train_network(Networks_to_train[j],trainloader, init_rate, step_size,gamma,total_epochs,decay_normal)
+			net = train_network(Networks_to_train[j], trainloader, init_rate, step_size,gamma, total_epochs, decay_normal)
 			accuracy = test_network(net,testloader,test_labels)
 			accuracy_train = test_network(net,trainloader,train_labels)
 
@@ -245,7 +245,7 @@ def run_test(training_size):
 
 if __name__ == "__main__":
 	torch.set_default_tensor_type('torch.cuda.FloatTensor')
-	# training_size = [40000]
-	training_size = [70000, 60000, 50000, 40000, 30000, 20000, 10000]
+	training_size = [40000]
+	# training_size = [70000, 60000, 50000, 40000, 30000, 20000, 10000]
 	for i in range(len(training_size)):
 		run_test(training_size[i])

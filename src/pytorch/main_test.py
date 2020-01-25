@@ -185,9 +185,11 @@ def test_network(net,testloader,test_labels):
 
 
 def run_test(training_size):
-	# dataset_name = '/data2/team16b/FMNIST-Scale-New'
-	dataset_name = '/data2/team16b/MNIST-Scale-New'
-	augmentation = '/data2/team16b/MNIST-Scale-For-Augmentation'
+	# dataset_name = '/data2/team16b/MNIST-Scale-New'
+	# augmentation = '/data2/team16b/MNIST-Scale-For-Augmentation'
+	dataset_name = '/data2/team16b/FMNIST-Scale-New'
+	augmentation = '/data2/team16b/FMNIST-Scale-For-Augmentation'
+
 	# val_splits = [2,3,4,5]
 	val_splits = [0,1,2,3,4,5]
 
