@@ -140,7 +140,7 @@ class Net_scaleinvariant_mnist_scale(nn.Module):
 class Net_scaleinvariant_fmnist_scale(nn.Module):
 	"""docstring for Net_scaleinvariant_mnist_scale"""
 	def __init__(self):
-		super(Net_scaleinvariant_mnist_scale, self).__init__()
+		super(Net_scaleinvariant_fmnist_scale, self).__init__()
 		
 		kernel_sizes = [11,11,11]
 		pads = (np.array(kernel_sizes) - 1) / 2
