@@ -25,7 +25,7 @@ import time
 # The networks and network architecture are defiend
 # within their respective libraries
 
-# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 from torch.multiprocessing import set_start_method
 set_start_method('spawn', force=True)
@@ -95,55 +95,55 @@ class Dataset(data.Dataset):
 
 
 
-def load_dataset(dataset_name,val_splits,training_size,test_size):
-
+def load_dataset(dataset_name,split,training_size,test_size,augmentation=None):
 	os.chdir(dataset_name)
-	a = os.listdir()
+	file_names = os.listdir()
+
 	listdict = []
+	for i in range(len(file_names)):
+		if file_names[i][-8] == str(split):
+			print("Load dataset split: ", file_names[i])
+			tmp = pickle.load(open(file_names[i], 'rb'))
+			break
+	listdict.append(tmp)
 
-	# meanarr = [0.4914, 0.4822, 0.4465]
-	# stdarr = [0.247,0.243,0.261]
-
-	print("load dataset split:")
-	for split in range(val_splits):
-		print(split)
-		tmp = pickle.load(open(a[split], 'rb'))
-		listdict.append(tmp)
-
-		listdict[-1]['train_data'] = np.float32(listdict[-1]['train_data'][0:training_size, :, :])
-		listdict[-1]['train_label'] = listdict[-1]['train_label'][0:training_size]
-
-		listdict[-1]['test_data'] = np.float32(listdict[-1]['test_data'][0:test_size, :, :])
-		listdict[-1]['test_label'] = listdict[-1]['test_label'][0:test_size]
-		# listdict[-1]['test_label'] = np.float32(listdict[-1]['test_label'])
+	listdict[-1]['train_data'] = np.float32(listdict[-1]['train_data'][0:training_size,:,:,:])
+	listdict[-1]['train_label'] = listdict[-1]['train_label'][0:training_size]
+	listdict[-1]['test_data'] = np.float32(listdict[-1]['test_size'][0:test_size,:,:,:])
+	listdict[-1]['test_label'] = listdict[-1]['test_label'][0:test_size]
 
 	os.chdir('..')
+
+	if augmentation is not None:
+		os.chdir(augmentation)
+		file_names = os.listdir()
+		for i in range(len(file_names)):
+			if file_names[i][-8] == str(split):
+				print("Load dataset split: ", file_names[i])
+				tmp = pickle.load(open(file_names[i], 'rb'))
+				break
+
+		listdict[-1]['train_data'] = np.float32(np.append(listdict[-1]['train_data'], tmp['train_data'][0:training_size,:,:,:], axis=0))
+		listdict[-1]['train_label'] = np.float32(np.append(listdict[-1]['train_label'], tmp['train_label'][0:training_size], axis=0))
+
+		os.chdir('..')
 
 	return listdict
 
 
 def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight_decay):
-
-	# params = add_weight_decay(net, l2_normal,l2_special,name_special)
-	# optimizer = optim.SGD(net.parameters(),lr=init_rate, momentum=0.9,weight_decay=weight_decay) # MNIST-Scale
-	optimizer = optim.Adam(net.parameters(),lr=init_rate,weight_decay=weight_decay) # Oral Cancer
+	optimizer = optim.Adam(net.parameters(),lr=init_rate,weight_decay=weight_decay)
 	scheduler = StepLR(optimizer, step_size=step_size, gamma=gamma)
-	criterion = nn.CrossEntropyLoss() # MNIST-Scale
-	# criterion = nn.BCELoss() # Oral Cancer
+	# criterion = nn.CrossEntropyLoss() # MNIST-Scale
+	criterion = nn.BCELoss() # Oral Cancer
 
 	net = net.cuda()
+	start_time = time.time()
 	net = net.train()
 
-	# s = time.time()
-
 	for epoch in range(total_epochs):
-		#
-		# print("Time for one epoch:",time.time()-s)
-		# s = time.time()
-
 		torch.cuda.empty_cache()
 		scheduler.step()
-		# print(epoch)
 		running_loss = 0.0
 
 		for i, data in enumerate(trainloader, 0):
@@ -157,25 +157,17 @@ def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight
 			loss = criterion(outputs, labels)
 			loss.backward()
 			optimizer.step()
-			del inputs, labels # intermediate?
-
-			# print statistics
-			running_loss += float(loss.item())
-			if i % 2000 == 1999:
-				print('[epoch %d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 2000))
-				running_loss = 0.0
+			del inputs, labels # delete intermediate
 
 	net = net.eval()
 	return net
 
 
 def test_network(net,testloader,test_labels):
-
 	net = net.eval()
 	correct = torch.tensor(0)
 	total = len(test_labels)
 	dataiter = iter(testloader)
-	print(len(test_labels))
 
 	with torch.no_grad():
 		for i in range(int(len(test_labels) / testloader.batch_size)):
@@ -191,13 +183,9 @@ def test_network(net,testloader,test_labels):
 	return accuracy
 
 
-
-if __name__ == "__main__":
-
-	torch.set_default_tensor_type('torch.cuda.FloatTensor')
-	dataset_name = '/data2/team16b/OralCancer_Scaled'
-	# dataset_name = '../../OralCancer_Scaled'
-	val_splits = 1
+def run_test(training_size):
+	dataset_name = '/data2/team16b/OralCancer-Scale'
+	val_splits = [0,1,2,3,4,5]
 
 	# Good result on MNIST-Scale 1000 Training
 	# training_size = 1000
@@ -205,10 +193,7 @@ if __name__ == "__main__":
 	# init_rate = 0.05
 	# weight_decay = 0.06
 
-	# training_size = 1000 # MNIST Scale
-	training_size = 10000 # Oral Cancer
 	test_size = 10000
-	# batch_size = 400 # MNIST Scale
 	batch_size = 200 # Oral Cancer
 	init_rate = 0.04
 	decay_normal = 0.04
@@ -217,13 +202,12 @@ if __name__ == "__main__":
 	step_size = 10
 
 	gamma = 0.7
-	total_epochs = 30
+	total_epochs = 50
 
-	# Networks_to_train = [Net_antialiased_steerinvariant_oral_cancer()]
-	Networks_to_train = [standard_CNN_oral_cancer(), Net_scaleinvariant_oral_cancer(), Net_steerinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
-	# Networks_to_train = [standard_CNN_mnist_scale(), Net_scaleinvariant_mnist_scale(), Net_steerinvariant_mnist_scale(), Net_antialiased_steerinvariant_mnist_scale()]
-	# network_name = ['Net_antialiased_steerinvariant']
-	network_name = ['Net_standard','Net_scaleinvariant','Net_steerinvariant','Net_antialiased_steerinvariant']
+	Networks_to_train = [standard_CNN_oral_cancer()]
+	# Networks_to_train = [standard_CNN_oral_cancer(), Net_scaleinvariant_oral_cancer(), Net_steerinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
+	network_name = ['Standard-CNN']
+	# network_name = ['Standard-CNN', 'SI-ConvNet', 'SS-CNN']
 	transform_train = transforms.Compose(
 		[transforms.ToTensor(),
 		 ])
@@ -231,56 +215,37 @@ if __name__ == "__main__":
 		[transforms.ToTensor(),
 		 ])
 
-	listdict = load_dataset(dataset_name, val_splits, training_size, test_size)
-	accuracy_all = np.zeros((val_splits,len(Networks_to_train)))
+	accuracy_all = np.zeros((len(val_splits),len(Networks_to_train)))
 
+	for i in range(len(val_splits)):
+		listdict = load_dataset(dataset_name, val_splits[i], training_size, test_size)
 
-
-	for i in range(val_splits):
-		print("validation ")
-		print(i)
-
-
-		train_data = listdict[i]['train_data']
-		train_labels = listdict[i]['train_label']
-		test_data = listdict[i]['test_data']
-		test_labels = listdict[i]['test_label']
+		train_data = listdict[-1]['train_data']
+		train_labels = listdict[-1]['train_label']
+		test_data = listdict[-1]['test_data']
+		test_labels = listdict[-1]['test_label']
 
 		Data_train = Dataset(dataset_name,train_data,train_labels,transform_train)
 		Data_test = Dataset(dataset_name, test_data, test_labels, transform_test)
-
 		trainloader = torch.utils.data.DataLoader(Data_train, batch_size=batch_size, shuffle=False, num_workers=4)
-
 		testloader = torch.utils.data.DataLoader(Data_test, batch_size=int(len(test_labels)/200),shuffle=False, num_workers=2)
 
-
 		for j in range(len(Networks_to_train)):
+			print("Training network:", network_name[j], "\t training_size =", training_size, "\t test_size =", test_size)
 			net = train_network(Networks_to_train[j],trainloader, init_rate, step_size,gamma,total_epochs,decay_normal)
 			accuracy = test_network(net,testloader,test_labels)
 			accuracy_train = test_network(net,trainloader,train_labels)
 
-			# print(network_name[j])
-			# print("Train:",accuracy_train,"Test:",accuracy)
-			# accuracy_all[i,j] = accuracy
+			print("\n",network_name[j])
+			print("Train:",accuracy_train,"Test:",accuracy,"\n")
+			accuracy_all[i,j] = accuracy
 
-			# del net, accuracy, accuracy_train
-
-			# save_path = '../../experiment/'+str(int(training_size/1000))+'k/'+network_name[j]+'/'+network_name[j]+str(i)+'.pt'
-			
-			# if not os.path.exists(save_path):
-			# 	try:
-			# 	    original_umask = os.umask(0)
-			# 	    os.makedirs(save_path, desired_permission)
-			# 	finally:
-			# 	    os.umask(original_umask)
-			# torch.save(net.state_dict(), save_path)
-			
+			del net, accuracy, accuracy_train
 
 
-	print("Mean Accuracies of Networks:", np.mean(accuracy_all,0))
-	print("Standard Deviations of Networks:",np.std(accuracy_all,0))
-	for j in range(len(Networks_to_train)):
-		print(network_name[j])
-		print(accuracy_all[:,j])
-
-
+if __name__ == "__main__":
+	torch.set_default_tensor_type('torch.cuda.FloatTensor')
+	# training_size = [40000]
+	training_size = [70000, 60000, 50000, 40000, 30000, 20000, 10000]
+	for i in range(len(training_size)):
+		run_test(training_size[i])

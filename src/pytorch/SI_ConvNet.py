@@ -210,7 +210,7 @@ class Net_scaleinvariant_oral_cancer(nn.Module):
 
 		lays = [16, 32, 48]
 
-		self.conv1 = ScaleInvariance_Layer(1, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
+		self.conv1 = ScaleInvariance_Layer(3, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
 										   padding=pads[0], scale_range=np.arange(11,17,2)/11.0)
 		self.conv2 = ScaleInvariance_Layer(lays[0], lays[1], [kernel_sizes[1], kernel_sizes[1]], 1,
 										   padding=pads[1], scale_range=np.arange(11,17,2)/11.0)

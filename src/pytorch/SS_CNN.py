@@ -536,7 +536,7 @@ class Net_steerinvariant_oral_cancer(nn.Module):
 		pads = (np.array(kernel_sizes) - 1) / 2
 		pads = pads.astype(int)
 
-		self.conv1 = ScaleConv_steering(1, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
+		self.conv1 = ScaleConv_steering(3, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
 										padding=pads[0], sigma_phi_range=[np.pi / 16],
 										k_range = [0.5,1,2], ker_size_range=np.arange(7,19,2),
 										# stride = 2,

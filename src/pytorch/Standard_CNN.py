@@ -74,7 +74,7 @@ class standard_CNN_oral_cancer(nn.Module):
 		pads = (np.array(kernel_sizes) - 1) / 2
 		pads = pads.astype(int)
 
-		self.conv1 = nn.Conv2d(1, lays[0], kernel_sizes[0], stride=1,padding=pads[0])
+		self.conv1 = nn.Conv2d(3, lays[0], kernel_sizes[0], stride=1,padding=pads[0])
 		self.pool1 = nn.MaxPool2d(2)
 		self.bn1 = nn.BatchNorm2d(lays[0])
 
@@ -108,7 +108,7 @@ class standard_CNN_oral_cancer(nn.Module):
 		# print(xm.shape)
 		xm = torch.flatten(xm,1)
 		xm = self.fc1(xm)
-		xm = F.relu(xm)
+		xm = self.relu(xm)
 		xm = self.dropout(xm)
 		xm = self.fc2(xm)
 		xm = F.log_softmax(xm, dim=1)

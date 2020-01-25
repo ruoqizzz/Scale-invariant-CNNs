@@ -155,12 +155,6 @@ def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight
 			optimizer.step()
 			del inputs, labels # delete intermediate
 
-			# print statistics
-			running_loss += float(loss.item())
-			if i % 200 == 199:
-				print('[epoch %d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 200))
-				running_loss = 0.0
-
 	print("Training completed.")
 	total_time = time.time()-start_time
 	print("Total training time: %.3f" % total_time)
