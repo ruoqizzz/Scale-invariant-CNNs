@@ -4,7 +4,7 @@ import torch.optim as optim
 from Standard_CNN import *
 from SI_ConvNet import *
 from SS_CNN import *
-from Antialiased_SIConvNet.py import *
+from Antialiased_SIConvNet import *
 from Antialiased_SSCNN import *
 
 import os,pickle
@@ -186,8 +186,8 @@ def test_network(net,testloader,test_labels):
 
 def run_test(training_size):
 	dataset_name = '/data2/team16b/OralCancer-Scale'
-	# val_splits = [0,1,2,3,4,5]
-	val_splits = [0]
+	val_splits = [0,1,2,3,4,5]
+	# val_splits = [0]
 
 	# Good result on MNIST-Scale 1000 Training
 	# training_size = 1000
@@ -204,12 +204,12 @@ def run_test(training_size):
 	step_size = 10
 
 	gamma = 0.7
-	total_epochs = 50
+	total_epochs = 10
 
-	Networks_to_train = [standard_CNN_oral_cancer()]
-	# Networks_to_train = [standard_CNN_oral_cancer(), Net_scaleinvariant_oral_cancer(), Net_steerinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
-	network_name = ['Standard-CNN']
-	# network_name = ['Standard-CNN', 'SI-ConvNet', 'SS-CNN']
+	# Networks_to_train = [Net_antialiased_scaleinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
+	Networks_to_train = [standard_CNN_oral_cancer(), Net_scaleinvariant_oral_cancer(), Net_steerinvariant_oral_cancer(), Net_antialiased_scaleinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
+	# network_name = ['Antialiased_SIConvNet', 'Antialiased_SSCNN']
+	network_name = ['Standard-CNN', 'SI-ConvNet', 'SS-CNN', 'Antialiased_SIConvNet', 'Antialiased_SSCNN']
 	transform_train = transforms.Compose(
 		[transforms.ToTensor(),
 		 ])
@@ -247,7 +247,7 @@ def run_test(training_size):
 
 if __name__ == "__main__":
 	torch.set_default_tensor_type('torch.cuda.FloatTensor')
-	training_size = [40000]
-	# training_size = [70000, 60000, 50000, 40000, 30000, 20000, 10000]
+	# training_size = [400]
+	training_size = [70000, 60000, 50000, 40000, 30000, 20000, 10000]
 	for i in range(len(training_size)):
 		run_test(training_size[i])

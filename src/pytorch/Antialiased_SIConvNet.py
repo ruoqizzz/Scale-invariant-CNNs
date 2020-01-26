@@ -119,9 +119,9 @@ def get_pad_layer_1d(pad_type):
     return PadLayer
 
 
-class Net_antialiased_scaleinvariant_oral_cancer(object):
+class Net_antialiased_scaleinvariant_oral_cancer(nn.Module):
     """docstring for Net_antialiased_scaleinvariant_oral_cancer"""
-    def __init__(self, arg):
+    def __init__(self):
         super(Net_antialiased_scaleinvariant_oral_cancer, self).__init__()
         
         lays = [30, 60, 90, 120, 150]
@@ -175,22 +175,27 @@ class Net_antialiased_scaleinvariant_oral_cancer(object):
     def forward(self,x):
         x = self.conv1(x)
         x = self.pool1(x)
+        x = self.down1(x)
         x = self.bn1(self.relu(x))
 
         x = self.conv2(x)
         x = self.pool2(x)
+        x = self.down2(x)
         x = self.bn2(self.relu(x))
 
         x = self.conv3(x)
         x = self.pool3(x)
+        x = self.down3(x)
         x = self.bn3(self.relu(x))
 
         x = self.conv4(x)
         x = self.pool4(x)
+        x = self.down4(x)
         x = self.bn4(self.relu(x))
 
         x = self.conv5(x)
         x = self.pool5(x)
+        x = self.down5(x)
         xm = self.bn5(self.relu(x))
 
         xm = torch.flatten(xm,1)
