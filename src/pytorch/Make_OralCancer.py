@@ -150,12 +150,12 @@ def make_oral_caner_scale(val_splits):
 	for imagename in os.listdir('OralCancer_DataSet3/train/Cancer'):
 		image = Image.open(os.path.join('OralCancer_DataSet3/train/Cancer', imagename))
 		image = np.asarray(image)
-		train_data[i,:,:] = normalize(image)
+		train_data[i,:,:,:] = normalize(image)
 		train_label[i] = 0
 		# for augmentation
 		zoom_factor = 1 + (np.random.rand()*0.3)
 		image_scaled = clipped_zoom(image, zoom_factor, order=3)
-		train_data_scale[i,:,:] = normalize(image_scaled)
+		train_data_scale[i,:,:,:] = normalize(image_scaled)
 		train_label_scale[i] = 0
 		i += 1
 		if i == 20000:
@@ -163,12 +163,12 @@ def make_oral_caner_scale(val_splits):
 	for imagename in os.listdir('OralCancer_DataSet3/train/Healthy'):
 		image = Image.open(os.path.join('OralCancer_DataSet3/train/Healthy', imagename))
 		image = np.asarray(image)
-		train_data[i,:,:] = normalize(image)
+		train_data[i,:,:,:] = normalize(image)
 		train_label[i] = 1
 		# for augmentation
 		zoom_factor = 1 + (np.random.rand()*0.3)
 		image_scaled = clipped_zoom(image, zoom_factor, order=3)
-		train_data_scale[i,:,:] = normalize(image_scaled)
+		train_data_scale[i,:,:,:] = normalize(image_scaled)
 		train_label_scale[i] = 1
 		i += 1
 		if i == 70000:
@@ -180,7 +180,7 @@ def make_oral_caner_scale(val_splits):
 		image = np.asarray(image)
 		zoom_factor = 1 + (np.random.rand()*0.3)
 		image_scaled = clipped_zoom(image, zoom_factor, order=3)
-		test_data[i,:,:] = normalize(image_scaled)
+		test_data[i,:,:,:] = normalize(image_scaled)
 		test_label[i] = 0
 		i += 1
 		if i == 20000:
@@ -190,7 +190,7 @@ def make_oral_caner_scale(val_splits):
 		image = np.asarray(image)
 		zoom_factor = 1 + (np.random.rand()*0.3)
 		image_scaled = clipped_zoom(image, zoom_factor, order=3)
-		test_data[i,:,:] = normalize(image_scaled)
+		test_data[i,:,:,:] = normalize(image_scaled)
 		test_label[i] = 1
 		i += 1
 		if i == 50000:
@@ -242,6 +242,7 @@ def make_oral_caner_scale(val_splits):
 
 		pickle.dump(dict,open('oral_cancer_scale_split_'+ str(split) +'.pickle','wb'), protocol=4)
 
+	os.chdir('..')
 
 
 if __name__ == '__main__':

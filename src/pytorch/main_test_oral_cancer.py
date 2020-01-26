@@ -72,8 +72,8 @@ class Dataset(data.Dataset):
 
 		# img = np.float32(scipy.misc.imresize(img,2.0)) # Cannot use due to the update of SciPy
 		# img = np.float32(rescale(img, 2.0))
-		width, height = img.shape[:2]
-		img = np.float32(Image.fromarray(img).resize([width, height]))
+		# width, height = img.shape[:2]
+		# img = np.float32(Image.fromarray(img).resize([width, height]))
 		# h, w = img.shape[:2]
 		# img = transform.resize(img, (h*2, w*2))
 
@@ -130,8 +130,8 @@ def load_dataset(dataset_name,split,training_size,test_size,augmentation=None):
 def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight_decay):
 	optimizer = optim.Adam(net.parameters(),lr=init_rate,weight_decay=weight_decay)
 	scheduler = StepLR(optimizer, step_size=step_size, gamma=gamma)
-	# criterion = nn.CrossEntropyLoss() # MNIST-Scale
-	criterion = nn.BCELoss() # Oral Cancer
+	criterion = nn.CrossEntropyLoss() # MNIST-Scale
+	# criterion = nn.BCELoss() # Oral Cancer
 
 	net = net.cuda()
 	start_time = time.time()
