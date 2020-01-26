@@ -248,6 +248,7 @@ def run_test(training_size):
 if __name__ == "__main__":
 	torch.set_default_tensor_type('torch.cuda.FloatTensor')
 	# training_size = [400]
-	training_size = [70000, 60000, 50000, 40000, 30000, 20000, 10000]
+	# training_size = [70000, 60000, 50000, 40000, 30000, 20000, 10000]
+	training_size = [10000, 20000, 30000, 40000, 50000, 60000, 70000]
 	for i in range(len(training_size)):
 		run_test(training_size[i])
