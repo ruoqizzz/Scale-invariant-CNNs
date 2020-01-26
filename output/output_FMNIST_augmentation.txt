@@ -1,0 +1,324 @@
+Load dataset split:  fmnist_scale_new_split_0.pickle
+Load dataset split:  fmnist_scale_split_0.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 274.778
+
+ Standard-CNN
+Train: 0.8766 Test: 0.8543 
+
+Load dataset split:  fmnist_scale_new_split_1.pickle
+Load dataset split:  fmnist_scale_split_1.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 265.038
+
+ Standard-CNN
+Train: 0.89555 Test: 0.8722 
+
+Load dataset split:  fmnist_scale_new_split_2.pickle
+Load dataset split:  fmnist_scale_split_2.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 256.918
+
+ Standard-CNN
+Train: 0.83965 Test: 0.7974 
+
+Load dataset split:  fmnist_scale_new_split_3.pickle
+Load dataset split:  fmnist_scale_split_3.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 270.898
+
+ Standard-CNN
+Train: 0.8475 Test: 0.8404 
+
+Load dataset split:  fmnist_scale_new_split_4.pickle
+Load dataset split:  fmnist_scale_split_4.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 244.666
+
+ Standard-CNN
+Train: 0.8471 Test: 0.8287 
+
+Load dataset split:  fmnist_scale_new_split_5.pickle
+Load dataset split:  fmnist_scale_split_5.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 277.289
+
+ Standard-CNN
+Train: 0.888 Test: 0.8583 
+
+Load dataset split:  fmnist_scale_new_split_0.pickle
+Load dataset split:  fmnist_scale_split_0.pickle
+Training network: Standard-CNN 	 training_size = 16000 	 test_size = 10000
+Training completed.
+Total training time: 238.352
+
+ Standard-CNN
+Train: 0.8643125 Test: 0.8431 
+
+Load dataset split:  fmnist_scale_new_split_1.pickle
+Load dataset split:  fmnist_scale_split_1.pickle
+Training network: Standard-CNN 	 training_size = 16000 	 test_size = 10000
+Training completed.
+Total training time: 251.381
+
+ Standard-CNN
+Train: 0.864125 Test: 0.8526 
+
+Load dataset split:  fmnist_scale_new_split_2.pickle
+Load dataset split:  fmnist_scale_split_2.pickle
+Training network: Standard-CNN 	 training_size = 16000 	 test_size = 10000
+Training completed.
+Total training time: 248.318
+
+ Standard-CNN
+Train: 0.920625 Test: 0.8753 
+
+Load dataset split:  fmnist_scale_new_split_3.pickle
+Load dataset split:  fmnist_scale_split_3.pickle
+Training network: Standard-CNN 	 training_size = 16000 	 test_size = 10000
+Training completed.
+Total training time: 233.452
+
+ Standard-CNN
+Train: 0.872 Test: 0.851 
+
+Load dataset split:  fmnist_scale_new_split_4.pickle
+Load dataset split:  fmnist_scale_split_4.pickle
+Training network: Standard-CNN 	 training_size = 16000 	 test_size = 10000
+Training completed.
+Total training time: 255.213
+
+ Standard-CNN
+Train: 0.90825 Test: 0.8662 
+
+Load dataset split:  fmnist_scale_new_split_5.pickle
+Load dataset split:  fmnist_scale_split_5.pickle
+Training network: Standard-CNN 	 training_size = 16000 	 test_size = 10000
+Training completed.
+Total training time: 237.911
+
+ Standard-CNN
+Train: 0.87575 Test: 0.8429 
+
+Load dataset split:  fmnist_scale_new_split_0.pickle
+Load dataset split:  fmnist_scale_split_0.pickle
+Training network: Standard-CNN 	 training_size = 12000 	 test_size = 10000
+Training completed.
+Total training time: 233.322
+
+ Standard-CNN
+Train: 0.9239166666666667 Test: 0.8737 
+
+Load dataset split:  fmnist_scale_new_split_1.pickle
+Load dataset split:  fmnist_scale_split_1.pickle
+Training network: Standard-CNN 	 training_size = 12000 	 test_size = 10000
+Training completed.
+Total training time: 225.302
+
+ Standard-CNN
+Train: 0.92125 Test: 0.8599 
+
+Load dataset split:  fmnist_scale_new_split_2.pickle
+Load dataset split:  fmnist_scale_split_2.pickle
+Training network: Standard-CNN 	 training_size = 12000 	 test_size = 10000
+Training completed.
+Total training time: 221.252
+
+ Standard-CNN
+Train: 0.9193333333333333 Test: 0.8657 
+
+Load dataset split:  fmnist_scale_new_split_3.pickle
+Load dataset split:  fmnist_scale_split_3.pickle
+Training network: Standard-CNN 	 training_size = 12000 	 test_size = 10000
+Training completed.
+Total training time: 231.944
+
+ Standard-CNN
+Train: 0.91275 Test: 0.8449 
+
+Load dataset split:  fmnist_scale_new_split_4.pickle
+Load dataset split:  fmnist_scale_split_4.pickle
+Training network: Standard-CNN 	 training_size = 12000 	 test_size = 10000
+Training completed.
+Total training time: 226.621
+
+ Standard-CNN
+Train: 0.89075 Test: 0.8631 
+
+Load dataset split:  fmnist_scale_new_split_5.pickle
+Load dataset split:  fmnist_scale_split_5.pickle
+Training network: Standard-CNN 	 training_size = 12000 	 test_size = 10000
+Training completed.
+Total training time: 225.892
+
+ Standard-CNN
+Train: 0.9144166666666667 Test: 0.8619 
+
+Load dataset split:  fmnist_scale_new_split_0.pickle
+Load dataset split:  fmnist_scale_split_0.pickle
+Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
+Training completed.
+Total training time: 213.670
+
+ Standard-CNN
+Train: 0.952625 Test: 0.8769 
+
+Load dataset split:  fmnist_scale_new_split_1.pickle
+Load dataset split:  fmnist_scale_split_1.pickle
+Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
+Training completed.
+Total training time: 212.742
+
+ Standard-CNN
+Train: 0.8585 Test: 0.789 
+
+Load dataset split:  fmnist_scale_new_split_2.pickle
+Load dataset split:  fmnist_scale_split_2.pickle
+Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
+Training completed.
+Total training time: 209.630
+
+ Standard-CNN
+Train: 0.94025 Test: 0.8541 
+
+Load dataset split:  fmnist_scale_new_split_3.pickle
+Load dataset split:  fmnist_scale_split_3.pickle
+Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
+Training completed.
+Total training time: 212.563
+
+ Standard-CNN
+Train: 0.954375 Test: 0.8617 
+
+Load dataset split:  fmnist_scale_new_split_4.pickle
+Load dataset split:  fmnist_scale_split_4.pickle
+Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
+Training completed.
+Total training time: 212.537
+
+ Standard-CNN
+Train: 0.96125 Test: 0.8608 
+
+Load dataset split:  fmnist_scale_new_split_5.pickle
+Load dataset split:  fmnist_scale_split_5.pickle
+Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
+Training completed.
+Total training time: 213.132
+
+ Standard-CNN
+Train: 0.97675 Test: 0.8584 
+
+Load dataset split:  fmnist_scale_new_split_0.pickle
+Load dataset split:  fmnist_scale_split_0.pickle
+Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
+Training completed.
+Total training time: 197.893
+
+ Standard-CNN
+Train: 0.9645 Test: 0.847 
+
+Load dataset split:  fmnist_scale_new_split_1.pickle
+Load dataset split:  fmnist_scale_split_1.pickle
+Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
+Training completed.
+Total training time: 194.467
+
+ Standard-CNN
+Train: 0.97825 Test: 0.8497 
+
+Load dataset split:  fmnist_scale_new_split_2.pickle
+Load dataset split:  fmnist_scale_split_2.pickle
+Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
+Training completed.
+Total training time: 197.294
+
+ Standard-CNN
+Train: 0.995 Test: 0.8591 
+
+Load dataset split:  fmnist_scale_new_split_3.pickle
+Load dataset split:  fmnist_scale_split_3.pickle
+Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
+Training completed.
+Total training time: 197.703
+
+ Standard-CNN
+Train: 0.9925 Test: 0.8463 
+
+Load dataset split:  fmnist_scale_new_split_4.pickle
+Load dataset split:  fmnist_scale_split_4.pickle
+Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
+Training completed.
+Total training time: 196.197
+
+ Standard-CNN
+Train: 0.97475 Test: 0.8508 
+
+Load dataset split:  fmnist_scale_new_split_5.pickle
+Load dataset split:  fmnist_scale_split_5.pickle
+Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
+Training completed.
+Total training time: 194.380
+
+ Standard-CNN
+Train: 0.96575 Test: 0.8327 
+
+Load dataset split:  fmnist_scale_new_split_0.pickle
+Load dataset split:  fmnist_scale_split_0.pickle
+Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
+Training completed.
+Total training time: 187.939
+
+ Standard-CNN
+Train: 0.9235 Test: 0.7971 
+
+Load dataset split:  fmnist_scale_new_split_1.pickle
+Load dataset split:  fmnist_scale_split_1.pickle
+Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
+Training completed.
+Total training time: 186.033
+
+ Standard-CNN
+Train: 0.9835 Test: 0.8192 
+
+Load dataset split:  fmnist_scale_new_split_2.pickle
+Load dataset split:  fmnist_scale_split_2.pickle
+Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
+Training completed.
+Total training time: 188.269
+
+ Standard-CNN
+Train: 0.9985 Test: 0.848 
+
+Load dataset split:  fmnist_scale_new_split_3.pickle
+Load dataset split:  fmnist_scale_split_3.pickle
+Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
+Training completed.
+Total training time: 189.480
+
+ Standard-CNN
+Train: 0.933 Test: 0.8009 
+
+Load dataset split:  fmnist_scale_new_split_4.pickle
+Load dataset split:  fmnist_scale_split_4.pickle
+Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
+Training completed.
+Total training time: 189.268
+
+ Standard-CNN
+Train: 0.998 Test: 0.854 
+
+Load dataset split:  fmnist_scale_new_split_5.pickle
+Load dataset split:  fmnist_scale_split_5.pickle
+Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
+Training completed.
+Total training time: 188.623
+
+ Standard-CNN
+Train: 0.9905 Test: 0.8459 
+
