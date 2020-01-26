@@ -323,7 +323,6 @@ class Net_steerinvariant_mnist_scale(nn.Module):
 		super(Net_steerinvariant_mnist_scale, self).__init__()
 
 
-		lays = [12, 32, 48]
 		kernel_sizes = [11, 11, 11]
 		pads = (np.array(kernel_sizes) - 1) / 2
 		pads = pads.astype(int)
@@ -432,8 +431,7 @@ class Net_steerinvariant_fmnist_scale(nn.Module):
     def __init__(self):
         super(Net_steerinvariant_fmnist_scale, self).__init__()
 
-        lays = [12, 32, 48, 60]
-        kernel_sizes = [11, 11, 11, 11]
+        kernel_sizes = [11, 11, 11]
         pads = (np.array(kernel_sizes) - 1) / 2
         pads = pads.astype(int)
 
@@ -452,12 +450,13 @@ class Net_steerinvariant_fmnist_scale(nn.Module):
         #                                 basis_scale = [0.1], mode=1)
 
         # For less data size
-        lays = [30, 60, 90, 1]
+        # lays = [30, 60, 90, 1]
+        lays = [30, 60, 90]
 
         # For 100 percent data size
         # lays = [30,60,90]
-        self.conv0 = nn.Conv2d(1,12,3,padding=1)
-        self.conv1 = ScaleConv_steering(12, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
+        # self.conv0 = nn.Conv2d(1,12,3,padding=1)
+        self.conv1 = ScaleConv_steering(1, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
                                         padding=pads[0], sigma_phi_range=[np.pi / 8],
                                         k_range=[0.5,1,2], ker_size_range=np.arange(7,19,2),
                                         # stride = 2,
@@ -496,31 +495,39 @@ class Net_steerinvariant_fmnist_scale(nn.Module):
         self.bn2 = nn.BatchNorm2d(lays[1])
         self.pool3 = nn.MaxPool2d(8,padding=2)
         self.bn3 = nn.BatchNorm2d(lays[2])
-        self.bn4 = nn.BatchNorm2d(lays[3])
-        self.fc1 = nn.Conv2d(lays[2] * 4, 512, 1)
+        # self.bn4 = nn.BatchNorm2d(lays[3])
+
+        # self.fc1 = nn.Conv2d(lays[2] * 4, 512, 1)
+        self.fc1 = nn.Linear(lays[2]*4, 512)
         self.fc1bn = nn.BatchNorm2d(512)
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout2d(0.7)
-        self.fc2 = nn.Conv2d(512, 10, 1)  # FC2
+        # self.fc2 = nn.Conv2d(512, 10, 1)  # FC2
+        self.fc2 = nn.Linear(512, 10)
 
     def forward(self, x):
-        # if self.orderpaths == True:
-        x = self.relu(self.conv0(x))
+        # x = self.relu(self.conv0(x))
+
         x = self.conv1(x)
         x = self.pool1(x)
         x = self.bn1(x)
+
         x = self.conv2(x)
         x = self.pool2(x)
         x = self.bn2(x)
+
         x = self.conv3(x)
         xm = self.pool3(x)
         xm = self.bn3(xm)
-        xm = xm.view([xm.shape[0], xm.shape[1] * xm.shape[2] * xm.shape[3], 1, 1])
+
+        # xm = xm.view([xm.shape[0], xm.shape[1] * xm.shape[2] * xm.shape[3], 1, 1])
+        xm = torch.flatten(xm,1)
         xm = self.fc1(xm)
-        xm = self.relu(self.fc1bn(xm))
+        xm = self.relu(xm)
         xm = self.dropout(xm)
         xm = self.fc2(xm)
-        xm = xm.view(xm.size()[0], xm.size()[1])
+        # xm = xm.view(xm.size()[0], xm.size()[1])
+        xm = F.log_softmax(xm, dim=1)
 
         return xm
 
@@ -530,54 +537,59 @@ class Net_steerinvariant_oral_cancer(nn.Module):
 	def __init__(self):
 		super(Net_steerinvariant_oral_cancer, self).__init__()
 
-
-		lays = [16, 32, 48]
-		kernel_sizes = [11, 11, 11]
+		lays = [30, 60, 90, 120, 150]
+		kernel_sizes = [11, 11, 11, 11, 11]
 		pads = (np.array(kernel_sizes) - 1) / 2
 		pads = pads.astype(int)
 
 		self.conv1 = ScaleConv_steering(3, lays[0], [kernel_sizes[0], kernel_sizes[0]], 1,
-										padding=pads[0], sigma_phi_range=[np.pi / 16],
+										padding=pads[0], sigma_phi_range=[np.pi/16],
 										k_range = [0.5,1,2], ker_size_range=np.arange(7,19,2),
-										# stride = 2,
 										phi_range = np.linspace(0, np.pi, 9),
 										phase_range = [-np.pi/4],
 										mode=1)
 		self.conv2 = ScaleConv_steering(lays[0], lays[1], [kernel_sizes[1], kernel_sizes[1]], 1, 
 										padding=pads[1], sigma_phi_range=[np.pi/16],
 										k_range = [0.5,1,2], ker_size_range=np.arange(7,19,2),
-										# stride=2,
 										phi_range=np.linspace(0, np.pi, 9),
-										phase_range=[-np.pi / 4],
-										# phase_range=[0, np.pi / 4, np.pi / 2, 3 * np.pi / 4],
-										# sigma_phi_range=[np.pi/16],
+										phase_range=[-np.pi /4],
 										mode=1)
 		self.conv3 = ScaleConv_steering(lays[1], lays[2], [kernel_sizes[2], kernel_sizes[2]], 1, 
 										padding=pads[2], sigma_phi_range=[np.pi/16],
 										k_range = [0.5,1,2], ker_size_range=np.arange(7,19,2),
-										# stride=4,
 										phi_range=np.linspace(0, np.pi, 9),
 										phase_range=[-np.pi / 4],
-										# phase_range=[0, np.pi / 4, np.pi / 2, 3 * np.pi / 4],
-										# sigma_phi_range=[np.pi / 16],
+										mode=1)
+		self.conv4 = ScaleConv_steering(lays[2], lays[3], [kernel_sizes[3], kernel_sizes[3]], 1, 
+										padding=pads[3], sigma_phi_range=[np.pi/16],
+										k_range = [0.5,1,2], ker_size_range=np.arange(7,19,2),
+										phi_range=np.linspace(0, np.pi, 9),
+										phase_range=[-np.pi / 4],
+										mode=1)
+		self.conv5 = ScaleConv_steering(lays[3], lays[4], [kernel_sizes[4], kernel_sizes[4]], 1, 
+										padding=pads[4], sigma_phi_range=[np.pi/16],
+										k_range = [0.5,1,2], ker_size_range=np.arange(7,19,2),
+										phi_range=np.linspace(0, np.pi, 9),
+										phase_range=[-np.pi / 4],
 										mode=1)
 
 		self.pool1 = nn.MaxPool2d(2)
 		self.bn1 = nn.BatchNorm2d(lays[0])
-
 		self.pool2 = nn.MaxPool2d(2)
 		self.bn2 = nn.BatchNorm2d(lays[1])
-
-		self.pool3 = nn.MaxPool2d(8, padding=2)
+		self.pool3 = nn.MaxPool2d(2)
 		self.bn3 = nn.BatchNorm2d(lays[2])
+		self.pool4 = nn.MaxPool2d(2)
+		self.bn4 = nn.BatchNorm2d(lays[3])
+		self.pool5 = nn.MaxPool2d(2)
+		self.bn5 = nn.BatchNorm2d(lays[4])
 
-		self.bn3_mag = nn.BatchNorm2d(lays[2])
-		self.fc1 = nn.Linear(lays[2]*4, 256)
+		self.fc1 = nn.Linear(600, 256)
+		
 		self.fc1bn = nn.BatchNorm2d(256)
 		self.relu = nn.ReLU()
 		self.dropout = nn.Dropout2d(0.7)
 		self.fc2 = nn.Linear(256, 2)
-
 
 	def forward(self, x):
 		x = self.conv1(x)
@@ -590,11 +602,19 @@ class Net_steerinvariant_oral_cancer(nn.Module):
 
 		x = self.conv3(x)
 		x = self.pool3(x)
-		xm = self.bn3_mag(self.relu(x))
+		x = self.bn3(self.relu(x))
+
+		x = self.conv4(x)
+		x = self.pool4(x)
+		x = self.bn4(self.relu(x))
+
+		x = self.conv5(x)
+		x = self.pool5(x)
+		xm = self.bn5(self.relu(x))
 
 		xm = torch.flatten(xm,1)
 		xm = self.fc1(xm)
-		xm = F.relu(xm)
+		xm = self.relu(xm)
 		xm = self.dropout(xm)
 		xm = self.fc2(xm)
 		xm = F.log_softmax(xm, dim=1)

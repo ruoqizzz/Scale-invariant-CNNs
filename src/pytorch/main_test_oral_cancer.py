@@ -1,10 +1,11 @@
 # from RadialHarmonic_Network import *
 import torchvision.transforms as transforms
 import torch.optim as optim
-from SS_CNN import *
 from Standard_CNN import *
-from Antialiased_SSCNN import *
 from SI_ConvNet import *
+from SS_CNN import *
+from Antialiased_SIConvNet.py import *
+from Antialiased_SSCNN import *
 
 import os,pickle
 import numpy as np
@@ -185,7 +186,8 @@ def test_network(net,testloader,test_labels):
 
 def run_test(training_size):
 	dataset_name = '/data2/team16b/OralCancer-Scale'
-	val_splits = [0,1,2,3,4,5]
+	# val_splits = [0,1,2,3,4,5]
+	val_splits = [0]
 
 	# Good result on MNIST-Scale 1000 Training
 	# training_size = 1000
@@ -194,7 +196,7 @@ def run_test(training_size):
 	# weight_decay = 0.06
 
 	test_size = 10000
-	batch_size = 200 # Oral Cancer
+	batch_size = 200
 	init_rate = 0.04
 	decay_normal = 0.04
 	decay_special = 0.04
@@ -236,7 +238,7 @@ def run_test(training_size):
 			accuracy = test_network(net,testloader,test_labels)
 			accuracy_train = test_network(net,trainloader,train_labels)
 
-			print("\n",network_name[j])
+			print(network_name[j])
 			print("Train:",accuracy_train,"Test:",accuracy,"\n")
 			accuracy_all[i,j] = accuracy
 

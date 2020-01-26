@@ -188,7 +188,7 @@ def run_test(training_size):
 	# dataset_name = '/data2/team16b/MNIST-Scale-New'
 	# augmentation = '/data2/team16b/MNIST-Scale-For-Augmentation'
 	dataset_name = '/data2/team16b/FMNIST-Scale-New'
-	augmentation = '/data2/team16b/FMNIST-Scale-For-Augmentation'
+	# augmentation = '/data2/team16b/FMNIST-Scale-For-Augmentation'
 
 	# val_splits = [2,3,4,5]
 	val_splits = [0,1,2,3,4,5]
@@ -211,9 +211,9 @@ def run_test(training_size):
 	total_epochs = 30
 
 
-	Networks_to_train = [standard_CNN_mnist_scale()]
+	Networks_to_train = [Net_steerinvariant_fmnist_scale()]
 	# Networks_to_train = [standard_CNN_mnist_scale(), Net_scaleinvariant_mnist_scale(), Net_steerinvariant_mnist_scale()]
-	network_name = ['Standard-CNN']
+	network_name = ['SS-CNN']
 	# network_name = ['Standard-CNN', 'SI-ConvNet', 'SS-CNN']
 
 	transform_train = transforms.Compose(
@@ -227,8 +227,8 @@ def run_test(training_size):
 	accuracy_all = np.zeros((len(val_splits),len(Networks_to_train)))
 
 	for i in range(len(val_splits)):
-		# listdict = load_dataset(dataset_name, val_splits[i], training_size)
-		listdict = load_dataset(dataset_name, val_splits[i], training_size, augmentation)
+		listdict = load_dataset(dataset_name, val_splits[i], training_size)
+		# listdict = load_dataset(dataset_name, val_splits[i], training_size, augmentation)
 
 		train_data = listdict[-1]['train_data']
 		train_labels = listdict[-1]['train_label']
@@ -247,7 +247,7 @@ def run_test(training_size):
 			accuracy = test_network(net,testloader,test_labels)
 			accuracy_train = test_network(net,trainloader,train_labels)
 
-			print("\n",network_name[j])
+			print(network_name[j])
 			print("Train:",accuracy_train,"Test:",accuracy,"\n")
 			accuracy_all[i,j] = accuracy
 
