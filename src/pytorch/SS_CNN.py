@@ -498,12 +498,12 @@ class Net_steerinvariant_fmnist_scale(nn.Module):
         # self.bn4 = nn.BatchNorm2d(lays[3])
 
         # self.fc1 = nn.Conv2d(lays[2] * 4, 512, 1)
-        self.fc1 = nn.Linear(lays[2]*4, 512)
-        self.fc1bn = nn.BatchNorm2d(512)
+        self.fc1 = nn.Linear(lays[2]*4, 256)
+        self.fc1bn = nn.BatchNorm2d(256)
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout2d(0.7)
         # self.fc2 = nn.Conv2d(512, 10, 1)  # FC2
-        self.fc2 = nn.Linear(512, 10)
+        self.fc2 = nn.Linear(256, 10)
 
     def forward(self, x):
         # x = self.relu(self.conv0(x))
@@ -585,7 +585,7 @@ class Net_steerinvariant_oral_cancer(nn.Module):
 		self.bn5 = nn.BatchNorm2d(lays[4])
 
 		self.fc1 = nn.Linear(600, 256)
-		
+
 		self.fc1bn = nn.BatchNorm2d(256)
 		self.relu = nn.ReLU()
 		self.dropout = nn.Dropout2d(0.7)

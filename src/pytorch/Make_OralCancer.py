@@ -133,9 +133,10 @@ def make_oral_cancer(val_splits):
 
 
 def normalize(image):
-	minimum = np.min(image, axis=(0,1), keepdims=True)
-	maximum = np.max(image, axis=(0,1), keepdims=True)
-	return (image-minimum)/(maximum-minimum)
+	# minimum = np.min(image, axis=(0,1), keepdims=True)
+	# maximum = np.max(image, axis=(0,1), keepdims=True)
+	# return (image-minimum)/(maximum-minimum)
+	return image/255
 
 def make_oral_caner_scale(val_splits):
 	train_data = np.zeros([70000, 80, 80, 3])

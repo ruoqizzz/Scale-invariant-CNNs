@@ -141,8 +141,8 @@ def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight
 	for epoch in range(total_epochs):
 		torch.cuda.empty_cache()
 		scheduler.step()
-		running_loss = 0.0
 
+		running_loss = 0.0
 		for i, data in enumerate(trainloader, 0):
 			# get the inputs
 			inputs, labels = data
@@ -154,6 +154,13 @@ def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight
 			loss = criterion(outputs, labels)
 			loss.backward()
 			optimizer.step()
+
+			# print statistics	
+			running_loss += loss.item()
+			# if i % 20 == 19:    # print every 20 mini-batches
+			print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss))
+			running_loss = 0.0
+
 			del inputs, labels # delete intermediate
 
 	print("Training completed.")
@@ -186,8 +193,8 @@ def test_network(net,testloader,test_labels):
 
 def run_test(training_size):
 	dataset_name = '/data2/team16b/OralCancer-Scale'
-	val_splits = [0,1,2,3,4,5]
-	# val_splits = [0]
+	# val_splits = [0,1,2,3,4,5]
+	val_splits = [0]
 
 	# Good result on MNIST-Scale 1000 Training
 	# training_size = 1000
@@ -206,10 +213,10 @@ def run_test(training_size):
 	gamma = 0.7
 	total_epochs = 10
 
-	# Networks_to_train = [Net_antialiased_scaleinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
-	Networks_to_train = [standard_CNN_oral_cancer(), Net_scaleinvariant_oral_cancer(), Net_steerinvariant_oral_cancer(), Net_antialiased_scaleinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
-	# network_name = ['Antialiased_SIConvNet', 'Antialiased_SSCNN']
-	network_name = ['Standard-CNN', 'SI-ConvNet', 'SS-CNN', 'Antialiased_SIConvNet', 'Antialiased_SSCNN']
+	Networks_to_train = [standard_CNN_oral_cancer()]
+	# Networks_to_train = [standard_CNN_oral_cancer(), Net_scaleinvariant_oral_cancer(), Net_steerinvariant_oral_cancer(), Net_antialiased_scaleinvariant_oral_cancer(), Net_antialiased_steerinvariant_oral_cancer()]
+	network_name = ['Standard-CNN']
+	# network_name = ['Standard-CNN', 'SI-ConvNet', 'SS-CNN', 'Antialiased_SIConvNet', 'Antialiased_SSCNN']
 	transform_train = transforms.Compose(
 		[transforms.ToTensor(),
 		 ])
@@ -229,8 +236,8 @@ def run_test(training_size):
 
 		Data_train = Dataset(dataset_name,train_data,train_labels,transform_train)
 		Data_test = Dataset(dataset_name, test_data, test_labels, transform_test)
-		trainloader = torch.utils.data.DataLoader(Data_train, batch_size=batch_size, shuffle=False, num_workers=4)
-		testloader = torch.utils.data.DataLoader(Data_test, batch_size=int(len(test_labels)/200),shuffle=False, num_workers=2)
+		trainloader = torch.utils.data.DataLoader(Data_train, batch_size=batch_size, shuffle=True, num_workers=4)
+		testloader = torch.utils.data.DataLoader(Data_test, batch_size=int(len(test_labels)/200),shuffle=True, num_workers=2)
 
 		for j in range(len(Networks_to_train)):
 			print("Training network:", network_name[j], "\t training_size =", training_size, "\t test_size =", test_size)
@@ -247,8 +254,8 @@ def run_test(training_size):
 
 if __name__ == "__main__":
 	torch.set_default_tensor_type('torch.cuda.FloatTensor')
-	# training_size = [400]
+	training_size = [4000]
 	# training_size = [70000, 60000, 50000, 40000, 30000, 20000, 10000]
-	training_size = [10000, 20000, 30000, 40000, 50000, 60000, 70000]
+	# training_size = [10000, 20000, 30000, 40000, 50000, 60000, 70000]
 	for i in range(len(training_size)):
 		run_test(training_size[i])
