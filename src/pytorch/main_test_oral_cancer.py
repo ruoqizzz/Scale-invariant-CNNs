@@ -155,11 +155,11 @@ def train_network(net,trainloader,init_rate, step_size,gamma,total_epochs,weight
 			loss.backward()
 			optimizer.step()
 
-			# print statistics	
-			running_loss += loss.item()
-			# if i % 20 == 19:    # print every 20 mini-batches
-			print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss))
-			running_loss = 0.0
+			# # print statistics	
+			# running_loss += loss.item()
+			# # if i % 20 == 19:    # print every 20 mini-batches
+			# print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss))
+			# running_loss = 0.0
 
 			del inputs, labels # delete intermediate
 
@@ -193,8 +193,9 @@ def test_network(net,testloader,test_labels):
 
 def run_test(training_size):
 	dataset_name = '/data2/team16b/OralCancer-Scale'
-	# val_splits = [0,1,2,3,4,5]
-	val_splits = [0]
+	augmentation = '/data2/team16b/OralCancer-Scale-For-Augmentation'
+	val_splits = [0,1,2,3,4,5]
+	# val_splits = [0]
 
 	# Good result on MNIST-Scale 1000 Training
 	# training_size = 1000
@@ -227,7 +228,8 @@ def run_test(training_size):
 	accuracy_all = np.zeros((len(val_splits),len(Networks_to_train)))
 
 	for i in range(len(val_splits)):
-		listdict = load_dataset(dataset_name, val_splits[i], training_size, test_size)
+		# listdict = load_dataset(dataset_name, val_splits[i], training_size, test_size)
+		listdict = load_dataset(dataset_name, val_splits[i], training_size, test_size, augmentation)
 
 		train_data = listdict[-1]['train_data']
 		train_labels = listdict[-1]['train_label']
@@ -240,7 +242,7 @@ def run_test(training_size):
 		testloader = torch.utils.data.DataLoader(Data_test, batch_size=int(len(test_labels)/200),shuffle=True, num_workers=2)
 
 		for j in range(len(Networks_to_train)):
-			print("Training network:", network_name[j], "\t training_size =", training_size, "\t test_size =", test_size)
+			print("Training network:", network_name[j], "\t training_size =", training_size*2, "\t test_size =", test_size)
 			net = train_network(Networks_to_train[j], trainloader, init_rate, step_size,gamma, total_epochs, decay_normal)
 			accuracy = test_network(net,testloader,test_labels)
 			accuracy_train = test_network(net,trainloader,train_labels)
@@ -254,8 +256,8 @@ def run_test(training_size):
 
 if __name__ == "__main__":
 	torch.set_default_tensor_type('torch.cuda.FloatTensor')
-	training_size = [4000]
+	# training_size = [4000]
 	# training_size = [70000, 60000, 50000, 40000, 30000, 20000, 10000]
-	# training_size = [10000, 20000, 30000, 40000, 50000, 60000, 70000]
+	training_size = [10000, 20000, 30000, 40000, 50000, 60000, 70000]
 	for i in range(len(training_size)):
 		run_test(training_size[i])

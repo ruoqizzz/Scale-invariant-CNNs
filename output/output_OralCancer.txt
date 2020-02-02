@@ -1,0 +1,932 @@
+Load dataset split:  oral_cancer_scale_new_split_0.pickle
+Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 190.191
+Standard-CNN
+Train: 0.7215 Test: 0.607 
+
+Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 441.137
+SI-ConvNet
+Train: 0.7215 Test: 0.607 
+
+Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 629.207
+SS-CNN
+Train: 0.7215 Test: 0.607 
+
+Training network: Antialiased_SIConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 426.295
+Antialiased_SIConvNet
+Train: 0.7295 Test: 0.6141 
+
+Training network: Antialiased_SSCNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 624.381
+Antialiased_SSCNN
+Train: 0.7215 Test: 0.607 
+
+Load dataset split:  oral_cancer_scale_new_split_1.pickle
+Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 169.607
+Standard-CNN
+Train: 0.7137 Test: 0.6008 
+
+Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 423.699
+SI-ConvNet
+Train: 0.7318 Test: 0.6131 
+
+Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 618.981
+SS-CNN
+Train: 0.7285 Test: 0.6097 
+
+Training network: Antialiased_SIConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 428.116
+Antialiased_SIConvNet
+Train: 0.287 Test: 0.4014 
+
+Training network: Antialiased_SSCNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 626.136
+Antialiased_SSCNN
+Train: 0.62 Test: 0.6982 
+
+Load dataset split:  oral_cancer_scale_new_split_2.pickle
+Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 167.045
+Standard-CNN
+Train: 0.707 Test: 0.6007 
+
+Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 423.913
+SI-ConvNet
+Train: 0.707 Test: 0.6007 
+
+Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 620.018
+SS-CNN
+Train: 0.7077 Test: 0.6046 
+
+Training network: Antialiased_SIConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 427.845
+Antialiased_SIConvNet
+Train: 0.707 Test: 0.6007 
+
+Training network: Antialiased_SSCNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 625.946
+Antialiased_SSCNN
+Train: 0.707 Test: 0.6007 
+
+Load dataset split:  oral_cancer_scale_new_split_3.pickle
+Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 169.632
+Standard-CNN
+Train: 0.7556 Test: 0.6406 
+
+Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 424.244
+SI-ConvNet
+Train: 0.7162 Test: 0.5978 
+
+Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 619.387
+SS-CNN
+Train: 0.7162 Test: 0.5959 
+
+Training network: Antialiased_SIConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 427.671
+Antialiased_SIConvNet
+Train: 0.7162 Test: 0.5959 
+
+Training network: Antialiased_SSCNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 625.523
+Antialiased_SSCNN
+Train: 0.7162 Test: 0.5959 
+
+Load dataset split:  oral_cancer_scale_new_split_4.pickle
+Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 167.879
+Standard-CNN
+Train: 0.7058 Test: 0.6026 
+
+Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 421.597
+SI-ConvNet
+Train: 0.7058 Test: 0.6026 
+
+Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 619.421
+SS-CNN
+Train: 0.7058 Test: 0.6026 
+
+Training network: Antialiased_SIConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 427.079
+Antialiased_SIConvNet
+Train: 0.7058 Test: 0.6026 
+
+Training network: Antialiased_SSCNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 624.979
+Antialiased_SSCNN
+Train: 0.7058 Test: 0.6026 
+
+Load dataset split:  oral_cancer_scale_new_split_5.pickle
+Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 167.928
+Standard-CNN
+Train: 0.7147 Test: 0.6096 
+
+Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 422.764
+SI-ConvNet
+Train: 0.7188 Test: 0.6136 
+
+Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 618.460
+SS-CNN
+Train: 0.7147 Test: 0.6096 
+
+Training network: Antialiased_SIConvNet 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 427.564
+Antialiased_SIConvNet
+Train: 0.3136 Test: 0.4645 
+
+Training network: Antialiased_SSCNN 	 training_size = 10000 	 test_size = 10000
+Training completed.
+Total training time: 625.077
+Antialiased_SSCNN
+Train: 0.7147 Test: 0.6096 
+
+Load dataset split:  oral_cancer_scale_new_split_0.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 305.882
+Standard-CNN
+Train: 0.71595 Test: 0.607 
+
+Training network: SI-ConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 813.011
+SI-ConvNet
+Train: 0.71595 Test: 0.607 
+
+Training network: SS-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1206.823
+SS-CNN
+Train: 0.28405 Test: 0.393 
+
+Training network: Antialiased_SIConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 822.862
+Antialiased_SIConvNet
+Train: 0.7472 Test: 0.6391 
+
+Training network: Antialiased_SSCNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1219.556
+Antialiased_SSCNN
+Train: 0.71595 Test: 0.607 
+
+Load dataset split:  oral_cancer_scale_new_split_1.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 310.728
+Standard-CNN
+Train: 0.73245 Test: 0.611 
+
+Training network: SI-ConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 816.390
+SI-ConvNet
+Train: 0.7131 Test: 0.6008 
+
+Training network: SS-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1208.119
+SS-CNN
+Train: 0.7131 Test: 0.6008 
+
+Training network: Antialiased_SIConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 829.092
+Antialiased_SIConvNet
+Train: 0.7131 Test: 0.6008 
+
+Training network: Antialiased_SSCNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1221.786
+Antialiased_SSCNN
+Train: 0.7289 Test: 0.6587 
+
+Load dataset split:  oral_cancer_scale_new_split_2.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 307.264
+Standard-CNN
+Train: 0.7097 Test: 0.6007 
+
+Training network: SI-ConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 811.499
+SI-ConvNet
+Train: 0.7097 Test: 0.6007 
+
+Training network: SS-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1207.594
+SS-CNN
+Train: 0.7097 Test: 0.6007 
+
+Training network: Antialiased_SIConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 825.258
+Antialiased_SIConvNet
+Train: 0.7097 Test: 0.6007 
+
+Training network: Antialiased_SSCNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1219.217
+Antialiased_SSCNN
+Train: 0.62375 Test: 0.4015 
+
+Load dataset split:  oral_cancer_scale_new_split_3.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 308.008
+Standard-CNN
+Train: 0.7098 Test: 0.5959 
+
+Training network: SI-ConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 816.884
+SI-ConvNet
+Train: 0.7098 Test: 0.5959 
+
+Training network: SS-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1212.843
+SS-CNN
+Train: 0.7144 Test: 0.6015 
+
+Training network: Antialiased_SIConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 825.501
+Antialiased_SIConvNet
+Train: 0.7098 Test: 0.5959 
+
+Training network: Antialiased_SSCNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1221.530
+Antialiased_SSCNN
+Train: 0.7098 Test: 0.5959 
+
+Load dataset split:  oral_cancer_scale_new_split_4.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 311.029
+Standard-CNN
+Train: 0.7091 Test: 0.6026 
+
+Training network: SI-ConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 812.453
+SI-ConvNet
+Train: 0.7091 Test: 0.6029 
+
+Training network: SS-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1207.923
+SS-CNN
+Train: 0.7091 Test: 0.6026 
+
+Training network: Antialiased_SIConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 822.911
+Antialiased_SIConvNet
+Train: 0.7091 Test: 0.6026 
+
+Training network: Antialiased_SSCNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1216.846
+Antialiased_SSCNN
+Train: 0.74565 Test: 0.632 
+
+Load dataset split:  oral_cancer_scale_new_split_5.pickle
+Training network: Standard-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 310.131
+Standard-CNN
+Train: 0.71435 Test: 0.6096 
+
+Training network: SI-ConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 816.482
+SI-ConvNet
+Train: 0.71435 Test: 0.6096 
+
+Training network: SS-CNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1210.100
+SS-CNN
+Train: 0.71435 Test: 0.6096 
+
+Training network: Antialiased_SIConvNet 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 827.989
+Antialiased_SIConvNet
+Train: 0.7542 Test: 0.6451 
+
+Training network: Antialiased_SSCNN 	 training_size = 20000 	 test_size = 10000
+Training completed.
+Total training time: 1222.270
+Antialiased_SSCNN
+Train: 0.6981 Test: 0.565 
+
+Load dataset split:  oral_cancer_scale_new_split_0.pickle
+Training network: Standard-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 446.300
+Standard-CNN
+Train: 0.7151333333333333 Test: 0.607 
+
+Training network: SI-ConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1206.097
+SI-ConvNet
+Train: 0.7151333333333333 Test: 0.607 
+
+Training network: SS-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1797.130
+SS-CNN
+Train: 0.7151333333333333 Test: 0.607 
+
+Training network: Antialiased_SIConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1219.535
+Antialiased_SIConvNet
+Train: 0.7151333333333333 Test: 0.607 
+
+Training network: Antialiased_SSCNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1811.700
+Antialiased_SSCNN
+Train: 0.7677666666666667 Test: 0.6194 
+
+Load dataset split:  oral_cancer_scale_new_split_1.pickle
+Training network: Standard-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 449.570
+Standard-CNN
+Train: 0.7115666666666667 Test: 0.6008 
+
+Training network: SI-ConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1211.750
+SI-ConvNet
+Train: 0.7115666666666667 Test: 0.6008 
+
+Training network: SS-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1799.127
+SS-CNN
+Train: 0.7115666666666667 Test: 0.6008 
+
+Training network: Antialiased_SIConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1224.414
+Antialiased_SIConvNet
+Train: 0.7115666666666667 Test: 0.6008 
+
+Training network: Antialiased_SSCNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1816.186
+Antialiased_SSCNN
+Train: 0.7115666666666667 Test: 0.6008 
+
+Load dataset split:  oral_cancer_scale_new_split_2.pickle
+Training network: Standard-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 447.834
+Standard-CNN
+Train: 0.7110666666666666 Test: 0.6007 
+
+Training network: SI-ConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1211.583
+SI-ConvNet
+Train: 0.7110666666666666 Test: 0.6007 
+
+Training network: SS-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1802.444
+SS-CNN
+Train: 0.7484666666666666 Test: 0.6327 
+
+Training network: Antialiased_SIConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1224.863
+Antialiased_SIConvNet
+Train: 0.7110666666666666 Test: 0.6007 
+
+Training network: Antialiased_SSCNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1818.662
+Antialiased_SSCNN
+Train: 0.7110666666666666 Test: 0.6007 
+
+Load dataset split:  oral_cancer_scale_new_split_3.pickle
+Training network: Standard-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 449.801
+Standard-CNN
+Train: 0.2899333333333333 Test: 0.4079 
+
+Training network: SI-ConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1205.091
+SI-ConvNet
+Train: 0.7106333333333333 Test: 0.5959 
+
+Training network: SS-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1800.283
+SS-CNN
+Train: 0.7106333333333333 Test: 0.5959 
+
+Training network: Antialiased_SIConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1221.805
+Antialiased_SIConvNet
+Train: 0.7106333333333333 Test: 0.5959 
+
+Training network: Antialiased_SSCNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1836.373
+Antialiased_SSCNN
+Train: 0.7106333333333333 Test: 0.5959 
+
+Load dataset split:  oral_cancer_scale_new_split_4.pickle
+Training network: Standard-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 583.129
+Standard-CNN
+Train: 0.711 Test: 0.6026 
+
+Training network: SI-ConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1368.251
+SI-ConvNet
+Train: 0.4888 Test: 0.682 
+
+Training network: SS-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 2087.730
+SS-CNN
+Train: 0.711 Test: 0.6026 
+
+Training network: Antialiased_SIConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1519.959
+Antialiased_SIConvNet
+Train: 0.711 Test: 0.6026 
+
+Training network: Antialiased_SSCNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 2167.596
+Antialiased_SSCNN
+Train: 0.7390333333333333 Test: 0.6488 
+
+Load dataset split:  oral_cancer_scale_new_split_5.pickle
+Training network: Standard-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 816.513
+Standard-CNN
+Train: 0.3113 Test: 0.4673 
+
+Training network: SI-ConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1535.258
+SI-ConvNet
+Train: 0.7152666666666667 Test: 0.6096 
+
+Training network: SS-CNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 2182.020
+SS-CNN
+Train: 0.7554333333333333 Test: 0.6438 
+
+Training network: Antialiased_SIConvNet 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 1566.681
+Antialiased_SIConvNet
+Train: 0.6873 Test: 0.5421 
+
+Training network: Antialiased_SSCNN 	 training_size = 30000 	 test_size = 10000
+Training completed.
+Total training time: 2197.721
+Antialiased_SSCNN
+Train: 0.3763666666666667 Test: 0.56 
+
+Load dataset split:  oral_cancer_scale_new_split_0.pickle
+Training network: Standard-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1007.052
+Standard-CNN
+Train: 0.7142 Test: 0.607 
+
+Training network: SI-ConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1960.244
+SI-ConvNet
+Train: 0.7142 Test: 0.607 
+
+Training network: SS-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2620.347
+SS-CNN
+Train: 0.7142 Test: 0.607 
+
+Training network: Antialiased_SIConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1822.042
+Antialiased_SIConvNet
+Train: 0.7142 Test: 0.607 
+
+Training network: Antialiased_SSCNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2624.714
+Antialiased_SSCNN
+Train: 0.7142 Test: 0.607 
+
+Load dataset split:  oral_cancer_scale_new_split_1.pickle
+Training network: Standard-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 792.370
+Standard-CNN
+Train: 0.711675 Test: 0.6008 
+
+Training network: SI-ConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1796.212
+SI-ConvNet
+Train: 0.711675 Test: 0.6008 
+
+Training network: SS-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2611.689
+SS-CNN
+Train: 0.72415 Test: 0.6087 
+
+Training network: Antialiased_SIConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1819.404
+Antialiased_SIConvNet
+Train: 0.711675 Test: 0.6008 
+
+Training network: Antialiased_SSCNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2631.083
+Antialiased_SSCNN
+Train: 0.288325 Test: 0.3992 
+
+Load dataset split:  oral_cancer_scale_new_split_2.pickle
+Training network: Standard-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 797.274
+Standard-CNN
+Train: 0.71125 Test: 0.6007 
+
+Training network: SI-ConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1797.645
+SI-ConvNet
+Train: 0.71125 Test: 0.6007 
+
+Training network: SS-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2613.277
+SS-CNN
+Train: 0.71125 Test: 0.6007 
+
+Training network: Antialiased_SIConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1819.374
+Antialiased_SIConvNet
+Train: 0.71125 Test: 0.6007 
+
+Training network: Antialiased_SSCNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2640.099
+Antialiased_SSCNN
+Train: 0.71125 Test: 0.6007 
+
+Load dataset split:  oral_cancer_scale_new_split_3.pickle
+Training network: Standard-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 811.174
+Standard-CNN
+Train: 0.7119 Test: 0.5959 
+
+Training network: SI-ConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1817.141
+SI-ConvNet
+Train: 0.7119 Test: 0.5959 
+
+Training network: SS-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2631.140
+SS-CNN
+Train: 0.7119 Test: 0.5959 
+
+Training network: Antialiased_SIConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1830.955
+Antialiased_SIConvNet
+Train: 0.7119 Test: 0.5959 
+
+Training network: Antialiased_SSCNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2644.048
+Antialiased_SSCNN
+Train: 0.7119 Test: 0.5959 
+
+Load dataset split:  oral_cancer_scale_new_split_4.pickle
+Training network: Standard-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 807.047
+Standard-CNN
+Train: 0.71335 Test: 0.6026 
+
+Training network: SI-ConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1805.582
+SI-ConvNet
+Train: 0.71335 Test: 0.6026 
+
+Training network: SS-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2622.263
+SS-CNN
+Train: 0.71335 Test: 0.6026 
+
+Training network: Antialiased_SIConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1806.814
+Antialiased_SIConvNet
+Train: 0.73645 Test: 0.6205 
+
+Training network: Antialiased_SSCNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2414.513
+Antialiased_SSCNN
+Train: 0.714125 Test: 0.6055 
+
+Load dataset split:  oral_cancer_scale_new_split_5.pickle
+Training network: Standard-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 587.976
+Standard-CNN
+Train: 0.7159 Test: 0.6096 
+
+Training network: SI-ConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1600.925
+SI-ConvNet
+Train: 0.381825 Test: 0.5931 
+
+Training network: SS-CNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2393.361
+SS-CNN
+Train: 0.344725 Test: 0.5279 
+
+Training network: Antialiased_SIConvNet 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 1616.256
+Antialiased_SIConvNet
+Train: 0.7159 Test: 0.6096 
+
+Training network: Antialiased_SSCNN 	 training_size = 40000 	 test_size = 10000
+Training completed.
+Total training time: 2409.355
+Antialiased_SSCNN
+Train: 0.7159 Test: 0.6096 
+
+Load dataset split:  oral_cancer_scale_new_split_0.pickle
+Training network: Standard-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 713.877
+Standard-CNN
+Train: 0.71504 Test: 0.607 
+
+Training network: SI-ConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 1978.224
+SI-ConvNet
+Train: 0.71504 Test: 0.607 
+
+Training network: SS-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2967.679
+SS-CNN
+Train: 0.71504 Test: 0.607 
+
+Training network: Antialiased_SIConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 1994.075
+Antialiased_SIConvNet
+Train: 0.71504 Test: 0.607 
+
+Training network: Antialiased_SSCNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2988.673
+Antialiased_SSCNN
+Train: 0.71504 Test: 0.607 
+
+Load dataset split:  oral_cancer_scale_new_split_1.pickle
+Training network: Standard-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 721.895
+Standard-CNN
+Train: 0.71224 Test: 0.6008 
+
+Training network: SI-ConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 1988.791
+SI-ConvNet
+Train: 0.49086 Test: 0.6757 
+
+Training network: SS-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2972.679
+SS-CNN
+Train: 0.71224 Test: 0.6008 
+
+Training network: Antialiased_SIConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2012.590
+Antialiased_SIConvNet
+Train: 0.71224 Test: 0.6008 
+
+Training network: Antialiased_SSCNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 3003.408
+Antialiased_SSCNN
+Train: 0.71224 Test: 0.6008 
+
+Load dataset split:  oral_cancer_scale_new_split_2.pickle
+Training network: Standard-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 714.525
+Standard-CNN
+Train: 0.71246 Test: 0.6007 
+
+Training network: SI-ConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 1972.464
+SI-ConvNet
+Train: 0.71246 Test: 0.6007 
+
+Training network: SS-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2972.914
+SS-CNN
+Train: 0.58218 Test: 0.6511 
+
+Training network: Antialiased_SIConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2000.565
+Antialiased_SIConvNet
+Train: 0.71246 Test: 0.6007 
+
+Training network: Antialiased_SSCNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 3003.499
+Antialiased_SSCNN
+Train: 0.71246 Test: 0.6007 
+
+Load dataset split:  oral_cancer_scale_new_split_3.pickle
+Training network: Standard-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 720.330
+Standard-CNN
+Train: 0.71314 Test: 0.5959 
+
+Training network: SI-ConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 1989.915
+SI-ConvNet
+Train: 0.71314 Test: 0.5959 
+
+Training network: SS-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2980.723
+SS-CNN
+Train: 0.42352 Test: 0.3042 
+
+Training network: Antialiased_SIConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2019.690
+Antialiased_SIConvNet
+Train: 0.71314 Test: 0.5959 
+
+Training network: Antialiased_SSCNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 3001.036
+Antialiased_SSCNN
+Train: 0.71314 Test: 0.5959 
+
+Load dataset split:  oral_cancer_scale_new_split_4.pickle
+Training network: Standard-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 718.025
+Standard-CNN
+Train: 0.7147 Test: 0.6026 
+
+Training network: SI-ConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 1974.030
+SI-ConvNet
+Train: 0.7147 Test: 0.6026 
+
+Training network: SS-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2973.650
+SS-CNN
+Train: 0.7147 Test: 0.6026 
+
+Training network: Antialiased_SIConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2005.133
+Antialiased_SIConvNet
+Train: 0.7147 Test: 0.6026 
+
+Training network: Antialiased_SSCNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 3002.050
+Antialiased_SSCNN
+Train: 0.71464 Test: 0.6026 
+
+Load dataset split:  oral_cancer_scale_new_split_5.pickle
+Training network: Standard-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 721.111
+Standard-CNN
+Train: 0.71632 Test: 0.6096 
+
+Training network: SI-ConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 1977.998
+SI-ConvNet
+Train: 0.71632 Test: 0.6096 
+
+Training network: SS-CNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2977.325
+SS-CNN
+Train: 0.71632 Test: 0.6096 
+
+Training network: Antialiased_SIConvNet 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 2014.166
+Antialiased_SIConvNet
+Train: 0.71632 Test: 0.6096 
+
+Training network: Antialiased_SSCNN 	 training_size = 50000 	 test_size = 10000
+Training completed.
+Total training time: 3001.924
+Antialiased_SSCNN
+Train: 0.71662 Test: 0.6119 
+
+Load dataset split:  oral_cancer_scale_new_split_0.pickle
+Training network: Standard-CNN 	 training_size = 60000 	 test_size = 10000

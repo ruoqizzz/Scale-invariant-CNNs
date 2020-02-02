@@ -208,13 +208,13 @@ def run_test(training_size):
 	step_size = 10
 
 	gamma = 0.7
-	total_epochs = 30
+	total_epochs = 50
 
 
-	Networks_to_train = [standard_CNN_mnist_scale(), Net_scaleinvariant_fmnist_scale(), Net_steerinvariant_fmnist_scale()]
+	Networks_to_train = [Net_steerinvariant_mnist_scale()]
 	# Networks_to_train = [standard_CNN_mnist_scale(), Net_scaleinvariant_mnist_scale(), Net_steerinvariant_mnist_scale()]
-	# network_name = ['Standard-CNN']
-	network_name = ['Standard-CNN', 'SI-ConvNet', 'SS-CNN']
+	network_name = ['SS-CNN']
+	# network_name = ['Standard-CNN', 'SI-ConvNet', 'SS-CNN']
 
 	transform_train = transforms.Compose(
 		[transforms.ToTensor(),
@@ -279,7 +279,7 @@ def run_test(training_size):
 
 if __name__ == "__main__":
 	torch.set_default_tensor_type('torch.cuda.FloatTensor')
-	training_size = [10000, 8000, 6000, 4000, 2000, 1000]
+	training_size = [10000, 8000, 6000, 4000, 2000]
 	for i in range(len(training_size)):
 		run_test(training_size[i])
 

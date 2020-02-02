@@ -1,570 +1,792 @@
 Load dataset split:  fmnist_scale_new_split_0.pickle
 Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 362.756
-Standard-CNN
-Train: 0.96 Test: 0.7547 
+Total training time: 161.105
+
+ Standard-CNN
+Train: 0.9259 Test: 0.756 
 
 Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 1029.080
-SI-ConvNet
-Train: 0.9282 Test: 0.8063 
+Total training time: 753.752
+
+ SI-ConvNet
+Train: 0.9349 Test: 0.7844 
 
 Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 826.784
-SS-CNN
-Train: 0.8377 Test: 0.6496 
+Total training time: 784.656
+
+ SS-CNN
+Train: 0.8864 Test: 0.7635 
 
 Load dataset split:  fmnist_scale_new_split_1.pickle
 Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 371.632
-Standard-CNN
-Train: 0.9617 Test: 0.7562 
+Total training time: 160.686
+
+ Standard-CNN
+Train: 0.9332 Test: 0.7485 
 
 Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 1013.374
-SI-ConvNet
-Train: 0.9451 Test: 0.7191 
+Total training time: 751.426
+
+ SI-ConvNet
+Train: 0.9247 Test: 0.744 
 
 Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 886.549
-SS-CNN
-Train: 0.8245 Test: 0.671 
+Total training time: 780.868
+
+ SS-CNN
+Train: 0.8426 Test: 0.5562 
 
 Load dataset split:  fmnist_scale_new_split_2.pickle
 Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 360.649
-Standard-CNN
-Train: 0.9703 Test: 0.7631 
+Total training time: 160.390
+
+ Standard-CNN
+Train: 0.9483 Test: 0.7101 
 
 Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 880.595
-SI-ConvNet
-Train: 0.9027 Test: 0.7662 
+Total training time: 750.547
+
+ SI-ConvNet
+Train: 0.9251 Test: 0.728 
 
 Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 821.481
-SS-CNN
-Train: 0.7708 Test: 0.593 
+Total training time: 781.271
+
+ SS-CNN
+Train: 0.58 Test: 0.3985 
 
 Load dataset split:  fmnist_scale_new_split_3.pickle
 Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 357.763
-Standard-CNN
-Train: 0.9632 Test: 0.7159 
+Total training time: 161.128
+
+ Standard-CNN
+Train: 0.9616 Test: 0.6901 
 
 Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 876.455
-SI-ConvNet
-Train: 0.9456 Test: 0.7538 
+Total training time: 739.725
+
+ SI-ConvNet
+Train: 0.9695 Test: 0.7655 
 
 Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 821.911
-SS-CNN
-Train: 0.8103 Test: 0.6066 
+Total training time: 741.255
+
+ SS-CNN
+Train: 0.8703 Test: 0.7488 
 
 Load dataset split:  fmnist_scale_new_split_4.pickle
 Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 359.458
-Standard-CNN
-Train: 0.9773 Test: 0.7473 
+Total training time: 121.459
+
+ Standard-CNN
+Train: 0.9638 Test: 0.7477 
 
 Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 879.170
-SI-ConvNet
-Train: 0.9471 Test: 0.7978 
+Total training time: 710.627
+
+ SI-ConvNet
+Train: 0.9583 Test: 0.7736 
 
 Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 855.627
-SS-CNN
-Train: 0.8591 Test: 0.6909 
+Total training time: 741.399
+
+ SS-CNN
+Train: 0.8244 Test: 0.6518 
 
 Load dataset split:  fmnist_scale_new_split_5.pickle
 Training network: Standard-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 364.723
-Standard-CNN
-Train: 0.9618 Test: 0.769 
+Total training time: 121.810
+
+ Standard-CNN
+Train: 0.9436 Test: 0.7006 
 
 Training network: SI-ConvNet 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 872.336
-SI-ConvNet
-Train: 0.9674 Test: 0.7725 
+Total training time: 711.093
+
+ SI-ConvNet
+Train: 0.962 Test: 0.7446 
 
 Training network: SS-CNN 	 training_size = 10000 	 test_size = 10000
 Training completed.
-Total training time: 835.653
-SS-CNN
-Train: 0.8893 Test: 0.7267 
+Total training time: 741.401
+
+ SS-CNN
+Train: 0.8292 Test: 0.5523 
 
 Load dataset split:  fmnist_scale_new_split_0.pickle
 Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 344.008
-Standard-CNN
-Train: 0.98 Test: 0.7282 
+Total training time: 114.922
+
+ Standard-CNN
+Train: 0.945 Test: 0.7548 
 
 Training network: SI-ConvNet 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 756.271
-SI-ConvNet
-Train: 0.958375 Test: 0.7505 
+Total training time: 585.991
+
+ SI-ConvNet
+Train: 0.949 Test: 0.7481 
 
 Training network: SS-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 715.541
-SS-CNN
-Train: 0.878875 Test: 0.6988 
+Total training time: 611.421
+
+ SS-CNN
+Train: 0.884 Test: 0.716 
 
 Load dataset split:  fmnist_scale_new_split_1.pickle
 Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 346.138
-Standard-CNN
-Train: 0.956625 Test: 0.7118 
+Total training time: 114.224
+
+ Standard-CNN
+Train: 0.966 Test: 0.7898 
 
 Training network: SI-ConvNet 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 754.194
-SI-ConvNet
-Train: 0.93925 Test: 0.76 
+Total training time: 585.756
+
+ SI-ConvNet
+Train: 0.943125 Test: 0.7291 
 
 Training network: SS-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 714.985
-SS-CNN
-Train: 0.894625 Test: 0.7127 
+Total training time: 610.787
+
+ SS-CNN
+Train: 0.612375 Test: 0.3775 
 
 Load dataset split:  fmnist_scale_new_split_2.pickle
 Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 344.820
-Standard-CNN
-Train: 0.9755 Test: 0.7502 
+Total training time: 114.281
+
+ Standard-CNN
+Train: 0.96775 Test: 0.7401 
 
 Training network: SI-ConvNet 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 750.251
-SI-ConvNet
-Train: 0.9635 Test: 0.749 
+Total training time: 584.826
+
+ SI-ConvNet
+Train: 0.939375 Test: 0.7437 
 
 Training network: SS-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 716.143
-SS-CNN
-Train: 0.898125 Test: 0.7367 
+Total training time: 610.494
+
+ SS-CNN
+Train: 0.88325 Test: 0.7491 
 
 Load dataset split:  fmnist_scale_new_split_3.pickle
 Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 339.873
-Standard-CNN
-Train: 0.980125 Test: 0.759 
+Total training time: 114.164
+
+ Standard-CNN
+Train: 0.964375 Test: 0.737 
 
 Training network: SI-ConvNet 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 750.411
-SI-ConvNet
-Train: 0.97225 Test: 0.7541 
+Total training time: 584.981
+
+ SI-ConvNet
+Train: 0.967875 Test: 0.7872 
 
 Training network: SS-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 714.149
-SS-CNN
-Train: 0.884625 Test: 0.7238 
+Total training time: 610.302
+
+ SS-CNN
+Train: 0.8755 Test: 0.7133 
 
 Load dataset split:  fmnist_scale_new_split_4.pickle
 Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 338.797
-Standard-CNN
-Train: 0.964375 Test: 0.7176 
+Total training time: 114.577
+
+ Standard-CNN
+Train: 0.966 Test: 0.7209 
 
 Training network: SI-ConvNet 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 752.269
-SI-ConvNet
-Train: 0.942375 Test: 0.7112 
+Total training time: 585.181
+
+ SI-ConvNet
+Train: 0.96875 Test: 0.7199 
 
 Training network: SS-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 717.827
-SS-CNN
-Train: 0.868125 Test: 0.7211 
+Total training time: 609.780
+
+ SS-CNN
+Train: 0.881125 Test: 0.7107 
 
 Load dataset split:  fmnist_scale_new_split_5.pickle
 Training network: Standard-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 334.714
-Standard-CNN
-Train: 0.961125 Test: 0.683 
+Total training time: 114.542
+
+ Standard-CNN
+Train: 0.97675 Test: 0.746 
 
 Training network: SI-ConvNet 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 753.668
-SI-ConvNet
-Train: 0.98375 Test: 0.7965 
+Total training time: 585.294
+
+ SI-ConvNet
+Train: 0.951625 Test: 0.7289 
 
 Training network: SS-CNN 	 training_size = 8000 	 test_size = 10000
 Training completed.
-Total training time: 717.328
-SS-CNN
-Train: 0.867875 Test: 0.6602 
+Total training time: 610.227
+
+ SS-CNN
+Train: 0.853375 Test: 0.6118 
 
 Load dataset split:  fmnist_scale_new_split_0.pickle
 Training network: Standard-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 318.993
-Standard-CNN
-Train: 0.9805 Test: 0.7462 
+Total training time: 107.517
+
+ Standard-CNN
+Train: 0.9596666666666667 Test: 0.7152 
 
 Training network: SI-ConvNet 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 628.986
-SI-ConvNet
-Train: 0.9688333333333333 Test: 0.7825 
+Total training time: 460.643
+
+ SI-ConvNet
+Train: 0.9731666666666666 Test: 0.7809 
 
 Training network: SS-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 611.236
-SS-CNN
-Train: 0.8678333333333333 Test: 0.687 
+Total training time: 479.146
+
+ SS-CNN
+Train: 0.7323333333333333 Test: 0.4271 
 
 Load dataset split:  fmnist_scale_new_split_1.pickle
 Training network: Standard-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 316.986
-Standard-CNN
-Train: 0.9911666666666666 Test: 0.7872 
+Total training time: 107.251
+
+ Standard-CNN
+Train: 0.9911666666666666 Test: 0.7656 
 
 Training network: SI-ConvNet 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 627.083
-SI-ConvNet
-Train: 0.9816666666666667 Test: 0.7752 
+Total training time: 460.363
+
+ SI-ConvNet
+Train: 0.9776666666666667 Test: 0.7998 
 
 Training network: SS-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 608.118
-SS-CNN
-Train: 0.843 Test: 0.6919 
+Total training time: 479.073
+
+ SS-CNN
+Train: 0.8838333333333334 Test: 0.7528 
 
 Load dataset split:  fmnist_scale_new_split_2.pickle
 Training network: Standard-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 323.993
-Standard-CNN
-Train: 0.9793333333333333 Test: 0.706 
+Total training time: 107.049
+
+ Standard-CNN
+Train: 0.9781666666666666 Test: 0.7094 
 
 Training network: SI-ConvNet 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 636.018
-SI-ConvNet
-Train: 0.974 Test: 0.7832 
+Total training time: 460.336
+
+ SI-ConvNet
+Train: 0.9925 Test: 0.775 
 
 Training network: SS-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 595.429
-SS-CNN
-Train: 0.8963333333333333 Test: 0.7775 
+Total training time: 478.471
+
+ SS-CNN
+Train: 0.8866666666666667 Test: 0.6348 
 
 Load dataset split:  fmnist_scale_new_split_3.pickle
 Training network: Standard-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 321.246
-Standard-CNN
-Train: 0.9958333333333333 Test: 0.7386 
+Total training time: 106.892
+
+ Standard-CNN
+Train: 0.9868333333333333 Test: 0.7116 
 
 Training network: SI-ConvNet 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 628.737
-SI-ConvNet
-Train: 0.97 Test: 0.7353 
+Total training time: 460.016
+
+ SI-ConvNet
+Train: 0.9921666666666666 Test: 0.7409 
 
 Training network: SS-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 599.584
-SS-CNN
-Train: 0.82 Test: 0.6524 
+Total training time: 478.395
+
+ SS-CNN
+Train: 0.9003333333333333 Test: 0.695 
 
 Load dataset split:  fmnist_scale_new_split_4.pickle
 Training network: Standard-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 314.884
-Standard-CNN
-Train: 0.9735 Test: 0.712 
+Total training time: 107.023
+
+ Standard-CNN
+Train: 0.989 Test: 0.6803 
 
 Training network: SI-ConvNet 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 623.922
-SI-ConvNet
-Train: 0.9815 Test: 0.7756 
+Total training time: 459.964
+
+ SI-ConvNet
+Train: 0.981 Test: 0.7595 
 
 Training network: SS-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 594.581
-SS-CNN
-Train: 0.8621666666666666 Test: 0.6786 
+Total training time: 477.644
+
+ SS-CNN
+Train: 0.9276666666666666 Test: 0.7611 
 
 Load dataset split:  fmnist_scale_new_split_5.pickle
 Training network: Standard-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 317.975
-Standard-CNN
-Train: 0.9836666666666667 Test: 0.792 
+Total training time: 106.831
+
+ Standard-CNN
+Train: 0.981 Test: 0.7242 
 
 Training network: SI-ConvNet 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 611.296
-SI-ConvNet
-Train: 0.9938333333333333 Test: 0.7562 
+Total training time: 459.973
+
+ SI-ConvNet
+Train: 0.9833333333333333 Test: 0.7505 
 
 Training network: SS-CNN 	 training_size = 6000 	 test_size = 10000
 Training completed.
-Total training time: 587.673
-SS-CNN
-Train: 0.8255 Test: 0.748 
+Total training time: 478.440
+
+ SS-CNN
+Train: 0.9181666666666667 Test: 0.7282 
 
 Load dataset split:  fmnist_scale_new_split_0.pickle
 Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 284.919
-Standard-CNN
-Train: 0.98375 Test: 0.7152 
+Total training time: 100.182
+
+ Standard-CNN
+Train: 0.9925 Test: 0.7488 
 
 Training network: SI-ConvNet 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 487.033
-SI-ConvNet
-Train: 0.9825 Test: 0.7816 
+Total training time: 335.007
+
+ SI-ConvNet
+Train: 0.97925 Test: 0.7749 
 
 Training network: SS-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 473.281
-SS-CNN
-Train: 0.904 Test: 0.7667 
+Total training time: 347.033
+
+ SS-CNN
+Train: 0.84875 Test: 0.673 
 
 Load dataset split:  fmnist_scale_new_split_1.pickle
 Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 280.317
-Standard-CNN
-Train: 0.98575 Test: 0.761 
+Total training time: 100.253
+
+ Standard-CNN
+Train: 0.99125 Test: 0.7704 
 
 Training network: SI-ConvNet 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 488.651
-SI-ConvNet
-Train: 0.9785 Test: 0.7615 
+Total training time: 335.082
+
+ SI-ConvNet
+Train: 0.99675 Test: 0.7915 
 
 Training network: SS-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 476.682
-SS-CNN
-Train: 0.884 Test: 0.7461 
+Total training time: 347.567
+
+ SS-CNN
+Train: 0.906 Test: 0.7748 
 
 Load dataset split:  fmnist_scale_new_split_2.pickle
 Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 285.401
-Standard-CNN
-Train: 0.998 Test: 0.7568 
+Total training time: 100.250
+
+ Standard-CNN
+Train: 0.99275 Test: 0.693 
 
 Training network: SI-ConvNet 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 488.132
-SI-ConvNet
-Train: 0.99 Test: 0.7454 
+Total training time: 334.850
+
+ SI-ConvNet
+Train: 0.99475 Test: 0.7528 
 
 Training network: SS-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 476.473
-SS-CNN
-Train: 0.81525 Test: 0.5821 
+Total training time: 346.209
+
+ SS-CNN
+Train: 0.89225 Test: 0.7069 
 
 Load dataset split:  fmnist_scale_new_split_3.pickle
 Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 283.555
-Standard-CNN
-Train: 0.9325 Test: 0.5825 
+Total training time: 99.970
+
+ Standard-CNN
+Train: 0.9855 Test: 0.7327 
 
 Training network: SI-ConvNet 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 488.928
-SI-ConvNet
-Train: 0.989 Test: 0.7755 
+Total training time: 334.744
+
+ SI-ConvNet
+Train: 0.98475 Test: 0.7477 
 
 Training network: SS-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 472.439
-SS-CNN
-Train: 0.825 Test: 0.591 
+Total training time: 347.184
+
+ SS-CNN
+Train: 0.93875 Test: 0.7373 
 
 Load dataset split:  fmnist_scale_new_split_4.pickle
 Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 285.693
-Standard-CNN
-Train: 0.99575 Test: 0.7739 
+Total training time: 99.994
+
+ Standard-CNN
+Train: 0.99425 Test: 0.7194 
 
 Training network: SI-ConvNet 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 486.089
-SI-ConvNet
-Train: 0.9905 Test: 0.7718 
+Total training time: 334.406
+
+ SI-ConvNet
+Train: 0.994 Test: 0.7828 
 
 Training network: SS-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 474.715
-SS-CNN
-Train: 0.90325 Test: 0.7171 
+Total training time: 346.061
+
+ SS-CNN
+Train: 0.94525 Test: 0.7606 
 
 Load dataset split:  fmnist_scale_new_split_5.pickle
 Training network: Standard-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 289.395
-Standard-CNN
-Train: 0.998 Test: 0.7393 
+Total training time: 99.828
+
+ Standard-CNN
+Train: 0.98475 Test: 0.7084 
 
 Training network: SI-ConvNet 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 485.961
-SI-ConvNet
-Train: 0.9975 Test: 0.78 
+Total training time: 334.708
+
+ SI-ConvNet
+Train: 0.959 Test: 0.756 
 
 Training network: SS-CNN 	 training_size = 4000 	 test_size = 10000
 Training completed.
-Total training time: 474.278
-SS-CNN
-Train: 0.88875 Test: 0.7165 
+Total training time: 346.877
+
+ SS-CNN
+Train: 0.9215 Test: 0.719 
 
 Load dataset split:  fmnist_scale_new_split_0.pickle
 Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 268.162
-Standard-CNN
-Train: 0.9865 Test: 0.7034 
+Total training time: 92.357
+
+ Standard-CNN
+Train: 0.9825 Test: 0.7088 
 
 Training network: SI-ConvNet 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 368.074
-SI-ConvNet
-Train: 0.943 Test: 0.6948 
+Total training time: 210.240
+
+ SI-ConvNet
+Train: 0.945 Test: 0.7465 
 
 Training network: SS-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 365.390
-SS-CNN
-Train: 0.7355 Test: 0.6617 
+Total training time: 216.087
+
+ SS-CNN
+Train: 0.6745 Test: 0.5503 
 
 Load dataset split:  fmnist_scale_new_split_1.pickle
 Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 269.875
-Standard-CNN
-Train: 1.0 Test: 0.7618 
+Total training time: 92.080
+
+ Standard-CNN
+Train: 0.996 Test: 0.7312 
 
 Training network: SI-ConvNet 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 363.155
-SI-ConvNet
-Train: 0.97 Test: 0.7686 
+Total training time: 209.903
+
+ SI-ConvNet
+Train: 1.0 Test: 0.7731 
 
 Training network: SS-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 373.874
-SS-CNN
-Train: 0.767 Test: 0.6346 
+Total training time: 216.114
+
+ SS-CNN
+Train: 0.946 Test: 0.7231 
 
 Load dataset split:  fmnist_scale_new_split_2.pickle
 Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 271.532
-Standard-CNN
-Train: 0.993 Test: 0.6922 
+Total training time: 92.589
+
+ Standard-CNN
+Train: 1.0 Test: 0.7272 
 
 Training network: SI-ConvNet 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 369.243
-SI-ConvNet
-Train: 1.0 Test: 0.7852 
+Total training time: 209.735
+
+ SI-ConvNet
+Train: 1.0 Test: 0.7621 
 
 Training network: SS-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 370.705
-SS-CNN
-Train: 0.928 Test: 0.745 
+Total training time: 215.643
+
+ SS-CNN
+Train: 0.9605 Test: 0.6967 
 
 Load dataset split:  fmnist_scale_new_split_3.pickle
 Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 276.179
-Standard-CNN
-Train: 0.996 Test: 0.7102 
+Total training time: 91.904
+
+ Standard-CNN
+Train: 1.0 Test: 0.7314 
 
 Training network: SI-ConvNet 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 371.423
-SI-ConvNet
-Train: 0.999 Test: 0.7759 
+Total training time: 209.345
+
+ SI-ConvNet
+Train: 0.9985 Test: 0.7749 
 
 Training network: SS-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 356.427
-SS-CNN
-Train: 0.926 Test: 0.7414 
+Total training time: 215.809
+
+ SS-CNN
+Train: 0.993 Test: 0.7538 
 
 Load dataset split:  fmnist_scale_new_split_4.pickle
 Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 271.148
-Standard-CNN
-Train: 0.9985 Test: 0.7639 
+Total training time: 92.647
+
+ Standard-CNN
+Train: 1.0 Test: 0.7749 
 
 Training network: SI-ConvNet 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 362.387
-SI-ConvNet
-Train: 1.0 Test: 0.7843 
+Total training time: 209.975
+
+ SI-ConvNet
+Train: 1.0 Test: 0.7775 
 
 Training network: SS-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 365.223
-SS-CNN
-Train: 0.8685 Test: 0.7586 
+Total training time: 215.911
+
+ SS-CNN
+Train: 0.9715 Test: 0.7134 
 
 Load dataset split:  fmnist_scale_new_split_5.pickle
 Training network: Standard-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 274.472
-Standard-CNN
-Train: 1.0 Test: 0.7616 
+Total training time: 92.290
+
+ Standard-CNN
+Train: 1.0 Test: 0.7467 
 
 Training network: SI-ConvNet 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 369.081
-SI-ConvNet
-Train: 0.998 Test: 0.7828 
+Total training time: 209.526
+
+ SI-ConvNet
+Train: 0.9995 Test: 0.7721 
 
 Training network: SS-CNN 	 training_size = 2000 	 test_size = 10000
 Training completed.
-Total training time: 371.412
-SS-CNN
-Train: 0.9255 Test: 0.7175
+Total training time: 215.784
+
+ SS-CNN
+Train: 0.9745 Test: 0.6988 
+
+Load dataset split:  fmnist_scale_new_split_0.pickle
+Training network: Standard-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 87.975
+
+ Standard-CNN
+Train: 0.773 Test: 0.6919 
+
+Training network: SI-ConvNet 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 147.804
+
+ SI-ConvNet
+Train: 0.623 Test: 0.5837 
+
+Training network: SS-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 151.279
+
+ SS-CNN
+Train: 0.435 Test: 0.5059 
+
+Load dataset split:  fmnist_scale_new_split_1.pickle
+Training network: Standard-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 88.444
+
+ Standard-CNN
+Train: 0.8 Test: 0.7053 
+
+Training network: SI-ConvNet 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 147.625
+
+ SI-ConvNet
+Train: 0.792 Test: 0.7307 
+
+Training network: SS-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 151.038
+
+ SS-CNN
+Train: 0.575 Test: 0.536 
+
+Load dataset split:  fmnist_scale_new_split_2.pickle
+Training network: Standard-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 88.135
+
+ Standard-CNN
+Train: 0.788 Test: 0.7083 
+
+Training network: SI-ConvNet 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 147.040
+
+ SI-ConvNet
+Train: 0.8 Test: 0.7424 
+
+Training network: SS-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 150.558
+
+ SS-CNN
+Train: 0.75 Test: 0.5786 
+
+Load dataset split:  fmnist_scale_new_split_3.pickle
+Training network: Standard-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 88.034
+
+ Standard-CNN
+Train: 0.8 Test: 0.7484 
+
+Training network: SI-ConvNet 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 147.774
+
+ SI-ConvNet
+Train: 0.8 Test: 0.7543 
+
+Training network: SS-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 151.069
+
+ SS-CNN
+Train: 0.773 Test: 0.654 
+
+Load dataset split:  fmnist_scale_new_split_4.pickle
+Training network: Standard-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 88.690
+
+ Standard-CNN
+Train: 0.8 Test: 0.7487 
+
+Training network: SI-ConvNet 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 147.633
+
+ SI-ConvNet
+Train: 0.8 Test: 0.7423 
+
+Training network: SS-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 150.127
+
+ SS-CNN
+Train: 0.769 Test: 0.6936 
+
+Load dataset split:  fmnist_scale_new_split_5.pickle
+Training network: Standard-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 88.444
+
+ Standard-CNN
+Train: 0.8 Test: 0.7159 
+
+Training network: SI-ConvNet 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 147.257
+
+ SI-ConvNet
+Train: 0.8 Test: 0.7367 
+
+Training network: SS-CNN 	 training_size = 1000 	 test_size = 10000
+Training completed.
+Total training time: 151.072
+
+ SS-CNN
+Train: 0.789 Test: 0.6754 
 
